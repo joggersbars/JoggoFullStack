@@ -1,0 +1,59 @@
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2, #56CCF2); /* Degradado de fondo */
+  }
+  
+  /* Contenedor principal */
+  .container {
+    text-align: center;
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    width: 80%;
+    max-width: 900px;
+    position: relative;  /* Para posicionar el icono */
+  }
+  
+  /* Título del juego */
+  .title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  /* Estilo de la frase del juego */
+  .phrase p {
+    font-family: 'Permanent Marker', cursive; /* Fuente personalizada para el texto */
+    font-size: 30px;
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Icono de cerveza */
+  .icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .icon img {
+    width: 80px;
+    height: auto;
+  }
+  

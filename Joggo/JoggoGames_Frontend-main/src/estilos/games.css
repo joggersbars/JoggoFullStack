@@ -1,0 +1,64 @@
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2); /* Degradado de fondo */
+  }
+  
+  /* Contenedor principal */
+  .container {
+    text-align: center;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    padding: 30px;
+    border-radius: 20px;
+    width: 300px;
+  }
+  
+  /* Título de la página */
+  .title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .games-list {
+    display: flex;
+    flex-direction: column;  /* Esto asegura que los botones estén en una columna */
+    align-items: center;     /* Centra los botones horizontalmente */
+    gap: 15px;               /* Espacio entre los botones */
+    width: 100%;
+  }
+  
+  /* Estilo de los botones de juegos */
+  .game-btn {
+    background-color: #9D4EDD;
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 15px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .game-btn:hover {
+    background-color: #7209B7;
+  }
+  

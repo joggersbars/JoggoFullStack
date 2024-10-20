@@ -1,0 +1,108 @@
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2, #56CCF2); /* Degradado de fondo */
+  }
+  
+  /* Contenedor principal */
+  .container {
+    text-align: center;
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    width: 90%;
+    max-width: 1000px;
+    position: relative;
+  }
+  
+  /* Título principal */
+  .title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  /* Sección de estadísticas */
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  
+  /* Estilo para cada sección de estadísticas (Más Pícaro / Más Parao) */
+  .stat-item {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .stat-item h2 {
+    font-family: 'Permanent Marker', cursive;
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  
+  .stat-item p {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  
+  .stat-item img {
+    width: 50px;
+    height: auto;
+  }
+  
+  /* Estilo para la imagen de cerveza tachada */
+  .crossed-beer {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cross-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    transform: rotate(45deg);
+  }
+  
+  /* Sección de frase más popular */
+  .popular-phrase h2 {
+    font-family: 'Permanent Marker', cursive;
+    text-decoration: underline;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .popular-phrase h2 span {
+    font-size: 24px;
+    color: black;
+  }
+  
+  .phrase {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  
+  .author {
+    font-size: 20px;
+    font-style: italic;
+    color: #f1f1f1;
+  }
+  

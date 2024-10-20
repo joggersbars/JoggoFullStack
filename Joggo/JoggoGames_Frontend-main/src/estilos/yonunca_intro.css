@@ -1,0 +1,83 @@
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2, #56CCF2); /* Degradado de fondo */
+  }
+  
+  /* Contenedor principal */
+  .container {
+    text-align: center;
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    width: 80%;
+    max-width: 800px;
+  }
+  
+  /* Título del juego */
+  .title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Contenedor para el texto y el código QR */
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+  }
+  
+  /* Estilos para la descripción del juego */
+  .description {
+    flex: 1;
+    color: black;
+    font-size: 18px;
+    text-align: left;
+    padding-right: 20px;
+  }
+  
+  .description p {
+    margin-bottom: 15px;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  /* Estilo para el código QR */
+  .qr-code {
+    text-align: center;
+    padding-left: 20px;
+  }
+  
+  .qr-code img {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .qr-code p {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+  }
+  

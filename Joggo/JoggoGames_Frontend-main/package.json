@@ -1,0 +1,17 @@
+{
+    "name": "Joggo-frontend",
+    "version": "1.0.0",
+    "description": "Frontend de Joggo",
+    "scripts": {
+      "setup": "npm install && npm start",      
+      "start": "node server.js",           
+      "build": "echo 'Build no implementado'",  
+      "clean": "rm -rf build"                  
+    },
+    "dependencies": {
+      "axios": "^0.21.4"
+    },
+    "devDependencies": {
+      "live-server": "^1.2.1"
+    }
+  }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/estilos/login.css">
+    <title>Formulario de Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="avatar">
+            <img src="src/iconos/LOGO_JOGGO_M.png" alt="Logo" class="logo" width="276" height="250">
+        </div>
+
+        <!-- Corregido: Añadido el ID al formulario -->
+        <form id="login-form" class="login-form">
+            <div class="input-group">
+                <!-- Corregido: Añadido el atributo 'id' y 'name' al campo de Email -->
+                <input type="text" id="username" name="username" placeholder="Email ID" required class="input-con-icono">
+            </div>
+            <div class="input-group">
+                <!-- Corregido: Añadido el atributo 'id' y 'name' al campo de Password -->
+                <input type="password" id="password" name="password" placeholder="Password" required class="input-con-icono">
+            </div>
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <!-- Botones de acción -->
+            <div class="button-group">
+                <button type="submit" class="btn" id="login-btn">Entrar</button>
+                <button type="button" class="btn" id="cancel-btn">Cancelar</button>
+            </div>              
+        </form>
+    </div>
+
+    <!-- Incluir el archivo de JavaScript justo antes de cerrar el body -->
+    <script src="pruebas/login.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Contenedor principal */
+  body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  body {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, #014AAD, #C96CE6); /* Cambiar colores del degradado */
+  }
+
+  /* Contenedor del contenido */
+  .container {
+    text-align: center;
+    color: white;
+  }
+  
+  /* Estilo del logo */
+  .logo {
+    font-size: 80px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    margin-bottom: 100px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Título principal */
+  .main-heading {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Descripción */
+  .description {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  /* Botón de entrada */
+  .btn-entrar {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px 40px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-entrar:hover {
+    background-color: #0056b3;
+  }
