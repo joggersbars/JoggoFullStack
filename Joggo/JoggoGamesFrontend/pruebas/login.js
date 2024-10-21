@@ -2,7 +2,8 @@
 
 document.getElementById('login-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Evitar que el formulario recargue la página
-
+    const apiUrl = process.env.REACT_APP_API_URL;
+    console.log('API URL:', process.env.REACT_APP_API_URL);
     // Capturar los datos del formulario
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -13,9 +14,10 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
     // Loggear los datos que se están enviando
     console.log('Enviando datos al servidor:', data);
 
-    try {
+    try {   
         // Enviar la solicitud POST al servidor Python (Flask)
-        const response = await fetch('http://localhost:5000/login', {
+        console.log('Iniciando solicitud al backend...',apiUrl);
+        const response = await fetch('http://localhost:8002/login', {  //${apiUrl}
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

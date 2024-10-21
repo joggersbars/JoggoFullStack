@@ -3,7 +3,7 @@
 from tortoise import Tortoise
 from tortoise.contrib.fastapi import register_tortoise
 
-DATABASE_URL = "sqlite://db.sqlite3"  # Cambia la URL según tu base de datos
+DATABASE_URL = "sqlite://JoggoDatabase.sqlite3"  # Cambia la URL según tu base de datos
 
 def init_db(app):
     register_tortoise(
