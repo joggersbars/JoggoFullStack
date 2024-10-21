@@ -37,7 +37,7 @@
     font-size: 80px;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -45,10 +45,20 @@
   
   /* Título principal */
   .main-heading {
-    font-size: 28px;
+    font-size: 50px;
     font-weight: bold;
-    margin-bottom: 20px;
-  }
+    margin-bottom: 40px;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 2px rgb(244, 29, 29), -1px -1px 2px rgb(0, 255, 255);
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.main-heading:hover {
+    transform: translateY(-10px) scale(1.1); /* Mueve el texto hacia arriba y lo agranda */
+    text-shadow: 3px 3px 5px rgb(244, 29, 29), -3px -3px 5px rgb(0, 255, 255); /* Mueve las sombras */
+}
+
   
   /* Descripción */
   .description {
@@ -60,18 +70,18 @@
   .btn-entrar {
     background-color: #29211d;
     color: white;
-    padding: 18px 120px;
+    padding: 2px 120px;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-    font-size: 40px;
+    font-size: 60px;
     text-decoration: none;
     border-radius: 40px;
-    transition: background-color 0.3s ease;
-    width: 400px; /* Fija el ancho a 200px */
-    height: 50px; /* Fija la altura a 50px */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   }
   
   .btn-entrar:hover {
-    background-color: #0056b3;
+    background-color: #4b3810;
+    transform: translateY(-5px); /* Mueve el botón hacia arriba */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
   }
 
 
