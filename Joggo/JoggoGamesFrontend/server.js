@@ -8,6 +8,7 @@ const port = 8001;
 // Crear el servidor
 http.createServer((req, res) => {
   // Ruta del archivo solicitado
+  // MAQUINA DE ESTADOS SEGUN LA URL QUE SE SOLICITE
   let filePath = path.join(__dirname, 'public/Recursos', req.url === '/' ? 'index.html' : req.url);     //pagina inicial
 
   if (req.url === '/login') {
@@ -23,7 +24,6 @@ http.createServer((req, res) => {
   }else if (req.url === '/partida') {
     filePath = path.join(__dirname, 'public/Recursos', 'partida.html');
   }
-
 
 
   // Si es una solicitud para los archivos estáticos en "src" o "pruebas" (CSS, JS, imágenes)
