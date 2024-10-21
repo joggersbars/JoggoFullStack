@@ -28,7 +28,7 @@ def login():
 
 @app.route('/games')
 def games():
-    directory = directory = r'C:\Users\Vito\Documents\GitHub\JoggoGames_Frontend\public\Recursos'
+    directory = directory = r'C:\Users\Vito\Documents\GitHub\JoggoFullStack\Joggo\JoggoGames_Frontend-main\public\Recursos'
     return send_from_directory(directory, 'games.html')
 # Ruta para manejar la creación de una partida
 
@@ -52,6 +52,12 @@ def crear_partida():
 
     return jsonify(response), 200
 
+# Endpoint dinamico para cargar la página de "pantalla_user" donde se identificara el user y donde el QR apuntará
+@app.route('/partida_<int:id_partida>', methods=['GET']) # --> cuando se reciba un Get /partida_{id_partida} mandamos al usuario a la pantalla /partida
+def partida(id_partida):
+    # Renderizar una plantilla HTML para la partida específica
+    directory = r'C:\Users\Vito\Documents\GitHub\JoggoGames_Frontend\public\Recursos'
+    return send_from_directory(directory, 'partida.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
