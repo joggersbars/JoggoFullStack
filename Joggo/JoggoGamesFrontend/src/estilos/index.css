@@ -1,4 +1,10 @@
 /* Estilos globales */
+@font-face {
+  font-family: 'ChauPhilomeneOne-Regular';
+  src: url('fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +14,7 @@
   /* Contenedor principal */
   body, html {
     height: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
   }
   
   body {
@@ -53,12 +59,17 @@
     background-color: #29211d;
     color: white;
     padding: 18px 120px;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
     font-size: 40px;
     text-decoration: none;
     border-radius: 40px;
     transition: background-color 0.3s ease;
+    width: 400px; /* Fija el ancho a 200px */
+    height: 50px; /* Fija la altura a 50px */
   }
   
   .btn-entrar:hover {
     background-color: #0056b3;
   }
+
+
