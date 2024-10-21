@@ -20,6 +20,8 @@ http.createServer((req, res) => {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_game.html');
   } else if (req.url === '/yonunca_stats') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_stats.html');
+  }else if (req.url === '/partida') {
+    filePath = path.join(__dirname, 'public/Recursos', 'partida.html');
   }
 
 

@@ -1,43 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+     <!-- Definimos el encabezado de la pagina web en el buscador -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partida</title>
+    <title>Partida Yo Nunca</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Partida</h1>
-
-        <!-- Mostrar el ID de la partida -->
-        <p>ID de la partida: <span id="partida-id"></span></p>
-
+    <div id="partida-container" class="container">
+        <h1 id="partida-titulo">Partida</h1>
+    
+        <!-- Mostrar el ID de la partida - Recibida desde el BackEnd -->
+        <p id="partida-id-info">ID de la partida: <span id="partida-id"></span></p>
+    
         <!-- Formulario para que el usuario ingrese su id_user_partida -->
         <form id="user-form">
-            <label for="user-id">Introduce tu ID de usuario:</label>
+            <label for="user-id" id="user-id-label">ID Jugador:</label>
             <input type="text" id="user-id" required>
-            <button type="submit">Unirse a la partida</button>
+            <button id="join-button" type="submit">Unirse a la partida</button>
         </form>
     </div>
+    
 
     <!-- Incluir el archivo de JavaScript para manejar la lógica -->
-    <script>
-        // Obtener el parámetro id_partida de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const id_partida = urlParams.get('id_partida');
-
-        // Mostrar el ID de la partida en la página
-        document.getElementById('partida-id').textContent = id_partida;
-
-        // Manejar el formulario para que el usuario ingrese su id_user_partida
-        document.getElementById('user-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evitar que el formulario recargue la página
-
-            const userId = document.getElementById('user-id').value;
-
-            // Redirigir al usuario a /yonunca_intro pasando el id_partida y id_user_partida
-            window.location.href = `/yonunca_intro?id_partida=${id_partida}&id_user_partida=${userId}`;
-        });
-    </script>
+     <script src="pruebas/partida.js"></script>
 </body>
 </html>

@@ -42,7 +42,7 @@ def crear_partida():
     url_partida = f"http://localhost:8001/{game_name.lower().replace(' ', '_')}_{id_partida}"
 
     # Log para depuración
-    print(f"Creando partida: {game_name} con ID {id_partida} y URL {url_partida}")
+    print(f"Creando partida: La partida de {game_name} tiene ID {id_partida} y URL {url_partida}")
 
     # Devolver los datos de la partida como respuesta JSON
     response = {
