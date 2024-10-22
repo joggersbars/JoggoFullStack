@@ -1,0 +1,1 @@
+"mysql+<driver>://<usuario>:<contraseña>@<host>/<base_de_datos>"

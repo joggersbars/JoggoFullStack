@@ -1,15 +1,21 @@
-# app/database_configuration.py
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from dotenv import load_dotenv
+import os
 
-from tortoise import Tortoise
-from tortoise.contrib.fastapi import register_tortoise
+load_dotenv()
 
-DATABASE_URL = "sqlite://JoggoDatabase.sqlite3"  # Cambia la URL según tu base de datos
+DB_NAME = os.getenv('DB_NAME')
+DB_HOST = os.getenv('DB_HOST')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_DIALECT = os.getenv('DB_DIALECT')
+DB_USER = os.getenv('DB_USER')
 
-def init_db(app):
-    register_tortoise(
-        app,
-        db_url=DATABASE_URL,
-        modules={"models": ["app.util.model"]},
-        generate_schemas=True,  # Generar esquemas automáticamente
-        add_exception_handlers=True,
-    )
+URL_CONNECTION = f"{DB_DIALECT}://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+
+engine = create_engine(URL_CONNECTION)
+
+localSession = sessionmaker(autoflush=False, autocommit=False, bind=engine)
+
+Base = declarative_base()
