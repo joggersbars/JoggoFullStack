@@ -18,22 +18,26 @@
     <!-- Título de la sección -->
     <h1 class="title">Yo Nunca</h1>
 
+    <!-- Contenedor para mostrar el ID de la partida -->
+  <div class="game-info">
+    <p>ID de la Partida: <span id="id_partida"></span></p>
+  </div>
+
     <!-- Contenedor de la descripción y el código QR -->
+    <!-- Código QR generado dinámicamente -->
+    <div class="qr-code">
+      <canvas id="qrPartida"></canvas>
+      <p>¡Escanea el QR para unirte!</p>
+    </div>
+  </div>
+
     <div class="content">
       <!-- Descripción del juego -->
       <div class="description">
         <p>TEXTO</p>
         <p class="bold">¡VAMOS A JUGAR!</p>
       </div>
-
-      <!-- Código QR -->
-      <div class="qr-code">
-        <img src="src/iconos/qr-code.png" alt="QR Code"> 
-                                                            <!-- Habrá que ver cómo cargar el código QR -->
-        <p>¡ESCANEA PARA JUGAR!</p>
-      </div>
     </div>
-  </div>
 
   <div class="container">
     <!-- Título de la sección de juegos -->
@@ -42,6 +46,12 @@
         <a href="/yonunca_game" class="game-btn">Comenzar</a>
     </div>
   </div>
+
+  <!-- Script para QRious - generacion del QR-->
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+
+  <!-- Script personalizado -->
+  <script src="pruebas/yonunca_intro.js"></script>
 
 </body>
 </html>

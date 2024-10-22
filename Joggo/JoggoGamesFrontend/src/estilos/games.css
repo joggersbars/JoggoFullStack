@@ -28,8 +28,9 @@ body {
   justify-content: center;
   align-items: center;
   background: linear-gradient(90deg, #014AAD, #C96CE6); /* Degradado de fondo */
-  padding: 20px;
 }
+
+
 
 .header-container {
   width: 100%;
@@ -50,7 +51,7 @@ body {
   position: absolute; /* Posiciona el logo de manera independiente del flujo normal */
   right: 50px; /* Desplaza el logo 50px desde el borde derecho */
   top: 0;
-  width: 100px; /* Tamaño del logo */
+  width: 50px; /* Tamaño del logo */
   height: auto; /* Mantiene las proporciones */
 }
 
@@ -64,19 +65,22 @@ body {
   margin-top: 20px; /* Añade espacio entre el header y la lista de juegos */
 }
 
-.game-button {
+.game-btn {
   background-color: #29211d;
   color: white;
-  padding: 15px 30px;
-  font-size: 24px;
-  width: 250px;
-  border-radius: 30px;
+  padding: 15px 40px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+  width: 200px;
   border: none;
   cursor: pointer;
-  font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-  transition: background-color 0.3s ease;
 }
 
-.game-button:hover {
+.game-btn:hover {
   background-color: #0056b3;
 }
+
+
