@@ -60,8 +60,10 @@ async def register_user(usuario: UserData, db: Session = Depends(get_db)): # usu
 
 @router.post("/login_user", tags=["Auntenticación"], description="Usuario logging")
 async def login_user(usuario: UserData, db: Session = Depends(get_db)):
+    print("Usuario: ",usuario.username, "\t Password: ",usuario.password)
     check_name = crud.get_user_by_name(db=db, name=usuario.username)
-    if check_name:
+    print("Check_name: ",check_name.username)
+    if check_name.username == None:
         raise HTTPException(status_code=400, detail="El usuario no está registrado")
     else:
         _logger.info("Entrando en el servidor")
@@ -72,5 +74,5 @@ async def login_user(usuario: UserData, db: Session = Depends(get_db)):
         json_response = JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
         return json_response
 
-
+#@router.post("/yo_nunca", tags = [""])
 
