@@ -6,27 +6,41 @@
     <title>Lista de Juegos</title>
     <link rel="icon" type="image/png" href="src\iconos\favicon.ico">
     <link rel="stylesheet" href="src/estilos/games.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+
 </head>
 <body>
     <div class="container">
       <div class="header-container">
-        <img src="src/iconos/LOGO_JOGGO_L.png" alt="Logo" class="logo" width="50" height="auto">
-      </div>
+        <img src="src/iconos/LOGO_JOGGO_L.png" alt="Logo" class="logo" width="50" height="auto"></div>
       <div>
-        <h1 class="main-heading">JUEGOS</h1>
-      </div>
-        <div class="game-list">
+        <h1 class="main-heading">JUEGOS</h1></div>
 
-            <a href="/yonunca_intro" class="game-btn">YO NUNCA</a>
-            <button class="game-btn">YO NUNCA</button>
-            <button class="game-btn">JUEGO 1</button>
-            <button class="game-btn">JUEGO 2</button>
-            <button class="game-btn">JUEGO 3</button>
-            <button class="game-btn">JUEGO 4</button>
-            <button class="game-btn">JUEGO 5</button>
+      <div class="core-container">  
+        <div id="lottie-container"></div>
+        <div class="game-list">
+          <a href="/yonunca_intro" class="game-btn">YO NUNCA</a>
+          <button class="game-btn">JUEGO 1</button>
+          <button class="game-btn">JUEGO 2</button>
+          <button class="game-btn">JUEGO 3</button>
+          <button class="game-btn">JUEGO 4</button>
+          <button class="game-btn">JUEGO 5</button>
         </div>
+        <div id="lottie-container1"></div>
+      </div>
+        
     </div>
 
- <!-- Se quita funcionalidad de games.js -> todo en /yonunca_intro -->
+    <script src="pruebas/games.js"></script>
+    <script>
+      var animation = lottie.loadAnimation({
+        container: document.getElementById('lottie-container'), // Contenedor donde se cargará la animación
+        renderer: 'svg', // Renderización en formato SVG
+        loop: true, // Repetir la animación
+        autoplay: true, // Reproducir automáticamente
+        path: 'src/lotties/beer.json' // Ruta de la animación en formato JSON
+      });
+    </script>    
+
 </body>
 </html>
