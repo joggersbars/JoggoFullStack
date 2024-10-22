@@ -34,4 +34,4 @@ def login_user(db: Session, username: str, password: str):
     if verify_user_password(db, username, password):
         return {"message": "Bienvenido"}
     else:
-        return {"error": "Nombre de usuario o contraseña incorrectos"}
+        return {"message": "Nombre de usuario o contraseña incorrectos"}
