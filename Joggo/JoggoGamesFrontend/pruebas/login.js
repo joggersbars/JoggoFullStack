@@ -17,7 +17,7 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
     try {   
         // Enviar la solicitud POST al servidor Python (Flask)
         //console.log('Iniciando solicitud al backend...',apiUrl);
-        const response = await fetch('http://localhost:8002/login_user', {  //${apiUrl}
+        const response = await fetch('http://localhost:8002/register_user', {  //${apiUrl}
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

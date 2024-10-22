@@ -15,3 +15,6 @@ asyncpg
 sqlalchemy
 alembic
 bcrypt
+PyMySQL
+database
+python-dotenv

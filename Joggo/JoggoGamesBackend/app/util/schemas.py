@@ -2,9 +2,12 @@
 
 from pydantic import BaseModel
 
-class UsuarioCreate(BaseModel):
+class UserData(BaseModel):
     username: str
     password: str  # 'bar' o 'jugador'
+
+class UserId(UserData):
+    id: int
 
 class TokenResponse(BaseModel):
     access_token: str
