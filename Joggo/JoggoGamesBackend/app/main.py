@@ -14,7 +14,7 @@ def get_app():
     app = FastAPI()
     app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8001"],  # Reemplaza con la URL de tu frontend http://localhost:8001/
+    allow_origins=["*"],  # Reemplaza con la URL de tu frontend http://localhost:8001/
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -3,8 +3,8 @@
 from pydantic import BaseModel
 
 class UsuarioCreate(BaseModel):
-    nombre: str
-    contraseña: str  # 'bar' o 'jugador'
+    username: str
+    password: str  # 'bar' o 'jugador'
 
 class TokenResponse(BaseModel):
     access_token: str

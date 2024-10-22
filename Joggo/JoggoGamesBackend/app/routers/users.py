@@ -14,6 +14,7 @@ from app.util.model import (
 )
 from app.util.schemas import UsuarioCreate, TokenResponse, PartidaCreate
 import logging
+import json
 from tortoise.exceptions import DoesNotExist
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -29,29 +30,20 @@ security = HTTPBearer()
 
 # --- Endpoints de Autenticación ---
 
-@router.post("/login", response_model=TokenResponse, tags=["Autenticación"])
-async def login(usuario: UsuarioCreate):
+@router.post("/login_user", tags=["Autenticación"], description="Login User")
+async def login_user(usuario: UsuarioCreate): # usuario: UsuarioCreate
     """
     Logear nuevo usuario bar y obtener un token de acceso.
     """
-    print(f"Datos recibidos: {usuario.nombre}, {usuario.contraseña}")
-    existing_usuario = await Usuario.filter(nombre=usuario.nombre).first()
-    if existing_usuario:
-        raise HTTPException(status_code=400, detail="El nombre ya existe, elige otro.")
-    
-    # Crear el usuario; el token se genera automáticamente mediante el default en el modelo
-    usuario_obj = await Usuario.create(nombre=usuario.nombre, tipo=usuario.tipo)
-    _logger.info(f"Logging Usuario {usuario.nombre}: tipo: {usuario.tipo}")
-    # Crear la respuesta y establecer la cookie
-    response = JSONResponse(content={"access_token": usuario_obj.token, "token_type": "bearer"})
-    response.set_cookie(
-        key="access_token",
-        value=usuario_obj.token,
-        httponly=True,
-        secure=True,  # Establece en True en producción
-        samesite="lax",  # Ajusta según tus necesidades
-    )
-    return response
+    print(f"Usuario: {usuario.username} y contraseña: {usuario.password}")
+    _logger.info("Entrando en el servidor")
+    if not usuario.username or not usuario.password:
+        raise HTTPException(status_code=400, detail="Faltan datos obligatorios")
+    _logger.info(f"Logging Usuario {usuario.username}: tipo: {usuario.password}")
+
+    response_dict = {"Message":"Bienvenido"}
+    json_response = JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
+    return json_response
 
 # --- Dependencia para Obtener el Usuario Actual ---
 
