@@ -1,15 +1,7 @@
-# app/database_configuration.py
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-from tortoise import Tortoise
-from tortoise.contrib.fastapi import register_tortoise
+URL_CONNECTION = 'mysql+pysql://root:12345@localhost/test'
 
-DATABASE_URL = "sqlite://JoggoDatabase.sqlite3"  # Cambia la URL según tu base de datos
-
-def init_db(app):
-    register_tortoise(
-        app,
-        db_url=DATABASE_URL,
-        modules={"models": ["app.util.model"]},
-        generate_schemas=True,  # Generar esquemas automáticamente
-        add_exception_handlers=True,
-    )
+engine = create_engine(URL_CONNECTION)
