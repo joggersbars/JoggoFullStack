@@ -65,19 +65,22 @@ body {
   margin-top: 20px; /* Añade espacio entre el header y la lista de juegos */
 }
 
-.game-button {
+.game-btn {
   background-color: #29211d;
   color: white;
-  padding: 15px 30px;
-  font-size: 24px;
-  width: 250px;
-  border-radius: 30px;
+  padding: 15px 40px;
+  font-size: 18px;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+  font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+  width: 200px;
   border: none;
   cursor: pointer;
-  font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-  transition: background-color 0.3s ease;
 }
 
-.game-button:hover {
+.game-btn:hover {
   background-color: #0056b3;
 }
+
+
