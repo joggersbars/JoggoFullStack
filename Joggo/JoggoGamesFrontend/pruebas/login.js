@@ -39,7 +39,7 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
                 // Redirigir a la pantalla /games si la autenticación fue exitosa
                 console.log('Autenticación exitosa. Redirigiendo a /games...');
                 window.location.href = '/games';
-            } else {
+            } else if (result.message.includes('El usuario no está registrado')) {
                 alert('Error de autenticación: ' + result.message); // Mostrar el mensaje de error
             }
         } else {
