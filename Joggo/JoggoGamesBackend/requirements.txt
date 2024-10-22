@@ -12,3 +12,9 @@ tortoise-orm==0.19.3
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 asyncpg
+sqlalchemy
+alembic
+bcrypt
+PyMySQL
+database
+python-dotenv
