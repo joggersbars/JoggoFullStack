@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify,  send_from_directory
 from flask_cors import CORS  # Importar CORS
 import os
+import random
 import logging
 
 # Configurar el logger
@@ -50,7 +51,10 @@ def crear_partida():
         'url_partida': url_partida
     }
 
+    print(f"La ID dentro de respuesta es {response['id_partida']}")
+
     return jsonify(response), 200
+
 
 # Endpoint dinamico para cargar la página de "pantalla_user" donde se identificara el user y donde el QR apuntará
 @app.route('/partida_<int:id_partida>', methods=['GET']) # --> cuando se reciba un Get /partida_{id_partida} mandamos al usuario a la pantalla /partida
