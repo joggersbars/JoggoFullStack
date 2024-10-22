@@ -3,41 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Inicio de Sesión</title>
     <link rel="stylesheet" href="src/estilos/login.css">
-    <title>Formulario de Login</title>
 </head>
 <body>
-    <div class="login-container">
-        <div class="avatar">
-            <img src="src/iconos/LOGO_JOGGO_M.png" alt="Logo" class="logo" width="276" height="250">
+    <div class="container">
+        <!-- Logo y título -->
+        <div class="logo-container">
+            <img src="src\iconos\LOGO_JOGGO_L.png" alt="Logo" class="logo"  width="276" height="250">
         </div>
-
-        <!-- Corregido: Añadido el ID al formulario -->
-        <form id="login-form" class="login-form">
-            <div class="input-group">
-                <!-- Corregido: Añadido el atributo 'id' y 'name' al campo de Email -->
-                <input type="text" id="username" name="username" placeholder="Email ID" required class="input-con-icono">
-            </div>
-            <div class="input-group">
-                <!-- Corregido: Añadido el atributo 'id' y 'name' al campo de Password -->
-                <input type="password" id="password" name="password" placeholder="Password" required class="input-con-icono">
-            </div>
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox"> Remember me
+        <!-- Formulario de inicio de sesión -->
+        <form class="login-form">
+            <div class="input-container">
+                <label for="username">
+                    <img src="src\iconos\usuario.png" alt="Icono de usuario" class="icon">
                 </label>
-                <a href="#">Forgot Password?</a>
+                <input type="text" id="username" placeholder="Usuario" class="input-field">
             </div>
-            <!-- Botones de acción -->
-            <div class="button-group">
-                <button type="submit" class="btn" id="login-btn">Entrar</button>
-                <button type="button" class="btn" id="cancel-btn">Cancelar</button>
-            </div>              
+
+            <div class="input-container">
+                <label for="password">
+                    <img src="src\iconos\password.png" alt="Icono de contraseña" class="icon">
+                </label>
+                <input type="password" id="password" placeholder="Contraseña" class="input-field">
+            </div>
+
+            <div class="remember-container">
+                <input type="checkbox" id="remember">
+                <label for="remember" class="remember-label">Recordar Contraseña</label>
+            </div>
+
+            <div class="button-container">
+                <button type="submit" class="btn-entrar">ENTRAR</button>
+                <button type="button" class="btn-cancelar">CANCELAR</button>
+            </div>
         </form>
     </div>
-
-    <!-- Incluir el archivo de JavaScript justo antes de cerrar el body -->
-    <script src="pruebas/login.js"></script>
 </body>
 </html>
-
