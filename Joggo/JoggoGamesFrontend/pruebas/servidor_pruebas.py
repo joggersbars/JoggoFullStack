@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify,  send_from_directory
+from flask import Flask, request, jsonify
 from flask_cors import CORS  # Importar CORS
 import os
 import random
@@ -27,12 +27,6 @@ def login():
         logging.info("Autenticación fallida para el usuario: " + username)  # Registrar intentos fallidos
         return jsonify({'message': 'Credenciales incorrectas'}), 401  # 401 es el código de no autorizado
 
-@app.route('/games')
-def games():
-    directory = directory = r'C:\Users\Vito\Documents\GitHub\JoggoFullStack\Joggo\JoggoGames_Frontend-main\public\Recursos'
-    return send_from_directory(directory, 'games.html')
-# Ruta para manejar la creación de una partida
-
 @app.route('/crear_partida', methods=['GET'])
 def crear_partida():
     # Obtener el nombre del juego desde los parámetros de la solicitud
@@ -56,12 +50,19 @@ def crear_partida():
     return jsonify(response), 200
 
 
+# Ruta para servir las páginas HTML desde /public/Recursos
+@app.route('/<path:filename>')
+def serve_html(filename):
+    directory = os.path.join(os.getcwd(), 'JoggoGamesFrontend/public/Recursos')
+    return send_from_directory(directory, filename)
+
+
 # Endpoint dinamico para cargar la página de "pantalla_user" donde se identificara el user y donde el QR apuntará
-@app.route('/partida_<int:id_partida>', methods=['GET']) # --> cuando se reciba un Get /partida_{id_partida} mandamos al usuario a la pantalla /partida
-def partida(id_partida):
+#@app.route('/partida_<int:id_partida>', methods=['GET']) # --> cuando se reciba un Get /partida_{id_partida} mandamos al usuario a la pantalla /partida
+#def partida(id_partida):
     # Renderizar una plantilla HTML para la partida específica
-    directory = r'C:\Users\Vito\Documents\GitHub\JoggoGames_Frontend\public\Recursos'
-    return send_from_directory(directory, 'partida.html')
+ #   directory = r'C:\Users\Vito\Documents\GitHub\JoggoGames_Frontend\public\Recursos'
+ #   return send_from_directory(directory, 'partida.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
