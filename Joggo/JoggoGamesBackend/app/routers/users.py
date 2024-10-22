@@ -29,12 +29,12 @@ security = HTTPBearer()
 
 # --- Endpoints de Autenticación ---
 
-@router.post("/register", response_model=TokenResponse, tags=["Autenticación"])
-async def register(usuario: UsuarioCreate):
+@router.post("/login", response_model=TokenResponse, tags=["Autenticación"])
+async def login(usuario: UsuarioCreate):
     """
-    Registrar un nuevo usuario (bar o jugador) y obtener un token de acceso.
+    Logear nuevo usuario bar y obtener un token de acceso.
     """
-    
+    print(f"Datos recibidos: {usuario.nombre}, {usuario.contraseña}")
     existing_usuario = await Usuario.filter(nombre=usuario.nombre).first()
     if existing_usuario:
         raise HTTPException(status_code=400, detail="El nombre ya existe, elige otro.")
@@ -42,7 +42,7 @@ async def register(usuario: UsuarioCreate):
     # Crear el usuario; el token se genera automáticamente mediante el default en el modelo
     usuario_obj = await Usuario.create(nombre=usuario.nombre, tipo=usuario.tipo)
     _logger.info(f"Logging Usuario {usuario.nombre}: tipo: {usuario.tipo}")
-     # Crear la respuesta y establecer la cookie
+    # Crear la respuesta y establecer la cookie
     response = JSONResponse(content={"access_token": usuario_obj.token, "token_type": "bearer"})
     response.set_cookie(
         key="access_token",

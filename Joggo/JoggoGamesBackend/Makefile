@@ -3,6 +3,7 @@
 # Definición de Variables
 IMAGE_NAME := joggo-games-template
 ENV_PATH := C:/tmp/env.$(IMAGE_NAME)
+ENV_ACTIVATE_PATH := $(ENV_PATH)/Scripts/activate.ps1
 
 # Verificar que .python-version existe
 ifeq ($(wildcard .python-version),)
@@ -26,6 +27,8 @@ create-environment:
 	@echo "Instalando dependencias desde requirements.txt..."
 	$(ENV_PATH)/Scripts/python.exe -m pip install -r requirements.txt
 	@echo "Entorno virtual creado y dependencias instaladas correctamente."
+	@echo "Entorno en $(ENV_ACTIVATE_PATH)"
+	
 
 # Objetivo para Eliminar el Entorno Virtual (Opcional)
 delete-environment:
