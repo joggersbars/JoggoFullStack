@@ -25,12 +25,18 @@ body {
   height: 100vh; /* Ocupa toda la altura de la pantalla */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  text-align: center;
+  /*justify-content: center;*/
   align-items: center;
   background: linear-gradient(90deg, #014AAD, #C96CE6); /* Degradado de fondo */
 }
 
-
+.core-container {
+  display: flex;
+  flex-direction: row; /* Organiza los elementos en una fila */
+  align-items: right; /* Alinea verticalmente los elementos */
+  gap: 20px; /* Espacio entre los botones y la animación */
+}
 
 .header-container {
   width: 100%;
@@ -40,8 +46,9 @@ body {
 }
 
 .main-heading {
-  font-size: 60px;
+  font-size: 120px;
   font-weight: bold;
+  padding-top: 0px;
   color: #000;
   text-shadow: 2px 2px 4px rgb(0, 255, 255), -2px -2px 4px rgb(244, 29, 29); /* Sombra de texto */
   font-family: 'ChauPhilomeneOne-Regular', sans-serif;
@@ -49,8 +56,16 @@ body {
 
 .logo {
   position: absolute; /* Posiciona el logo de manera independiente del flujo normal */
-  right: 50px; /* Desplaza el logo 50px desde el borde derecho */
-  top: 0;
+  right: 20px; /* Desplaza el logo 50px desde el borde derecho */
+  top: 10px;
+  width: 50px; /* Tamaño del logo */
+  height: auto; /* Mantiene las proporciones */
+}
+
+.letters{
+  position: absolute; /* Posiciona el logo de manera independiente del flujo normal */
+  left: 20px; /* Desplaza el logo 50px desde el borde derecho */
+  top: 10px;
   width: 50px; /* Tamaño del logo */
   height: auto; /* Mantiene las proporciones */
 }
@@ -69,18 +84,35 @@ body {
   background-color: #29211d;
   color: white;
   padding: 15px 40px;
-  font-size: 18px;
+  font-size: 30px;
   text-decoration: none;
-  border-radius: 25px;
+  border-radius: 35px;
   transition: background-color 0.3s ease;
   font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-  width: 200px;
+  width: 400px;
   border: none;
   cursor: pointer;
 }
 
 .game-btn:hover {
-  background-color: #0056b3;
+  background-color: #4b3810;
+  transform: translateY(-5px); /* Mueve el botón hacia arriba */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
 }
 
+#lottie-container {
+  width: 300px;   /* Ancho del contenedor */
+  height: 300px;  /* Altura del contenedor */
+  background-color:rgba(240, 240, 240, 0.1); /* Color de fondo */
+  border-radius: 15px; /* Bordes redondeados */
+  margin: 50px auto; /* Centrar el contenedor */
+}
+
+#lottie-container1 {
+  width: 300px;   /* Ancho del contenedor */
+  height: 300px;  /* Altura del contenedor */
+  background-color:rgba(240, 240, 240, 0.1); /* Color de fondo */
+  border-radius: 15px; /* Bordes redondeados */
+  margin: 50px auto; /* Centrar el contenedor */
+}
 
