@@ -1,64 +1,82 @@
-/* Estilos globales */
+@font-face {
+  font-family: 'ChauPhilomeneOne-Regular';
+  src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body, html {
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #4A00E0, #8E2DE2); /* Degradado de fondo */
-  }
-  
-  /* Contenedor principal */
-  .container {
-    text-align: center;
-    color: white;
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
-    padding: 30px;
-    border-radius: 20px;
-    width: 300px;
-  }
-  
-  /* Título de la página */
-  .title {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 30px;
-  }
-  
-  .games-list {
-    display: flex;
-    flex-direction: column;  /* Esto asegura que los botones estén en una columna */
-    align-items: center;     /* Centra los botones horizontalmente */
-    gap: 15px;               /* Espacio entre los botones */
-    width: 100%;
-  }
-  
-  /* Estilo de los botones de juegos */
-  .game-btn {
-    background-color: #9D4EDD;
-    color: white;
-    padding: 15px 30px;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    border: none;
-    border-radius: 25px;
-    margin-bottom: 15px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .game-btn:hover {
-    background-color: #7209B7;
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(90deg, #014AAD, #C96CE6);
+}
+
+.container {
+  width: 100%;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #014AAD, #C96CE6); /* Degradado de fondo */
+  padding: 20px;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centra el título */
+  position: relative; /* Permite la posición absoluta del logo */
+}
+
+.main-heading {
+  font-size: 60px;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 2px 2px 4px rgb(0, 255, 255), -2px -2px 4px rgb(244, 29, 29); /* Sombra de texto */
+  font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+}
+
+.logo {
+  position: absolute; /* Posiciona el logo de manera independiente del flujo normal */
+  right: 50px; /* Desplaza el logo 50px desde el borde derecho */
+  top: 0;
+  width: 100px; /* Tamaño del logo */
+  height: auto; /* Mantiene las proporciones */
+}
+
+.game-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 30px;
+  border-radius: 30px;
+  margin-top: 20px; /* Añade espacio entre el header y la lista de juegos */
+}
+
+.game-button {
+  background-color: #29211d;
+  color: white;
+  padding: 15px 30px;
+  font-size: 24px;
+  width: 250px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.game-button:hover {
+  background-color: #0056b3;
+}

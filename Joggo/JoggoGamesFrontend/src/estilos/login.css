@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'ChauPhilomeneOne-Regular';
+  src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +25,7 @@ body {
 }
 
 .logo-container {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .logo {
@@ -87,7 +94,7 @@ h1 {
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 .btn-entrar, .btn-cancelar {
@@ -105,13 +112,14 @@ h1 {
 }
 
 .btn-entrar:hover {
-  background-color: #0056b3;
+  background-color: #4b3810;
+  transform: translateY(-5px); /* Mueve el botón hacia arriba */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
 }
 
-.btn-cancelar {
-  background-color: #ff0040;
-}
 
 .btn-cancelar:hover {
-  background-color: #ff4080;
+  background-color: #fd5a90;
+  transform: translateY(-5px); /* Mueve el botón hacia arriba */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
 }

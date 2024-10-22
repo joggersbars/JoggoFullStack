@@ -54,10 +54,10 @@
     transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
 }
 
-.main-heading:hover {
-    transform: translateY(-10px) scale(1.1); /* Mueve el texto hacia arriba y lo agranda */
-    text-shadow: 3px 3px 5px rgb(244, 29, 29), -3px -3px 5px rgb(0, 255, 255); /* Mueve las sombras */
-}
+/*.main-heading:hover {
+    /*transform: translateY(-10px) scale(1.1); /* Mueve el texto hacia arriba y lo agranda */
+    /*text-shadow: 3px 3px 5px rgb(244, 29, 29), -3px -3px 5px rgb(0, 255, 255); /* Mueve las sombras */
+/*}
 
   
   /* Descripción */
