@@ -80,7 +80,7 @@ async def crear_partida(game_name: str, num_players: int = 150, db: Session=Depe
     game_code = generate_unique_code(check_codes)
     nueva_partida = crud.create_partida(db=db,game_code=game_code,game_name=game_name,num_players=num_players)
     url_partida = f"http://localhost:8001/{game_name.lower().replace(' ','_')}_{game_code}"
-    response = {'game_code':game_code, 'url_partida':'url_partida'}
+    response = {'game_code':game_code, 'url_partida':url_partida}
     print("La partida tiene estos datos:")
     pprint(response)
     return JSONResponse(content=response, status_code=status.HTTP_201_CREATED)
