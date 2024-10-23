@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app.util.model import User, Game, GamePhrase, GamePlayer, GameResponse
+from app.util.model import User, Gamers, Game
 from passlib.context import CryptContext
 from app.util.schemas import UserData
 
@@ -46,13 +46,17 @@ def login_user(db: Session, username: str, password: str):
 
 ### Funciones de Partidas (Games) ###
 
-# Obtener una partida por su ID
-def get_partida_by_id(db: Session, id: int):
-    return db.query(Game).filter(Game.id == id).first()
+# Obtener una partida por su codigo
+def get_partida_by_codigo(db: Session, game_code: int):
+    return db.query(Game).filter(Game.game_code == game_code).first()
+
+# Obtener codigos de partidas existentes
+def get_partida_codigos(db: Session):
+    return db.query(Game.game_code)
 
 # Crear una nueva partida
-def create_partida(db: Session, game_name: str, num_players: int):
-    new_game = Game(game_name=game_name, num_players=num_players)
+def create_partida(db: Session, game_code: str, game_name: str, num_players: int):
+    new_game = Game(game_code=game_code, game_name=game_name, num_players=num_players)
     db.add(new_game)
     db.commit()
     db.refresh(new_game)
@@ -60,42 +64,42 @@ def create_partida(db: Session, game_name: str, num_players: int):
 
 ### Funciones de Jugadores en Partida ###
 
-# Añadir un jugador a una partida
-def add_player_to_game(db: Session, game_id: int, user_id: int, phrase: str = None):
-    new_player = GamePlayer(game_id=game_id, user_id=user_id, phrase=phrase)
-    db.add(new_player)
-    db.commit()
-    db.refresh(new_player)
-    return new_player
+# # Añadir un jugador a una partida
+# def add_player_to_game(db: Session, game_id: int, user_id: int, phrase: str = None):
+#     new_player = GamePlayer(game_id=game_id, user_id=user_id, phrase=phrase)
+#     db.add(new_player)
+#     db.commit()
+#     db.refresh(new_player)
+#     return new_player
 
-# Obtener jugadores de una partida
-def get_players_in_game(db: Session, game_id: int):
-    return db.query(GamePlayer).filter(GamePlayer.game_id == game_id).all()
+# # Obtener jugadores de una partida
+# def get_players_in_game(db: Session, game_id: int):
+#     return db.query(GamePlayer).filter(GamePlayer.game_id == game_id).all()
 
-### Funciones de Frases ###
+# ### Funciones de Frases ###
 
-# Añadir una nueva frase a una partida
-def add_phrase_to_game(db: Session, game_id: int, phrase: str):
-    new_phrase = GamePhrase(game_id=game_id, phrase=phrase)
-    db.add(new_phrase)
-    db.commit()
-    db.refresh(new_phrase)
-    return new_phrase
+# # Añadir una nueva frase a una partida
+# def add_phrase_to_game(db: Session, game_id: int, phrase: str):
+#     new_phrase = GamerPhrase(game_id=game_id, phrase=phrase)
+#     db.add(new_phrase)
+#     db.commit()
+#     db.refresh(new_phrase)
+#     return new_phrase
 
-# Obtener todas las frases de una partida
-def get_phrases_in_game(db: Session, game_id: int):
-    return db.query(GamePhrase).filter(GamePhrase.game_id == game_id).all()
+# # Obtener todas las frases de una partida
+# def get_phrases_in_game(db: Session, game_id: int):
+#     return db.query(GamePhrase).filter(GamePhrase.game_id == game_id).all()
 
-### Funciones de Respuestas ###
+# ### Funciones de Respuestas ###
 
-# Añadir una respuesta de un jugador a una frase
-def add_player_response(db: Session, game_phrase_id: int, player_id: int, response: str):
-    new_response = GameResponse(game_phrase_id=game_phrase_id, player_id=player_id, response=response)
-    db.add(new_response)
-    db.commit()
-    db.refresh(new_response)
-    return new_response
+# # Añadir una respuesta de un jugador a una frase
+# def add_player_response(db: Session, game_phrase_id: int, player_id: int, response: str):
+#     new_response = GameResponse(game_phrase_id=game_phrase_id, player_id=player_id, response=response)
+#     db.add(new_response)
+#     db.commit()
+#     db.refresh(new_response)
+#     return new_response
 
-# Obtener todas las respuestas de una frase
-def get_responses_for_phrase(db: Session, game_phrase_id: int):
-    return db.query(GameResponse).filter(GameResponse.game_phrase_id == game_phrase_id).all()
+# # Obtener todas las respuestas de una frase
+# def get_responses_for_phrase(db: Session, game_phrase_id: int):
+#     return db.query(GameResponse).filter(GameResponse.game_phrase_id == game_phrase_id).all()
