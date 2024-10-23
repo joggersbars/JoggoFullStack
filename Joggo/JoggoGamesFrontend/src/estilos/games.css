@@ -103,7 +103,7 @@ body {
 #lottie-container {
   width: 300px;   /* Ancho del contenedor */
   height: 300px;  /* Altura del contenedor */
-  background-color:rgba(240, 240, 240, 0.1); /* Color de fondo */
+  background-color:rgba(240, 240, 240, 0); /* Color de fondo */
   border-radius: 15px; /* Bordes redondeados */
   margin: 50px auto; /* Centrar el contenedor */
 }
