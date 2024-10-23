@@ -19,3 +19,5 @@
             //  window.location.href = `/yonunca_intro?id_partida=${id_partida}&id_user_partida=${userId}`; --> tenemos que ver como vamos a gestionar la URL
             window.location.href = '/yonunca_intro';
         });
+
+        

@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert(`Partida creada con éxito: ID ${result.id_partida}, URL: ${result.url_partida}`);
                     // Redirigir al usuario a la página de la partida creada ya que en la respuesta "result" esta la URL recibida del Back-End
                     // window.location.href =  `/partida?id_partida=${result.id_partida}`; //Al ser partidas dinamicas --> se tiene que crear con el ID de la partida que se recibe desde el Back End --> Mirarlo
-                    window.location.href = `/yonunca_intro?id_partida=${result.id_partida}`;
+                    window.location.href = `/yonunca_intro?${result.id_partida}`;
                 } else {
                     console.error('Error al crear la partida:', response.statusText);
                 }
