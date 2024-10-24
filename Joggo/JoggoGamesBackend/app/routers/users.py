@@ -61,28 +61,33 @@ async def register_user(usuario: UserData, db: Session = Depends(get_db)): # usu
 
 @router.post("/login_user", tags=["Auntenticación"], description="Usuario logging")
 async def login_user(usuario: UserData, db: Session = Depends(get_db)):
+    print("\nLoggeando usuario:")
     check_name = crud.get_user_by_name(db=db, name=usuario.username)
     if check_name == None:
         #raise HTTPException(status_code=400, detail="El usuario no está registrado")
         return JSONResponse(content={"message":"El usuario no está registrado"}, status_code=status.HTTP_200_OK)
     else:
+        print("Entrando al servidor")
         _logger.info("Entrando en el servidor")
         if not usuario.username or not usuario.password:
             raise HTTPException(status_code=400, detail="Faltan datos obligatorios")
         response_dict = crud.login_user(db=db,username=usuario.username,password=usuario.password)
+        print(f"Loggeando usuario {usuario.username}, con contraseña: {usuario.password}\n")
         _logger.info(f"Logging Usuario {usuario.username}: tipo: {usuario.password}")
         json_response = JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
         return json_response
 
-@router.get('/crear_partida', tags=['Creando partida'], description="Creando la partida")
-async def crear_partida(game_name: str, num_players: int = 150, db: Session=Depends(get_db)):
+@router.get('/crear_partida/{nombre_juego}', tags=['Creando partida'], description="Creando la partida")
+async def crear_partida(nombre_juego: str, num_jugadores: int = 150, db: Session=Depends(get_db)):
+    print("Entro")
     check_codes = crud.get_partida_codigos(db)
-    game_code = generate_unique_code(check_codes)
-    nueva_partida = crud.create_partida(db=db,game_code=game_code,game_name=game_name,num_players=num_players)
-    url_partida = f"http://localhost:8001/{game_name.lower().replace(' ','_')}_{game_code}"
-    response = {'game_code':game_code, 'url_partida':url_partida}
+    codigo_juego = generate_unique_code(check_codes)
+    nueva_partida = crud.create_partida(db=db,codigo_juego=codigo_juego,nombre_juego=nombre_juego,num_jugadores=num_jugadores)
+    url_partida = f"http://localhost:8001/{nombre_juego.lower().replace(' ','_')}_{codigo_juego}"
+    response = {'id_partida':codigo_juego, 'url_partida':url_partida}
     print("La partida tiene estos datos:")
     pprint(response)
+    print("\n")
     return JSONResponse(content=response, status_code=status.HTTP_201_CREATED)
 
 

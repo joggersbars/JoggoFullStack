@@ -14,27 +14,20 @@ class User(Base):
     # Pendiente: activo e inactivo
 
 # Tabla jugadores partida
-class Gamers(Base):
-    __tablename__ = 'gamers'
+class Jugadores(Base):
+    __tablename__ = 'jugadores'
 
     id = Column(Integer, primary_key=True, index=True) # Id del gamer
-    gamer_name = Column(String(STRING_LENGTH)) # Nombre del gamer
-
-     # Relación con las partidas
-    games = relationship("GamePlayer", back_populates="gamers") 
+    nombre_jugador = Column(String(STRING_LENGTH)) # Nombre del gamer
 
 # Tabla juego
-class Game(Base):
-    __tablename__ = 'game'
+class Juego(Base):
+    __tablename__ = 'juego'
 
     id = Column(Integer, primary_key=True, index=True) # Id de la partida
-    game_code = Column(String(STRING_LENGTH)) # Código de la partida
-    game_name = Column(String(STRING_LENGTH)) # Nombre del juego
-    num_players = Column(Integer) # Número total de jugadores
-
-    # Relación con jugadores conectados y frases
-    players = relationship("GamePlayer", back_populates="game")
-    phrases = relationship("GamePhrase", back_populates="game")
+    codigo_juego = Column(String(STRING_LENGTH)) # Código de la partida
+    nombre_juego = Column(String(STRING_LENGTH)) # Nombre del juego
+    num_jugadores = Column(Integer) # Número total de jugadores
 
 # Tabla Juego con las frases
 # class GamePlayer(Base):
