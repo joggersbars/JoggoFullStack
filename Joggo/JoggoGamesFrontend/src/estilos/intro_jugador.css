@@ -15,7 +15,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /*align-items: center;*/
     font-family: 'Arial', sans-serif;
     background: linear-gradient(90deg, #014AAD, #C96CE6);
   }
@@ -25,45 +25,52 @@
   }
   
   .logo-container {
-    margin-bottom: 10px;
+    margin-top: 4vh;
   }
   
   .logo {
-    font-size: 80px;
+    font-size: 8vw;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    width: 60vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
+    height: auto; /* Mantén la relación de aspecto correcta */
+    margin-top: 0.5vh;
     margin-left: auto;
     margin-right: auto;
   }
   
   h1 {
-    font-size: 60px;
-    color: #000;
-    text-shadow: 1px 1px 2px rgb(244, 29, 29), -1px -1px 2px rgb(0, 255, 255);
+    font-size: 8vw;
+    font-weight: bold;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-    margin-bottom: 20px;
+    letter-spacing: 0.3vw;
+    text-shadow: 0.1vw 0.1vw 0.2vw rgb(244, 29, 29), -0.1vw -0.1vw 0.2vw rgb(0, 255, 255);
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
   }
   
-  .login-form {
+  .core-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Organiza los elementos en una fila */
+    align-items: center; /* Alinea verticalmente los elementos */
+    gap: 2vh; /* Espacio entre los botones y la animación */
   }
-  
+
   .input-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center; /* Para alinear los elementos en el centro verticalmente */
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 1vh;
     background-color: #f2f2f2;
     border-radius: 30px;
     padding: 10px 20px;
-    width: 300px;
+    width: 90%;
+    height: 8vh;
   }
   
+
   .icon {
     width: 30px;
     height: 30px;
@@ -80,23 +87,12 @@
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
   }
   
-  .remember-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .remember-label {
-    font-size: 18px;
-    color: white;
-    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-    margin-left: 10px;
-  }
-  
   .button-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 2vh;
+    width: 80%;
+    margin-bottom: 2vh;
   }
   
   .btn-entrar, .btn-cancelar {
@@ -108,7 +104,7 @@
     border-radius: 25px;
     transition: background-color 0.3s ease;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-    width: 200px;
+    width: 100%;
     border: none;
     cursor: pointer;
   }
