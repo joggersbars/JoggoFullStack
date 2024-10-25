@@ -17,6 +17,8 @@ http.createServer((req, res) => {
     filePath = path.join(__dirname, 'public/Recursos', 'games.html');
   } else if (req.url === '/yonunca_intro') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_intro.html');
+  } else if (req.url === '/intro_jugador') {
+    filePath = path.join(__dirname, 'public/Recursos', 'intro_jugador.html');
   } else if (req.url === '/yonunca_game') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_game.html');
   } else if (req.url === '/yonunca_stats') {

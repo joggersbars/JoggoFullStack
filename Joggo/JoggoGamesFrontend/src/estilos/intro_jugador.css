@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'ChauPhilomeneOne-Regular';
+    src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(90deg, #014AAD, #C96CE6);
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .logo-container {
+    margin-bottom: 10px;
+  }
+  
+  .logo {
+    font-size: 80px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  h1 {
+    font-size: 60px;
+    color: #000;
+    text-shadow: 1px 1px 2px rgb(244, 29, 29), -1px -1px 2px rgb(0, 255, 255);
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Para alinear los elementos en el centro verticalmente */
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 300px;
+  }
+  
+  .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .input-field {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 18px;
+    width: 100%;
+    padding: 10px;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+  }
+  
+  .remember-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .remember-label {
+    font-size: 18px;
+    color: white;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    margin-left: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .btn-entrar, .btn-cancelar {
+    background-color: #29211d;
+    color: white;
+    padding: 15px 40px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    width: 200px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-entrar:hover {
+    background-color: #4b3810;
+    transform: translateY(-5px); /* Mueve el botón hacia arriba */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+  }
+  
+  
+  .btn-cancelar:hover {
+    background-color: #fd5a90;
+    transform: translateY(-5px); /* Mueve el botón hacia arriba */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+  }
+  
