@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app.util.model import User, Gamers, Game
+from app.util.model import User, Jugadores, Juego
 from passlib.context import CryptContext
 from app.util.schemas import UserData
 
@@ -47,16 +47,16 @@ def login_user(db: Session, username: str, password: str):
 ### Funciones de Partidas (Games) ###
 
 # Obtener una partida por su codigo
-def get_partida_by_codigo(db: Session, game_code: int):
-    return db.query(Game).filter(Game.game_code == game_code).first()
+def get_partida_by_codigo(db: Session, codigo_juego: int):
+    return db.query(Juego).filter(Juego.codigo_juego == codigo_juego).first()
 
 # Obtener codigos de partidas existentes
 def get_partida_codigos(db: Session):
-    return db.query(Game.game_code)
+    return db.query(Juego.codigo_juego)
 
 # Crear una nueva partida
-def create_partida(db: Session, game_code: str, game_name: str, num_players: int):
-    new_game = Game(game_code=game_code, game_name=game_name, num_players=num_players)
+def create_partida(db: Session, codigo_juego: str, nombre_juego: str, num_jugadores: int):
+    new_game = Juego(codigo_juego=codigo_juego, nombre_juego=nombre_juego, num_jugadores=num_jugadores)
     db.add(new_game)
     db.commit()
     db.refresh(new_game)
