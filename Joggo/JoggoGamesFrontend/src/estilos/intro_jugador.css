@@ -34,7 +34,7 @@
     font-weight: bold;
     width: 60vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
     height: auto; /* Mantén la relación de aspecto correcta */
-    margin-top: 0.5vh;
+    margin-top: 2vh;
     margin-left: auto;
     margin-right: auto;
   }
@@ -55,6 +55,7 @@
     flex-direction: column; /* Organiza los elementos en una fila */
     align-items: center; /* Alinea verticalmente los elementos */
     gap: 2vh; /* Espacio entre los botones y la animación */
+    margin-bottom: 2vh;
   }
 
   .input-container {

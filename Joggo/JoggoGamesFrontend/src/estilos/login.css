@@ -25,25 +25,27 @@ body {
 }
 
 .logo-container {
-  margin-bottom: 10px;
+  margin-bottom: 2vh;
 }
 
 .logo {
-  font-size: 80px;
+  font-size: 8vw;
   font-family: 'Arial', sans-serif;
   font-weight: bold;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  width: 20vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
+  height: auto; /* Mantén la relación de aspecto correcta */
+  margin-bottom: 2vh;
+  margin-top: 2vh;
   margin-left: auto;
   margin-right: auto;
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 6vw;
   color: #000;
   text-shadow: 1px 1px 2px rgb(244, 29, 29), -1px -1px 2px rgb(0, 255, 255);
   font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
 }
 
 .login-form {
@@ -55,26 +57,26 @@ h1 {
 .input-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
   background-color: #f2f2f2;
   border-radius: 30px;
-  padding: 10px 20px;
-  width: 300px;
+  padding: 1vh 2vw;
+  width: 30vw;
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+  width: 3vw;
+  height: 3vh;
+  margin-right: 1vw;
 }
 
 .input-field {
   border: none;
   background-color: transparent;
   outline: none;
-  font-size: 18px;
+  font-size: 1.8vw;
   width: 100%;
-  padding: 10px;
+  padding: 1vw;
   font-family: 'ChauPhilomeneOne-Regular', sans-serif;
 }
 
