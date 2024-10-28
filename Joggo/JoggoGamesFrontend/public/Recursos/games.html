@@ -19,19 +19,34 @@
       <div class="core-container">  
         <div id="lottie-container"></div>
         <div class="game-list">
-          <a href="/yonunca_intro" class="game-btn">YO NUNCA</a>
-          <button class="game-btn">JUEGO 1</button>
-          <button class="game-btn">JUEGO 2</button>
-          <button class="game-btn">JUEGO 3</button>
-          <button class="game-btn">JUEGO 4</button>
-          <button class="game-btn">JUEGO 5</button>
+    
+          <a href="/yonunca_intro" class="game-btn" onmouseover="showInstructions('YO NUNCA es un juego divertido para conocer mejor a tus amigos.')"
+          onmouseout="clearInstructions()">YO NUNCA</a>
+
+          <button class="game-btn"onmouseover="showInstructions('JUEGO 1: Sigue las reglas y diviértete.')"
+          onmouseout="clearInstructions()">JUEGO 1</button>
+
+          <button class="game-btn"onmouseover="showInstructions('JUEGO 2: ¡Mantén la concentración y gana puntos!')"
+          onmouseout="clearInstructions()">JUEGO 2</button>
+
+          <button class="game-btn"onmouseover="showInstructions('JUEGO 3: Completa los desafíos para ganar.')"
+          onmouseout="clearInstructions()">JUEGO 3</button>
+
+          <button class="game-btn"onmouseover="showInstructions('JUEGO 4: Un reto emocionante para todos.')"
+          onmouseout="clearInstructions()">JUEGO 4</button>
+
+          <button class="game-btn"onmouseover="showInstructions('JUEGO 5: Descubre algo nuevo en cada partida.')"
+          onmouseout="clearInstructions()">JUEGO 5</button>
         </div>
-        <div id="lottie-container1"></div>
+        <div id="instructions" class="instructions-text">
+          Coloca el ratón sobre un juego para ver las instrucciones.
+        </div>
       </div>
         
     </div>
 
     <script>
+      // Animación Lottie
       var animation = lottie.loadAnimation({
         container: document.getElementById('lottie-container'), // Contenedor donde se cargará la animación
         renderer: 'svg', // Renderización en formato SVG
@@ -39,6 +54,17 @@
         autoplay: true, // Reproducir automáticamente
         path: 'src/lotties/beer.json' // Ruta de la animación en formato JSON
       });
+
+      // Función para mostrar instrucciones
+      function showInstructions(text) {
+        document.getElementById('instructions').innerText = text;
+      }
+
+      // Función para limpiar las instrucciones
+      function clearInstructions() {
+        document.getElementById('instructions').innerText = 'Coloca el ratón sobre un juego para ver las instrucciones.';
+      }
+
     </script>    
 
 </body>

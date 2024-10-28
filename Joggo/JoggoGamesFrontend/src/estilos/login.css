@@ -59,14 +59,15 @@ h1 {
   align-items: center;
   margin-bottom: 2vh;
   background-color: #f2f2f2;
-  border-radius: 30px;
+  border-radius: 6vh;
   padding: 1vh 2vw;
   width: 30vw;
+  height: auto;
 }
 
 .icon {
   width: 3vw;
-  height: 3vh;
+  height: auto;
   margin-right: 1vw;
 }
 
@@ -83,45 +84,46 @@ h1 {
 .remember-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
 }
 
 .remember-label {
-  font-size: 18px;
+  font-size: 1.8vw;
   color: white;
   font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-  margin-left: 10px;
+  margin-left: 1vw;
 }
 
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1vh;
 }
 
 .btn-entrar, .btn-cancelar {
   background-color: #29211d;
   color: white;
-  padding: 15px 40px;
-  font-size: 18px;
+  padding: 1.5vw 4vh;
+  font-size: 1.8vw;
   text-decoration: none;
-  border-radius: 25px;
+  border-radius: 6vh;
   transition: background-color 0.3s ease;
   font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-  width: 200px;
+  width: 20vw;
+  height: auto;
   border: none;
   cursor: pointer;
 }
 
 .btn-entrar:hover {
   background-color: #4b3810;
-  transform: translateY(-5px); /* Mueve el botón hacia arriba */
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+  transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
+  box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
 }
 
 
 .btn-cancelar:hover {
   background-color: #fd5a90;
-  transform: translateY(-5px); /* Mueve el botón hacia arriba */
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+  transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
+  box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
 }
