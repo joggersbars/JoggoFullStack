@@ -27,7 +27,7 @@ def login():
         logging.info("Autenticación fallida para el usuario: " + username)  # Registrar intentos fallidos
         return jsonify({'message': 'Credenciales incorrectas'}), 401  # 401 es el código de no autorizado
 
-@app.route('/crear_partida', methods=['GET'])
+@app.route('/crear_partida/Yo_nunca', methods=['GET'])
 def crear_partida():
     # Obtener el nombre del juego desde los parámetros de la solicitud
     game_name = request.args.get('game_name', 'Desconocido')
@@ -51,10 +51,10 @@ def crear_partida():
 
 
 # Ruta para servir las páginas HTML desde /public/Recursos
-@app.route('/<path:filename>')
-def serve_html(filename):
-    directory = os.path.join(os.getcwd(), 'JoggoGamesFrontend/public/Recursos')
-    return send_from_directory(directory, filename)
+# @app.route('/<path:filename>')
+# def serve_html(filename):
+#     directory = os.path.join(os.getcwd(), 'JoggoGamesFrontend/public/Recursos')
+#     return send_from_directory(directory, filename)
 
 
 # Endpoint dinamico para cargar la página de "pantalla_user" donde se identificara el user y donde el QR apuntará
