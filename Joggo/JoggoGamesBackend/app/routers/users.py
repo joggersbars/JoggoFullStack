@@ -126,8 +126,9 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
 @router.post('/empezar_partida', tags=["Empezar Partida"], description="Empezando la partida")
 async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get_db)):
     if message.mensaje_inicio == "vamos a empezar partida yo nunca":
-        Iterator.establecer_cantidad_frases(crud.obtener_cantidad_frases_codigo(db=db, codigo_juego=message.codigo_juego))
-        Iterator.mostrar_cantidad_frases()
+        #iterator.cantidad_frases = int(crud.obtener_cantidad_frases_codigo(db=db, codigo_juego=message.codigo_juego))
+        iterator.establecer_cantidad_frases(cantidad_frases=int(crud.obtener_cantidad_frases_codigo(db=db, codigo_juego=message.codigo_juego)))
+        iterator.mostrar_cantidad_frases()
     else:
         raise HTTPException(status_code=400, detail="El mensaje es incorrecto")
 
