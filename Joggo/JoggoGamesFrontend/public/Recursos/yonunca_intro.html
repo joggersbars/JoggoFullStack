@@ -43,7 +43,7 @@
   <div class="container">
     <!-- Botón para iniciar el juego -->
     <div class="games-list">
-      <a href="/yonunca_game" class="game-btn">Comenzar</a>
+      <a href="/yonunca_game" class="game-btn" id="start-game-btn">Comenzar</a>
     </div>
   </div>
 
@@ -51,6 +51,16 @@
   <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
   <!-- Script personalizado para gestionar la partida -->
   <script src="pruebas/yonunca_intro.js"></script>
+
+
+  <!-- Script para que al pulsar "COMENZAR" genere un evento para la pantalla de ESPERA_JUGADOR -->
+  <script>
+    // Agregar un evento al botón COMENZAR para establecer la señal de inicio en localStorage
+    document.getElementById("start-game-btn").addEventListener("click", function(event) {
+      // Guardar la señal de que el juego ha comenzado en localStorage
+      localStorage.setItem("ComienzaPartida", "true");
+    });
+  </script>
 
 </body>
 </html>

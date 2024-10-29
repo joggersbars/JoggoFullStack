@@ -1,0 +1,18 @@
+/* Estilos básicos para centrar la animación y ajustar la pantalla de frase_jugador */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#animation-container {
+    width: 300px;
+    height: 300px;
+}
+
+/* Aquí puedes añadir más estilos para frase_jugador */
