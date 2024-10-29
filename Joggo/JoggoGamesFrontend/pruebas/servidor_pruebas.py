@@ -49,6 +49,18 @@ def crear_partida():
 
     return jsonify(response), 200
 
+@app.route('/empezar_partida', methods=['POST'])
+def empezar_partida():
+    data = request.get_json()  # Obtener el JSON del cuerpo de la solicitud
+    mensaje = data.get('mensaje_inicio')
+    id_partida = data.get('codigo_juego')
+
+    # Aquí podrías añadir lógica para manejar el inicio de la partida
+    print(f"Mensaje recibido: {mensaje}")
+    print(f"ID de la partida para comenzar: {id_partida}")
+
+    # Devolvemos una respuesta de éxito
+    return jsonify({'status': 'Partida iniciada', 'id_partida': id_partida}), 200
 
 # Ruta para servir las páginas HTML desde /public/Recursos
 # @app.route('/<path:filename>')

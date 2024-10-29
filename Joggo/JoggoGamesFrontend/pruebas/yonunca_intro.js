@@ -1,3 +1,5 @@
+// Declaración global de la variable idPartida para que sea accesible en todo el archivo
+let idPartida;
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -8,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (response.ok) {
             const result = await response.json();
-            const idPartida = result.id_partida;  // Obtener el ID de la partida del backend
+            idPartida = result.id_partida;  // Obtener el ID de la partida del backend
             console.log('ID de la partida recibido:', idPartida);
 
             // Mostrar el ID de la partida en el HTML
@@ -17,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Generar el código QR con el ID de la partida
             const qr = new QRious({
                 element: document.getElementById('qrPartida'),
-                value: `http://localhost:8001/partida_${idPartida}`, // URL con el ID de la partida
+                value: `http://localhost:8001/intro_jugador.html?id_partida=${idPartida}`, // URL con el ID de la partida
                 size: 250,
                 backgroundAlpha: 0, // Fondo transparente
                 foreground: '#000',  // Color del QR
@@ -31,10 +33,40 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+ // Definicion de la función para enviar una solicitud POST a /empezar_partida con el id de la partida
+ async function empezarPartida() {
+    try {
+        const response = await fetch('http://localhost:8002/empezar_partida', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                mensaje_inicio: "vamos a empezar partida yo nunca",
+                codigo_juego: idPartida   //mandamos el id partida
+            })
+        });
 
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Respuesta del servidor al empezar partida:', result);
+        } else {
+            console.error('Error al iniciar la partida:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error al enviar la solicitud para empezar la partida:', error);
+    }
+}
 
-
-
+// Evento de clic en el botón "Comenzar" para iniciar la partida
+document.getElementById("start-game-btn").addEventListener("click", async () => {
+    if (idPartida) {
+        await empezarPartida();
+        localStorage.setItem("ComienzaPartida", "true"); //Guardar señal de inicio en localStorage
+    } else {
+        console.error("No se ha obtenido un ID de partida válido.");
+    }
+});
 
 
 

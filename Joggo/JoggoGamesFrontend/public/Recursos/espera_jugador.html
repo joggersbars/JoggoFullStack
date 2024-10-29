@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Espera</title>
+  <!-- Enlace al archivo de CSS -->
+  <link rel="stylesheet" href="src/estilos/frase_jugador.css">
+  
+</head>
+<body>
+
+    <div id="animation-container">
+        <!-- Aquí puedes insertar la animación Lottie para la espera -->
+    </div>
+
+    <script>
+        // Función para verificar si el juego ha comenzado
+        function checkGameStart() {
+            const gameStarted = localStorage.getItem("ComienzaPartida");
+            // Si el juego ha comenzado, redirigir a frase_jugador.html
+            if (gameStarted === "true") {
+                // Eliminar el indicador para evitar redirecciones futuras
+                localStorage.removeItem("ComienzaPartida");
+                window.location.href = "/frase_jugador.html"; //redireccion a la pantalla /frase_jugador.html
+            }
+        }
+
+        // Verificar cada 0.5 segundos (500 milisegundos) si se ha pulsado COMENZAR en la pantalla /yonunca_intro
+        setInterval(checkGameStart, 500);
+    </script>
+
+</body>
+</html>
+
