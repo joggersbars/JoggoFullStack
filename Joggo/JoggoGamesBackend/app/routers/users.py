@@ -127,9 +127,15 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
 async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get_db)):
     if message.mensaje_inicio == "vamos a empezar partida yo nunca":
         Iterator.establecer_cantidad_frases(crud.obtener_cantidad_frases_codigo(db=db, codigo_juego=message.codigo_juego))
+        Iterator.mostrar_cantidad_frases()
     else:
         raise HTTPException(status_code=400, detail="El mensaje es incorrecto")
 
-# Endpoint para coger 
-# @router.get('/coger_frase', tags=["Frases Juego"], description="Frases que se van a ir poniendo en la pantalla del bar")
-# async def coger_frase()
+# Endpoint para coger la frase que se mostrará por pantalla
+@router.get('/coger_frase', tags=["Frases Juego"], description="Frases que se van a ir poniendo en la pantalla del bar")
+async def coger_frase(codigo_juego: str, db: Session=Depends(get_db)):
+    frase_pantalla = crud.get_frase_by_id_and_codigo(db=db,id=Iterator.retornar_id(),codigo_juego=codigo_juego)
+    Iterator.incrementar_contador()
+    response_frase_pantalla = {"frase":frase_pantalla}
+    json_response = JSONResponse(content=response_frase_pantalla, status_code=status.HTTP_201_CREATED)
+    return json_response

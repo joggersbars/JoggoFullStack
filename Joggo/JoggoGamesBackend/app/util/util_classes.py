@@ -11,3 +11,9 @@ class Iterator():
     
     def establecer_cantidad_frases(self, cantidad_frases: int):
         self.cantidad_frases = cantidad_frases
+
+    def mostrar_cantidad_frases(self):
+        print(f"La cantidad de frases: {self.cantidad_frases}\n")
+
+    def retornar_id(self):
+        return self.contador
