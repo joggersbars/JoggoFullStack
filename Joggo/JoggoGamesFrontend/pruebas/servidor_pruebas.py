@@ -53,7 +53,7 @@ def crear_partida():
 def empezar_partida():
     data = request.get_json()  # Obtener el JSON del cuerpo de la solicitud
     mensaje = data.get('mensaje_inicio')
-    id_partida = data.get('codigo_partida')
+    id_partida = data.get('codigo_juego')
 
     # Aquí podrías añadir lógica para manejar el inicio de la partida
     print(f"Mensaje recibido: {mensaje}")

@@ -1,14 +1,16 @@
+// Declaración global de la variable idPartida para que sea accesible en todo el archivo
+let idPartida;
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Hacer una solicitud GET al servidor para obtener el ID de la partida
-        const response = await fetch(`http://localhost:8002/crear_partida/${'Yo_nunca'}`, { 
+        const response = await fetch(`http://localhost:5000/crear_partida/${'Yo_nunca'}`, { 
             method: 'GET',
         });
 
         if (response.ok) {
             const result = await response.json();
-            const idPartida = result.id_partida;  // Obtener el ID de la partida del backend
+            idPartida = result.id_partida;  // Obtener el ID de la partida del backend
             console.log('ID de la partida recibido:', idPartida);
 
             // Mostrar el ID de la partida en el HTML
