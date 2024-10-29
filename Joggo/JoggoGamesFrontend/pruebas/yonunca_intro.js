@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
  // Definicion de la función para enviar una solicitud POST a /empezar_partida con el id de la partida
  async function empezarPartida() {
     try {
-        const response = await fetch('http://localhost:5000/empezar_partida', {
+        const response = await fetch('http://localhost:8002/empezar_partida', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

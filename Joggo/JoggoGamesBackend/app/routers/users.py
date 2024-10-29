@@ -96,7 +96,7 @@ async def crear_partida(nombre_juego: str, num_jugadores: int = 150, db: Session
 # Endpoint para crear jugador
 @router.post('/crear_jugador', tags= ["Añadiendo Jugador"], description="Añadiendo jugador")
 async def crear_jugador(jugador: Jugador, db: Session=Depends(get_db)):
-    check_jugador = crud.get_jugador_by_nombre(db=db,nombre_jugador=jugador.nombre_jugador)
+    check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db,nombre_jugador=jugador.nombre_jugador)
     if check_jugador != None:
         #raise HTTPException(status_code=400, detail="El usuario no está registrado")
         return JSONResponse(content={"message":"El nombre del jugador ya existe"}, status_code=status.HTTP_404_NOT_FOUND)
@@ -120,7 +120,7 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
         crud.añadir_frase_a_jugador(db=db,nombre_jugador=frase_entrada.nombre_jugador, frase_jugador=frase_entrada.frase_jugador, codigo_juego=frase_entrada.codigo_juego)
         response_frase = {"message":"Frase añadida correctamente"}
         json_response = JSONResponse(content=response_frase, status_code=status.HTTP_201_CREATED)
-        return json_response
+        return json_response 
 
 # Endpoint empezar_partida para sacar la cantidad de frases
 @router.post('/empezar_partida', tags=["Empezar Partida"], description="Empezando la partida")
