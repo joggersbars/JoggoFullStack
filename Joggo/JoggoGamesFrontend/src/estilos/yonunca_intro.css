@@ -1,40 +1,70 @@
 /* Estilos globales */
+@font-face {
+  font-family: 'ChauPhilomeneOne-Regular';
+  src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
   
-  body, html {
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-  }
   
   body {
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
+    flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, #4A00E0, #8E2DE2, #56CCF2); /* Degradado de fondo */
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(90deg, #014AAD, #C96CE6);
   }
-  
+
   /* Contenedor principal */
   .container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6vh;
     text-align: center;
     color: white;
     padding: 40px;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
   }
   
-  /* Título del juego */
-  .title {
-    font-size: 48px;
+  .header-container {
+    width: 100%;
+    display: flex;
+    margin-top: 1vh;
+    justify-content: center; /* Centra el título */
+    position: relative; /* Permite la posición absoluta del logo */
+  }
+
+  .main-heading {
+    font-size: 6vw;
     font-weight: bold;
-    margin-bottom: 20px;
+    padding-top: 5vh;
+    color: #000;
+    text-shadow: 0.2vw 0.2vw 0.4vw rgb(0, 255, 255), -0.2vw -0.2vw 0.4vw rgb(244, 29, 29); /* Sombra de texto */
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
   }
-  
+
+  .second-heading {
+    font-size: 5vw;
+    font-weight: bold;
+    padding-top: 8vh;
+    padding-right: 5vw;
+    align-items: center;
+    text-align: center;
+    color: #000;
+    /*text-shadow: 0.2vw 0.2vw 0.4vw rgb(0, 255, 255), -0.2vw -0.2vw 0.4vw rgb(244, 29, 29); /* Sombra de texto */
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+  }
+
   /* Contenedor para el texto y el código QR */
   .content {
     display: flex;
@@ -46,23 +76,14 @@
     width: 100%;
   }
   
-  /* Estilos para la descripción del juego */
-  .description {
-    flex: 1;
-    color: black;
-    font-size: 18px;
-    text-align: left;
-    padding-right: 20px;
+  .core-container {
+    display: flex;
+    flex-direction: row; /* Organiza los elementos en una fila */
+    align-items: right; /* Alinea verticalmente los elementos */
+    gap: 2vw; /* Espacio entre los botones y la animación */
+    justify-content: center;
   }
-  
-  .description p {
-    margin-bottom: 15px;
-  }
-  
-  .bold {
-    font-weight: bold;
-  }
-  
+ 
   /* Estilo para el código QR */
   .qr-code {
     text-align: center;
@@ -70,9 +91,9 @@
   }
   
   .qr-code img {
-    max-width: 200px;
+    width: 30vh;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 1vh;
   }
   
   .qr-code p {
@@ -80,4 +101,3 @@
     color: black;
     font-weight: bold;
   }
-  
