@@ -35,7 +35,8 @@ body {
   display: flex;
   flex-direction: row; /* Organiza los elementos en una fila */
   align-items: right; /* Alinea verticalmente los elementos */
-  gap: 20px; /* Espacio entre los botones y la animación */
+  gap: 2vw; /* Espacio entre los botones y la animación */
+  justify-content: center;
 }
 
 .header-container {
@@ -46,73 +47,90 @@ body {
 }
 
 .main-heading {
-  font-size: 120px;
+  font-size: 7vw;
   font-weight: bold;
   padding-top: 0px;
   color: #000;
-  text-shadow: 2px 2px 4px rgb(0, 255, 255), -2px -2px 4px rgb(244, 29, 29); /* Sombra de texto */
+  text-shadow: 0.2vw 0.2vw 0.4vw rgb(0, 255, 255), -0.2vw -0.2vw 0.4vw rgb(244, 29, 29); /* Sombra de texto */
   font-family: 'ChauPhilomeneOne-Regular', sans-serif;
 }
 
 .logo {
   position: absolute; /* Posiciona el logo de manera independiente del flujo normal */
-  right: 20px; /* Desplaza el logo 50px desde el borde derecho */
-  top: 10px;
-  width: 50px; /* Tamaño del logo */
+  right: 2vw; /* Desplaza el logo 50px desde el borde derecho */
+  top: 1vh;
+  width: 5vw; /* Tamaño del logo */
   height: auto; /* Mantiene las proporciones */
 }
 
 .letters{
   position: absolute; /* Posiciona el logo de manera independiente del flujo normal */
-  left: 20px; /* Desplaza el logo 50px desde el borde derecho */
-  top: 10px;
-  width: 50px; /* Tamaño del logo */
+  left: 2vw; /* Desplaza el logo 50px desde el borde derecho */
+  top: 1vw;
+  width: 5vw; /* Tamaño del logo */
   height: auto; /* Mantiene las proporciones */
 }
 
 .game-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1.5vh;
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 30px;
-  border-radius: 30px;
-  margin-top: 20px; /* Añade espacio entre el header y la lista de juegos */
+  padding: 3vw;
+  border-radius: 3vh;
+  margin-top: 1vh; /* Añade espacio entre el header y la lista de juegos */
 }
 
 .game-btn {
   background-color: #29211d;
   color: white;
-  padding: 15px 40px;
-  font-size: 30px;
+  padding: 1.5vw 1vh;
+  font-size: 2vw;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
   text-decoration: none;
-  border-radius: 35px;
+  border-radius: 3.5vh;
   transition: background-color 0.3s ease;
   font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-  width: 400px;
+  width: 40vh;
+  height: 7vh;
   border: none;
   cursor: pointer;
 }
 
 .game-btn:hover {
   background-color: #4b3810;
-  transform: translateY(-5px); /* Mueve el botón hacia arriba */
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+  transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
+  box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
 }
 
 #lottie-container {
-  width: 300px;   /* Ancho del contenedor */
-  height: 300px;  /* Altura del contenedor */
+  width: 30vw;   /* Ancho del contenedor */
+  height: 30vh;  /* Altura del contenedor */
   background-color:rgba(240, 240, 240, 0); /* Color de fondo */
-  border-radius: 15px; /* Bordes redondeados */
-  margin: 50px auto; /* Centrar el contenedor */
+  border-radius: 1.5vh; /* Bordes redondeados */
+  margin: 5vh auto; 
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-#lottie-container1 {
-  width: 300px;   /* Ancho del contenedor */
-  height: 300px;  /* Altura del contenedor */
-  background-color:rgba(240, 240, 240, 0.1); /* Color de fondo */
-  border-radius: 15px; /* Bordes redondeados */
-  margin: 50px auto; /* Centrar el contenedor */
+.instructions-text {
+  font-size: 3vw;
+  font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+  color: #29211d;
+  background-color: rgba(255, 255, 255, 0);
+  /*padding: 3vw 1vh;*/
+  border-radius: 2vh;
+  box-shadow: 0vw 0.4vw 0.6vh rgba(255, 255, 255, 0);
+  text-align: center;
+  width: 30vw; /* Ancho fijo */
+  height: auto; /* Altura fija para permitir varias líneas */
+  overflow: hidden; /* Oculta el texto que sobrepasa el cuadro */
+  display: flex;
+  margin: 10vh auto; 
+  align-items: top;
+  justify-content: center;
+  text-align: center;
 }
-
