@@ -65,26 +65,26 @@
     align-items: center;
     margin-bottom: 1vh;
     background-color: #f2f2f2;
-    border-radius: 30px;
-    padding: 10px 20px;
+    border-radius: 4vh;
+    padding: 1vw 2vh;
     width: 90%;
     height: 8vh;
   }
   
 
   .icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+    width: 5vw;
+    height: auto;
+    margin-right: 1vw;
   }
   
   .input-field {
     border: none;
     background-color: transparent;
     outline: none;
-    font-size: 18px;
+    font-size: 5vw;
     width: 100%;
-    padding: 10px;
+    padding: 1vw;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
   }
   
@@ -93,16 +93,17 @@
     flex-direction: column;
     gap: 2vh;
     width: 80%;
+    height: 4vh;
     margin-bottom: 2vh;
   }
   
   .btn-entrar, .btn-cancelar {
     background-color: #29211d;
     color: white;
-    padding: 15px 40px;
-    font-size: 18px;
+    padding: 4vw 4vh;
+    font-size: 6vw;
     text-decoration: none;
-    border-radius: 25px;
+    border-radius: 4vh;
     transition: background-color 0.3s ease;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
     width: 100%;
@@ -112,14 +113,14 @@
   
   .btn-entrar:hover {
     background-color: #4b3810;
-    transform: translateY(-5px); /* Mueve el botón hacia arriba */
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+    transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
+    box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
   }
   
   
   .btn-cancelar:hover {
     background-color: #fd5a90;
-    transform: translateY(-5px); /* Mueve el botón hacia arriba */
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+    transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
+    box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
   }
   

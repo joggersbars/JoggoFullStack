@@ -59,7 +59,7 @@ async def register_user(usuario: UserData, db: Session = Depends(get_db)): # usu
         raise HTTPException(status_code=400, detail="User already exists...")
     return crud.create_user(db=db, user=usuario)
 
-@router.post("/login_user", tags=["Auntenticación"], description="Usuario logging")
+@router.post("/login_user", tags=["Autenticación"], description="Usuario logging")
 async def login_user(usuario: UserData, db: Session = Depends(get_db)):
     print("\nLoggeando usuario:")
     check_name = crud.get_user_by_name(db=db, name=usuario.username)

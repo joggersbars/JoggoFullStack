@@ -1,0 +1,28 @@
+services:
+  # Servicio de base de datos MySQL
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_SQL_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persistencia de datos
+
+  # Servicio de aplicación con FastAPI y Uvicorn
+  app:
+    build: 
+      context: C:/Users/Francis/Documents/JoggoFullStack/JoggoFullStack/JoggoFullStack/Joggo/JoggoGamesBackend
+      dockerfile: Dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8002 --reload
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env
+    depends_on:
+      - db  # Define el orden, db se levanta primero
+
+volumes:
+  mysql_data:

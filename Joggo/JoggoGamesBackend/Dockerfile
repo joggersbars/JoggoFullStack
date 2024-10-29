@@ -1,27 +1,19 @@
-FROM python:3.11-slim
+# Usa una imagen base de Python
+FROM python:3.10
 
-ARG APP_VERSION
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
 
-WORKDIR /tmp
+# Copia el código de la aplicación
+COPY . .
 
-COPY dist /tmp/dist
+# Copia el archivo de requisitos y las instala
+COPY requirements.txt .
 
-RUN pip install uv
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN uv pip install --system --upgrade pip && \
-    uv pip install -system /tmp/dist/*.whl
+# Exponer el puerto que usará la aplicación
+EXPOSE 8002
 
-COPY requirements.txt /tmp/requirements.txt
-
-RUN uv pip install --system -r requirements.txt
-
-WORKDIR /root
-
-COPY tests /root/tests
-COPY app /root/app
-COPY version.txt /root/version.txt
-RUN mkdir log
-
-ENV APP_VERSION=$APP_VERSION
-
-EXPOSE 8000
+# Ejecutar Uvicorn con la aplicación de FastAPI
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8002"]
