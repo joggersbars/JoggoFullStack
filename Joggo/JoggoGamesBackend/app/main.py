@@ -22,26 +22,20 @@ def get_app():
     )
     app.include_router(users.router)
 
-    @app.on_event("shutdow")
-    async def shutdown():
-        # Cerrando la conexión a la base de datos
-        await engine.dispose()
-        _logger.info("Conexiones cerradas. Aplicación terminada")
-
     return app
 
 # Creando aplicación
 app = get_app()
 
-# Configuración de señales 
-def setup_signal_handlers():
-    loop = asyncio.get_running_loop()
-    for sig in (signal.SIGINT, signal.SIGTERM):
-        loop.add_signal_handler(sig, lambda: asyncio.create_task(shutdown_app()))
+# # Configuración de señales 
+# def setup_signal_handlers():
+#     loop = asyncio.get_running_loop()
+#     for sig in (signal.SIGINT, signal.SIGTERM):
+#         loop.add_signal_handler(sig, lambda: asyncio.create_task(shutdown_app()))
 
-async def shutdown_app():
-    await app.router.shutdown()
-    await engine.dispose()
-    _logger.info("Señal de cierre recibida. Conexiones cerradas")
+# async def shutdown_app():
+#     await app.router.shutdown()
+#     await engine.dispose()
+#     _logger.info("Señal de cierre recibida. Conexiones cerradas")
 
-setup_signal_handlers()
+# setup_signal_handlers()

@@ -63,6 +63,29 @@ def create_partida(db: Session, codigo_juego: str, nombre_juego: str, num_jugado
     return new_game
 
 ### Funciones de Jugadores en Partida ###
+# Obtener jugador por nombre
+def get_jugador_by_nombre(db: Session, nombre_jugador: str):
+    return db.query(Jugadores).filter(Jugadores.nombre_jugador == nombre_jugador).first()
+
+# Crear jugador y añadirlo a la base de datos
+def crear_jugador(db: Session, nombre_jugador: str, codigo_juego: str):
+    new_jugador = Jugadores(nombre_jugador=nombre_jugador, codigo_juego=codigo_juego, frase_jugador="")
+    db.add(new_jugador)
+    db.commit()
+    db.refresh(new_jugador)
+    return new_jugador
+
+# Añadir frase a jugador en la base de datos
+def añadir_frase_a_jugador(db: Session, nombre_jugador: str, frase_jugador: str):
+    jugador = get_jugador_by_nombre(db=db,nombre_jugador=nombre_jugador)
+    # Añadir la nueva frase al jugador
+    jugador.frase_jugador = frase_jugador
+    
+    # Guardar los cambios en la base de datos
+    db.commit()
+    db.refresh(jugador)
+    
+    return jugador
 
 # # Añadir un jugador a una partida
 # def add_player_to_game(db: Session, game_id: int, user_id: int, phrase: str = None):
