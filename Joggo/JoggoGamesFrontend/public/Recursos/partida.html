@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <!-- Definimos el encabezado de la pagina web en el buscador -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partida Yo Nunca</title>
+</head>
+<body>
+    <div id="partida-container" class="container">
+        <h1 id="partida-titulo">Partida</h1>
+    
+        <!-- Mostrar el ID de la partida - Recibida desde el BackEnd -->
+        <p id="partida-id-info">ID de la partida: <span id="partida-id"></span></p>
+    
+        <!-- Formulario para que el usuario ingrese su id_user_partida -->
+        <form id="user-form">
+            <label for="user-id" id="user-id-label">ID Jugador:</label>
+            <input type="text" id="user-id" required>
+            <button id="join-button" type="submit">Unirse a la partida</button>
+        </form>
+    </div>
+    
+
+    <!-- Incluir el archivo de JavaScript para manejar la lógica -->
+     <script src="pruebas/partida.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import and_, func
+
 from app.util.model import User, Jugadores, Juego
 from passlib.context import CryptContext
 from app.util.schemas import UserData
@@ -64,13 +64,8 @@ def create_partida(db: Session, codigo_juego: str, nombre_juego: str, num_jugado
 
 ### Funciones de Jugadores en Partida ###
 # Obtener jugador por nombre
-def get_jugador_by_nombre_and_codigo(db: Session, nombre_jugador: str, codigo_juego: str):
-    return db.query(Jugadores).filter(
-        and_(
-            Jugadores.nombre_jugador == nombre_jugador,
-            Jugadores.codigo_juego == codigo_juego
-        )
-    ).first()
+def get_jugador_by_nombre(db: Session, nombre_jugador: str):
+    return db.query(Jugadores).filter(Jugadores.nombre_jugador == nombre_jugador).first()
 
 # Crear jugador y añadirlo a la base de datos
 def crear_jugador(db: Session, nombre_jugador: str, codigo_juego: str):
@@ -81,8 +76,8 @@ def crear_jugador(db: Session, nombre_jugador: str, codigo_juego: str):
     return new_jugador
 
 # Añadir frase a jugador en la base de datos
-def añadir_frase_a_jugador(db: Session, nombre_jugador: str, frase_jugador: str, codigo_juego: str):
-    jugador = get_jugador_by_nombre_and_codigo(db=db,nombre_jugador=nombre_jugador,codigo_juego=codigo_juego)
+def añadir_frase_a_jugador(db: Session, nombre_jugador: str, frase_jugador: str):
+    jugador = get_jugador_by_nombre(db=db,nombre_jugador=nombre_jugador)
     # Añadir la nueva frase al jugador
     jugador.frase_jugador = frase_jugador
     
@@ -92,18 +87,42 @@ def añadir_frase_a_jugador(db: Session, nombre_jugador: str, frase_jugador: str
     
     return jugador
 
-def obtener_cantidad_frases_codigo(db: Session, codigo_juego: int):
-    return db.query(func.count(Jugadores.frase_jugador)).filter(Jugadores.codigo_juego == codigo_juego).scalar()
+# # Añadir un jugador a una partida
+# def add_player_to_game(db: Session, game_id: int, user_id: int, phrase: str = None):
+#     new_player = GamePlayer(game_id=game_id, user_id=user_id, phrase=phrase)
+#     db.add(new_player)
+#     db.commit()
+#     db.refresh(new_player)
+#     return new_player
 
-# Obtener frasen para ir mostrando por pantalla
-def get_frase_by_id_and_codigo(db: Session, id: int, codigo_juego: str):
-    return db.query(Jugadores).filter(
-        and_(
-            Jugadores.id == id,
-            Jugadores.codigo_juego == codigo_juego
-        )
-    ).first()
+# # Obtener jugadores de una partida
+# def get_players_in_game(db: Session, game_id: int):
+#     return db.query(GamePlayer).filter(GamePlayer.game_id == game_id).all()
 
-# Eliminar frase de jugador en la base de datos
-# def eliminar_frase_jugador(db: Session, nombre_jugador: str)
+# ### Funciones de Frases ###
 
+# # Añadir una nueva frase a una partida
+# def add_phrase_to_game(db: Session, game_id: int, phrase: str):
+#     new_phrase = GamerPhrase(game_id=game_id, phrase=phrase)
+#     db.add(new_phrase)
+#     db.commit()
+#     db.refresh(new_phrase)
+#     return new_phrase
+
+# # Obtener todas las frases de una partida
+# def get_phrases_in_game(db: Session, game_id: int):
+#     return db.query(GamePhrase).filter(GamePhrase.game_id == game_id).all()
+
+# ### Funciones de Respuestas ###
+
+# # Añadir una respuesta de un jugador a una frase
+# def add_player_response(db: Session, game_phrase_id: int, player_id: int, response: str):
+#     new_response = GameResponse(game_phrase_id=game_phrase_id, player_id=player_id, response=response)
+#     db.add(new_response)
+#     db.commit()
+#     db.refresh(new_response)
+#     return new_response
+
+# # Obtener todas las respuestas de una frase
+# def get_responses_for_phrase(db: Session, game_phrase_id: int):
+#     return db.query(GameResponse).filter(GameResponse.game_phrase_id == game_phrase_id).all()
