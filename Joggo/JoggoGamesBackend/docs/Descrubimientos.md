@@ -1,0 +1,2 @@
+### Anotaciones ###
+Si te conectas muchas veces al frontend y al backend en windows y no cierras bien todo, esas conexiones se quedan abiertas, por tanto si creas muchas luego no te podrás conectar porque está sobresaturado de peticiones el servidor del backend. Hay que programar manejadores de señales como ctrl+c, para que borre las conexiones y que éstas se cierren, para evitar sobrecarga.
