@@ -4,54 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Yo Nunca - Juego</title>
-
-  <!-- Enlace al archivo de CSS -->
-  <link rel="stylesheet" href="src/estilos/intro_jugador.css">
-
-  <!-- Fuente de Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Yo Nunca - QR</title>
+  <link rel="icon" type="image/png" href="src\iconos\favicon.ico">
+  <link rel="stylesheet" href="src/estilos/yonunca_intro.css">
 </head>
+
 <body>
+  <div class="header-container">
+    <h1 class="main-heading">YO NUNCA</h1>
+  </div>
 
   <div class="container">
-    <!-- Título de la sección -->
-    <h1 class="title">Yo Nunca</h1>
+    <div class="core-container"> 
 
-    <!-- Contenedor para mostrar el ID de la partida -->
-    <div class="game-info">
-      <p>ID de la Partida: <span id="id_partida"></span></p>
-    </div>
-
-    <!-- Contenedor de la descripción y el código QR -->
-    <div class="qr-container">
-      <div class="qr-code">
-        <canvas id="qrPartida"></canvas> <!-- Aquí se genera el QR dinámicamente -->
-        <p>¡Escanea el QR para unirte a la partida!</p>
+      <div class="qr-container">
+        <div class="game-info">
+          <p>ID de la Partida: <span id="id_partida"></span></p>
+        </div>
+        <div class="qr-code">
+          <canvas id="qrPartida"></canvas> <!-- Aquí se genera el QR dinámicamente -->
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="content">
-    <!-- Descripción del juego -->
-    <div class="description">
-      <p>TEXTO</p>
-      <p class="bold">¡VAMOS A JUGAR!</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <!-- Botón para iniciar el juego -->
-    <div class="games-list">
+      <h2 class="second-heading">Escanea QR o accede a Joggo.tv</h2>
       <a href="/yonunca_game" class="game-btn" id="start-game-btn">Comenzar</a>
     </div>
-  </div>
 
+    </div>
+  </div>
   <!-- Script para generar el código QR con QRious -->
   <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  
   <!-- Script personalizado para gestionar la partida -->
   <script src="pruebas/yonunca_intro.js"></script>
-
 
   <!-- Script para que al pulsar "COMENZAR" genere un evento para la pantalla de ESPERA_JUGADOR -->
   <script>
@@ -61,6 +46,6 @@
       localStorage.setItem("ComienzaPartida", "true");
     });
   </script>
-
+  
 </body>
 </html>

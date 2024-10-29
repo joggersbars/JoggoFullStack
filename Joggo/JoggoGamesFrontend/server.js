@@ -1,39 +1,44 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const url = require('url'); // Importar el módulo URL para manejar parámetros de consulta
 
 // Puerto del servidor
 const port = 8001;
 
 // Crear el servidor
 http.createServer((req, res) => {
+  // Parsear la URL para obtener solo la ruta sin parámetros de consulta
+  const parsedUrl = url.parse(req.url, true);
+  const pathname = parsedUrl.pathname;  // Solo la ruta, sin parámetros de consulta
+
   // Ruta del archivo solicitado
-  // MAQUINA DE ESTADOS SEGUN LA URL QUE SE SOLICITE
-  let filePath = path.join(__dirname, 'public/Recursos', req.url === '/' ? 'index.html' : req.url);     //pagina inicial
+  let filePath = path.join(__dirname, 'public/Recursos', pathname === '/' ? 'index.html' : pathname); // página inicial
 
-  if (req.url === '/login') {
+  // MAQUINA DE ESTADOS SEGUN LA URL QUE SE SOLICITE usando pathname en lugar de req.url
+  if (pathname === '/login') {
     filePath = path.join(__dirname, 'public/Recursos', 'login.html');
-  } else if (req.url === '/games') {
+  } else if (pathname === '/games') {
     filePath = path.join(__dirname, 'public/Recursos', 'games.html');
-  } else if (req.url === '/yonunca_intro') {
+  } else if (pathname === '/yonunca_intro') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_intro.html');
-  } else if (req.url === '/intro_jugador') {
+  } else if (pathname === '/intro_jugador') {
     filePath = path.join(__dirname, 'public/Recursos', 'intro_jugador.html');
-  } else if (req.url === '/yonunca_game') {
+  } else if (pathname === '/yonunca_game') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_game.html');
-  } else if (req.url === '/yonunca_stats') {
+  } else if (pathname === '/yonunca_stats') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_stats.html');
-  }else if (req.url === '/partida') {
-    filePath = path.join(__dirname, 'public/Recursos', 'partida.html');
+  } else if (pathname === '/espera_jugador') {
+    filePath = path.join(__dirname, 'public/Recursos', 'espera_jugador.html');
   }
-
 
   // Si es una solicitud para los archivos estáticos en "src" o "pruebas" (CSS, JS, imágenes)
-  if (req.url.startsWith('/src/') || req.url.startsWith('/pruebas/')) {
-    filePath = path.join(__dirname, req.url);  // Mantener la estructura original de "src" y "pruebas"
+  if (pathname.startsWith('/src/') || pathname.startsWith('/pruebas/')) {
+    filePath = path.join(__dirname, pathname);  // Mantener la estructura original de "src" y "pruebas"
   }
-   // Añadir un console.log para depuración
-   console.log('Archivo solicitado:', filePath);  // Ver qué archivo está siendo solicitado
+
+  // Añadir un console.log para depuración
+  console.log('Archivo solicitado:', filePath);  // Ver qué archivo está siendo solicitado
 
   // Extensión del archivo
   let extname = String(path.extname(filePath)).toLowerCase();
@@ -80,6 +85,6 @@ http.createServer((req, res) => {
       res.end(content, 'utf-8');
     }
   });
-}).listen(port, () => {                                             //Iniciar el servidor
+}).listen(port, () => {                                             // Iniciar el servidor
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
