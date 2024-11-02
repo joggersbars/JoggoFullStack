@@ -16,12 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
     entrarBtn.addEventListener("click", async function() {
         // Obtener los valores de los campos
         const id_partida = document.getElementById("id_partida").value;
-        const apodoJugador = document.getElementById("apodo_jugador").value;
+        const apodo_jugador = document.getElementById("apodo_jugador").value;
 
-        const codigo_juego = id_partida 
-        const apodo_jugador = apodoJugador
-
-        const data = { codigo_juego, apodo_jugador }
+        const data = { id_partida, apodo_jugador }
 
          // Loggear los datos que se están enviando
         console.log('Enviando datos al servidor:', data);
@@ -49,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (result.message.includes('Jugador conectado correctamente')) {
                     // Redirigir a la pantalla /games si la autenticación fue exitosa
                     console.log('Autenticación exitosa. Redirigiendo a /espera_jugador...');
-                    window.location.href = `/espera_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodoJugador}`;
+                    window.location.href = `/espera_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodo_jugador}`;
                 } else if (result.message.includes('El nombre del jugador ya existe')) {
                     alert('Error de autenticación: ' + result.message); // Mostrar el mensaje de error
                 }

@@ -139,6 +139,6 @@ async def coger_frase(id_partida: str, db: Session=Depends(get_db)):
     Iterator.incrementar_contador()
     response_frase_pantalla = {"frase":frase_pantalla}
     json_response = JSONResponse(content=response_frase_pantalla, status_code=status.HTTP_201_CREATED)
-    return json_response
+    return json_response 
 
 

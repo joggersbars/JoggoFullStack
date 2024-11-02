@@ -3,6 +3,8 @@ function getIdPartidaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const id_partida = urlParams.get("id_partida")
     const apodoJugador = urlParams.get("apodo_jugador")
+    console.log("idPartidaValue:", idPartidaValue);
+    console.log("apodoJugador:", apodoJugador);
     return {id_partida, apodoJugador}; // Obtenemos el valor de id_partida que viene como parametro desde la URL
 }
 
@@ -18,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const entrarBtn = document.getElementById("entrar-btn");
     entrarBtn.addEventListener("click", async function() {
         // Obtener los valores de los campos
+
         const id_partida = document.getElementById("id_partida").value;
         const apodoJugador = document.getElementById("apodo_jugador").value;
         const fraseJugador = document.getElementById("frase_usuario").value;

@@ -11,7 +11,7 @@ class UserId(UserData):
 
 class Jugador(BaseModel):
     id_partida: str
-    apodo_jugador: str
+    apodo_jugador: str 
 
 class FraseEntrada(Jugador):
     frase_jugador: str
