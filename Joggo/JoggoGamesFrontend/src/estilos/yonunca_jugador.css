@@ -90,37 +90,66 @@
   
   .button-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     gap: 2vh;
-    width: 80%;
-    height: 4vh;
+    width: 100%;
+    height: 20vh;
     margin-bottom: 2vh;
   }
   
-  .btn-entrar, .btn-cancelar {
+  .btn-Si, .btn-No {
     background-color: #29211d;
     color: white;
     padding: 4vw 4vh;
-    font-size: 6vw;
+    font-size: 10vw;
     text-decoration: none;
-    border-radius: 4vh;
+    border-radius: 6vh;
     transition: background-color 0.3s ease;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-    width: 100%;
+    width: 40%;
     border: none;
     cursor: pointer;
   }
-  
-  .btn-entrar:hover {
+
+  .btn-Si:hover {
     background-color: #4b3810;
     transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
     box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
   }
-  
-  
-  .btn-cancelar:hover {
+
+  .btn-No:hover {
+    background-color: #4b3810;
+    transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
+    box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+  }
+
+  .btn-like {
+    background-color: #f0b223;
+    display: flex;
+    color: white;
+    padding: 4vw 4vh;
+    font-size: 6vw;
+    gap: 4vw;
+    text-decoration: none;
+    border-radius: 4vh;
+    transition: background-color 0.3s ease;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    width: 80%;
+    border: none;
+    cursor: pointer;
+    align-items: center; /* Alineación vertical */
+    justify-content: center; /* Alineación horizontal */
+  }
+
+  .btn-like:hover {
     background-color: #fd5a90;
     transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
     box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+  }
+
+  .icono-like {
+    width: 10vw; /* Ajusta el tamaño del icono */
+    height: auto;
   }
   

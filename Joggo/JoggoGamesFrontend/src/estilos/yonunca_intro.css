@@ -31,12 +31,23 @@
     margin-bottom: 4vh;
     text-align: center;
     color: white;
-    padding: 4vw;
+    padding: 1vw;
     border-radius: 2vh;
     background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
     width: 90%;
   }
   
+  .logo {
+    font-size: 8vw;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    width: 30vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
+    height: auto; /* Mantén la relación de aspecto correcta */
+    margin-top: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .header-container {
     width: 100%;
     display: flex;
