@@ -1,14 +1,17 @@
 // Función para obtener el parámetro "id_partida" de la URL
 function getIdPartidaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("id_partida"); // Obtenemos el valor de id_partida que viene como parametro desde la URL
+    const id_partida = urlParams.get("id_partida")
+    const apodoJugador = urlParams.get("apodo_jugador")
+    return {id_partida, apodoJugador}; // Obtenemos el valor de id_partida que viene como parametro desde la URL
 }
 
 // Rellenar el campo id_partida si existe en la URL
 document.addEventListener("DOMContentLoaded", function() {
-    const idPartida = getIdPartidaFromURL();
-    if (idPartida) {
-        document.getElementById("id_partida").value = idPartida; // Rellenar el campo con el id_partida si viene desde el QR
+    const data = getIdPartidaFromURL();
+    if (data.id_partida && data.apodoJugador) {
+        document.getElementById("id_partida").value = data.id_partida; // Rellenar el campo con el id_partida si viene desde el QR
+        document.getElementById("apodo_jugador").value = data.apodoJugador 
     }
 
     // Asignar el evento de clic al botón "ENTRAR"
@@ -17,18 +20,21 @@ document.addEventListener("DOMContentLoaded", function() {
         // Obtener los valores de los campos
         const id_partida = document.getElementById("id_partida").value;
         const apodoJugador = document.getElementById("apodo_jugador").value;
+        const fraseJugador = document.getElementById("frase_usuario").value;
 
         const codigo_juego = id_partida 
         const apodo_jugador = apodoJugador
+        const frase_jugador = fraseJugador
 
-        const data = { codigo_juego, apodo_jugador }
+        const data = { codigo_juego, apodo_jugador, frase_jugador }
 
          // Loggear los datos que se están enviando
         console.log('Enviando datos al servidor:', data);
 
         try {   
+            // Enviar la solicitud POST al servidor Python (Flask)
             //console.log('Iniciando solicitud al backend...',apiUrl);
-            const response = await fetch('http://localhost:8002/crear_jugador', {  //${apiUrl}
+            const response = await fetch('http://localhost:8002/anadiendo_frase', {  //${apiUrl}
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,11 +52,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log('Mensaje recibido del servidor:', result.message);
     
                 // Comprobar si el mensaje es "Bienvenido"
-                if (result.message.includes('Jugador conectado correctamente')) {
+                if (result.message.includes('Frase añadida correctamente')) {
                     // Redirigir a la pantalla /games si la autenticación fue exitosa
                     console.log('Autenticación exitosa. Redirigiendo a /espera_jugador...');
-                    window.location.href = `/frase_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodoJugador}`;
-                } else if (result.message.includes('El nombre del jugador ya existe')) {
+                    window.location.href = `/yonunca_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodoJugador}`;
+                } else if (result.message.includes('Esa frase ya está cogida')) {
                     alert('Error de autenticación: ' + result.message); // Mostrar el mensaje de error
                 }
             } else {

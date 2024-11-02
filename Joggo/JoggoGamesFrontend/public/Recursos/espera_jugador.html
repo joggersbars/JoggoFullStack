@@ -34,7 +34,7 @@
       });
 
         // Función para verificar si el juego ha comenzado
-        function checkGameStart() {
+        async function checkGameStart() {
             const gameStarted = localStorage.getItem("ComienzaPartida");
             // Si el juego ha comenzado, redirigir a frase_jugador.html
             if (gameStarted === "true") {
