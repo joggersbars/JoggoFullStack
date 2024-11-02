@@ -33,6 +33,9 @@
         path: 'src/lotties/loading1.json' // Ruta de la animación en formato JSON
       });
 
+      // Obtener la URL actual
+      const currentUrl = window.location.href;
+
         // Función para verificar si el juego ha comenzado
         async function checkGameStart() {
             const gameStarted = localStorage.getItem("ComienzaPartida");
@@ -40,7 +43,7 @@
             if (gameStarted === "true") {
                 // Eliminar el indicador para evitar redirecciones futuras
                 localStorage.removeItem("ComienzaPartida");
-                window.location.href = "/frase_jugador.html"; //redireccion a la pantalla /frase_jugador.html
+                window.location.href = currentUrl.replace("espera_jugador.html", "frase_jugador.html");; //redireccion a la pantalla /frase_jugador.html
             }
         }
 
