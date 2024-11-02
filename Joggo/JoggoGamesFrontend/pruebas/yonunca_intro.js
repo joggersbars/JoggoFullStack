@@ -63,6 +63,7 @@ document.getElementById("start-game-btn").addEventListener("click", async () => 
     if (idPartida) {
         await empezarPartida();
         localStorage.setItem("ComienzaPartida", "true"); //Guardar señal de inicio en localStorage
+        localStorage.setItem("idPartida", idPartida);
     } else {
         console.error("No se ha obtenido un ID de partida válido.");
     }
