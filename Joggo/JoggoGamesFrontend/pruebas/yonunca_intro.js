@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             },
             body: JSON.stringify({
                 mensaje_inicio: "vamos a empezar partida yo nunca",
-                codigo_juego: idPartida   //mandamos el id partida
+                id_partida: idPartida   //mandamos el id partida
             })
         });
 
