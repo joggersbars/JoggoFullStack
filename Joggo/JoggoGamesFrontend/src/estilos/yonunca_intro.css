@@ -27,11 +27,12 @@
   .container {
     display: flex;
     flex-direction: column;
-    margin-top: 6vh;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
     text-align: center;
     color: white;
-    padding: 40px;
-    border-radius: 20px;
+    padding: 4vw;
+    border-radius: 2vh;
     background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
     width: 90%;
   }
@@ -60,6 +61,7 @@
     padding-right: 5vw;
     align-items: center;
     text-align: center;
+    justify-content: center; 
     color: #000;
     /*text-shadow: 0.2vw 0.2vw 0.4vw rgb(0, 255, 255), -0.2vw -0.2vw 0.4vw rgb(244, 29, 29); /* Sombra de texto */
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
@@ -96,8 +98,45 @@
     margin-bottom: 1vh;
   }
   
-  .qr-code p {
-    font-size: 18px;
-    color: black;
+  /*.qr-code p {
+    font-size: 2vw;
+    color: #f5da2c;
     font-weight: bold;
+  }*/
+
+  /*p.partida-texto span{
+    font-size: 18px;
+    color: #f5da2c;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+}*/
+
+/* Clase para el ID de la partida */
+#id_partida {
+    color: white; /* Cambia el color al que desees */
+    font-size: 3vw; /* Cambia el tamaño al que prefieras */
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+}
+
+  .game-btn{
+    background-color: #29211d;
+    color: white;
+    padding: 1.5vw 4vh;
+    font-size: 3vw;
+    text-decoration: none;
+    border-radius: 8vh;
+    transition: background-color 0.3s ease;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    width: 30vw;
+    height: auto;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .game-btn:hover {
+    background-color: #4b3810;
+    transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
+    box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
   }

@@ -19,18 +19,18 @@
 
       <div class="qr-container">
         <div class="game-info">
-          <p>ID de la Partida: <span id="id_partida"></span></p>
+          <p style="font-size: 2vw; font-family: ChauPhilomeneOne-Regular, sans-serif; color: whitesmoke; font-weight: bold;">ID de la Partida: <span id="id_partida"></span></p>
         </div>
         <div class="qr-code">
-          <canvas id="qrPartida"></canvas> <!-- Aquí se genera el QR dinámicamente -->
+          <canvas style="width: 20vw; height: auto;"id="qrPartida"></canvas> <!-- Aquí se genera el QR dinámicamente -->
         </div>
       </div>
 
       <h2 class="second-heading">Escanea QR o accede a Joggo.tv</h2>
-      <a href="/yonunca_game" class="game-btn" id="start-game-btn">Comenzar</a>
     </div>
+  </div>
 
-    </div>
+  <a href="/yonunca_game" class="game-btn" id="start-game-btn">Comenzar</a>
   </div>
   <!-- Script para generar el código QR con QRious -->
   <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>

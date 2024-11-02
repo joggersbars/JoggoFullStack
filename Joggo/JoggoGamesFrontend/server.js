@@ -19,7 +19,13 @@ http.createServer((req, res) => {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_intro.html');
   } else if (req.url === '/intro_jugador') {
     filePath = path.join(__dirname, 'public/Recursos', 'intro_jugador.html');
-  } else if (req.url === '/yonunca_game') {
+  } else if (req.url === '/espera_jugador') {
+    filePath = path.join(__dirname, 'public/Recursos', 'espera_jugador.html');
+  }else if (req.url === '/frase_jugador') {
+    filePath = path.join(__dirname, 'public/Recursos', 'frase_jugador.html');
+  }else if (req.url === '/yonunca_jugador') {
+    filePath = path.join(__dirname, 'public/Recursos', 'yonunca_jugador.html');
+  }else if (req.url === '/yonunca_game') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_game.html');
   } else if (req.url === '/yonunca_stats') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_stats.html');

@@ -4,17 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantalla de Espera</title>
-  <!-- Enlace al archivo de CSS -->
-  <link rel="stylesheet" href="src/estilos/frase_jugador.css">
-  
+    <link rel="icon" type="image/png" href="src\iconos\favicon.ico">
+    <link rel="stylesheet" href="src/estilos/espera_jugador.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.6/lottie.min.js"></script>
+
 </head>
 <body>
 
-    <div id="animation-container">
-        <!-- Aquí puedes insertar la animación Lottie para la espera -->
+    <div class="container">
+        <!-- Logo y título -->
+        <div class="logo-container">
+            <img src="src\iconos\LOGO_JOGGO_L.png" alt="Logo" class="logo">
+        </div>
+        <div id="lottie-container"></div>
+        <h1 class="main-heading">... Cargando ...</h1>
+
+        
     </div>
 
+
     <script>
+        // Animación Lottie
+      var animation = lottie.loadAnimation({
+        container: document.getElementById('lottie-container'), // Contenedor donde se cargará la animación
+        renderer: 'svg', // Renderización en formato SVG
+        loop: true, // Repetir la animación
+        autoplay: true, // Reproducir automáticamente
+        path: 'src/lotties/loading1.json' // Ruta de la animación en formato JSON
+      });
+
         // Función para verificar si el juego ha comenzado
         function checkGameStart() {
             const gameStarted = localStorage.getItem("ComienzaPartida");

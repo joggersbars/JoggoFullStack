@@ -32,9 +32,9 @@
     font-size: 8vw;
     font-family: 'Arial', sans-serif;
     font-weight: bold;
-    width: 90vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
+    width: 60vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
     height: auto; /* Mantén la relación de aspecto correcta */
-    margin-top: 4vh;
+    margin-top: 8vh;
     margin-left: auto;
     margin-right: auto;
   }
@@ -57,70 +57,20 @@
     gap: 2vh; /* Espacio entre los botones y la animación */
     margin-bottom: 2vh;
   }
-
-  .input-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center; /* Para alinear los elementos en el centro verticalmente */
-    align-items: center;
-    margin-bottom: 1vh;
-    background-color: #f2f2f2;
-    border-radius: 4vh;
-    padding: 1vw 2vh;
-    width: 90%;
-    height: 8vh;
-  }
   
-
   .icon {
     width: 5vw;
     height: auto;
     margin-right: 1vw;
   }
   
-  .input-field {
-    border: none;
-    background-color: transparent;
-    outline: none;
-    font-size: 5vw;
-    width: 100%;
-    padding: 1vw;
-    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+  #lottie-container {
+    width: 30vw;   /* Ancho del contenedor */
+    height: auto;  /* Altura del contenedor */
+    background-color:rgba(240, 240, 240, 0); /* Color de fondo */
+    border-radius: 1.5vh; /* Bordes redondeados */
+    margin: 5vh auto; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
-  
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    width: 80%;
-    height: 4vh;
-    margin-bottom: 2vh;
-  }
-  
-  .btn-entrar, .btn-cancelar {
-    background-color: #29211d;
-    color: white;
-    padding: 4vw 4vh;
-    font-size: 6vw;
-    text-decoration: none;
-    border-radius: 4vh;
-    transition: background-color 0.3s ease;
-    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-    width: 100%;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .btn-entrar:hover {
-    background-color: #4b3810;
-    transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
-    box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
-  }
-  
-  
-  .btn-cancelar:hover {
-    background-color: #fd5a90;
-    transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
-    box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
-  }
-  
