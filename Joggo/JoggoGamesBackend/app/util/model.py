@@ -26,10 +26,19 @@ class Jugadores(Base):
 class Juego(Base):
     __tablename__ = 'juego'
 
-    id = Column(Integer, primary_key=True, index=True) # Id de la partida
-    id_partida = Column(String(STRING_LENGTH)) # Código de la partida
+    id = Column(Integer, primary_key=True, index=True) 
+    id_partida = Column(String(STRING_LENGTH)) # Id de la partida
     nombre_juego = Column(String(STRING_LENGTH)) # Nombre del juego
     num_jugadores = Column(Integer) # Número total de jugadores
+
+class Respuestas(Base):
+    __tablename__ = 'respuestas'
+
+    id = Column(Integer, primary_key=True, index=True)
+    id_partida = Column(String(STRING_LENGTH))
+    apodo_jugador = Column(String(STRING_LENGTH))
+    frase_jugador = Column(String(STRING_LENGTH))
+    respuesta_jugador = Column(Integer)
 
 # Tabla Juego con las frases
 # class GamePlayer(Base):
