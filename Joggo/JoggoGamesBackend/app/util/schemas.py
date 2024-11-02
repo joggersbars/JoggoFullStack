@@ -20,9 +20,5 @@ class MensajeInicioPartida(BaseModel):
     mensaje_inicio: str
     id_partida: str
 
-class TokenResponse(BaseModel):
-    access_token: str
-    token_type: str = "bearer"
-
-class PartidaCreate(BaseModel):
-    juego: str
+class RespuestaJugador(FraseEntrada):
+    respuesta_jugador: int

@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pprint import pprint
-from app.util.schemas import UserData, UserId, Jugador, FraseEntrada, MensajeInicioPartida
+from app.util.schemas import UserData, UserId, Jugador, FraseEntrada, MensajeInicioPartida, RespuestaJugador
 import app.util.crud as crud
 from app.util.utils import generate_code, generate_unique_code
 from app.database.database_configuration import Base
@@ -139,6 +139,11 @@ async def coger_frase(id_partida: str, db: Session=Depends(get_db)):
     Iterator.incrementar_contador()
     response_frase_pantalla = {"frase":frase_pantalla}
     json_response = JSONResponse(content=response_frase_pantalla, status_code=status.HTTP_201_CREATED)
-    return json_response 
+    return json_response
+
+# Endpoint respuesta jugador
+# @router.post('/recibir_respuesta',tags=["Respuestas Jugadores"], description="Las respuestas a las frases de yo nunca de los jugadores")
+# async def recibir_respuesta(respuesta_jugador: RespuestaJugador, db: Session=Depends(get_db)):
+
 
 
