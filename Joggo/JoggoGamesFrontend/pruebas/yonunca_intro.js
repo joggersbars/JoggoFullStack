@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded', async () => {
  // Definicion de la función para enviar una solicitud POST a /empezar_partida con el id de la partida
  async function empezarPartida() {
     try {
-        const response = await fetch('http://localhost:5000/empezar_partida', {
+        const response = await fetch('http://localhost:8002/empezar_partida', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 mensaje_inicio: "vamos a empezar partida yo nunca",
-                codigo_juego: idPartida   //mandamos el id partida
+                id_partida: idPartida   //mandamos el id partida
             })
         });
 
@@ -63,6 +63,7 @@ document.getElementById("start-game-btn").addEventListener("click", async () => 
     if (idPartida) {
         await empezarPartida();
         localStorage.setItem("ComienzaPartida", "true"); //Guardar señal de inicio en localStorage
+        localStorage.setItem("idPartida", idPartida);
     } else {
         console.error("No se ha obtenido un ID de partida válido.");
     }

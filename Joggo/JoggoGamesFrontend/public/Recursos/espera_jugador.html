@@ -33,21 +33,9 @@
         autoplay: true, // Reproducir automáticamente
         path: 'src/lotties/loading1.json' // Ruta de la animación en formato JSON
       });
-
-        // Función para verificar si el juego ha comenzado
-        function checkGameStart() {
-            const gameStarted = localStorage.getItem("ComienzaPartida");
-            // Si el juego ha comenzado, redirigir a frase_jugador.html
-            if (gameStarted === "true") {
-                // Eliminar el indicador para evitar redirecciones futuras
-                localStorage.removeItem("ComienzaPartida");
-                window.location.href = "/frase_jugador.html"; //redireccion a la pantalla /frase_jugador.html
-            }
-        }
-
-        // Verificar cada 0.5 segundos (500 milisegundos) si se ha pulsado COMENZAR en la pantalla /yonunca_intro
-        setInterval(checkGameStart, 500);
     </script>
+
+    <script src="pruebas/espera_jugador.js"></script>
 
 </body>
 </html>

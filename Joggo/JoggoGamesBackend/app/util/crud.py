@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app.util.model import User, Jugadores, Juego
+from app.util.model import User, Jugadores, Juego, Respuestas
 from passlib.context import CryptContext
 from app.util.schemas import UserData
 from sqlalchemy import and_, func
@@ -48,16 +48,16 @@ def login_user(db: Session, username: str, password: str):
 ### Funciones de Partidas (Games) ###
 
 # Obtener una partida por su codigo
-def get_partida_by_codigo(db: Session, codigo_juego: int):
-    return db.query(Juego).filter(Juego.codigo_juego == codigo_juego).first()
+def get_partida_by_codigo(db: Session, id_partida: int):
+    return db.query(Juego).filter(Juego.id_partida == id_partida).first()
 
 # Obtener codigos de partidas existentes
 def get_partida_codigos(db: Session):
-    return db.query(Juego.codigo_juego)
+    return db.query(Juego.id_partida)
 
 # Crear una nueva partida
-def create_partida(db: Session, codigo_juego: str, nombre_juego: str, num_jugadores: int):
-    new_game = Juego(codigo_juego=codigo_juego, nombre_juego=nombre_juego, num_jugadores=num_jugadores)
+def create_partida(db: Session, id_partida: str, nombre_juego: str, num_jugadores: int):
+    new_game = Juego(id_partida=id_partida, nombre_juego=nombre_juego, num_jugadores=num_jugadores)
     db.add(new_game)
     db.commit()
     db.refresh(new_game)
@@ -65,25 +65,25 @@ def create_partida(db: Session, codigo_juego: str, nombre_juego: str, num_jugado
 
 ### Funciones de Jugadores en Partida ###
 # Obtener jugador por nombre
-def get_jugador_by_nombre_and_codigo(db: Session, nombre_jugador: str, codigo_juego: str):
+def get_jugador_by_nombre_and_codigo(db: Session, apodo_jugador: str, id_partida: str):
     return db.query(Jugadores).filter(
         and_(
-            Jugadores.nombre_jugador == nombre_jugador,
-            Jugadores.codigo_juego == codigo_juego
+            Jugadores.apodo_jugador == apodo_jugador,
+            Jugadores.id_partida == id_partida
         )
     ).first()
 
 # Crear jugador y añadirlo a la base de datos
-def crear_jugador(db: Session, nombre_jugador: str, codigo_juego: str):
-    new_jugador = Jugadores(nombre_jugador=nombre_jugador, codigo_juego=codigo_juego, frase_jugador="")
+def crear_jugador(db: Session, apodo_jugador: str, id_partida: str):
+    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="")
     db.add(new_jugador)
     db.commit()
     db.refresh(new_jugador)
     return new_jugador
 
 # Añadir frase a jugador en la base de datos
-def añadir_frase_a_jugador(db: Session, nombre_jugador: str, frase_jugador: str, codigo_juego: str):
-    jugador = get_jugador_by_nombre_and_codigo(db=db,nombre_jugador=nombre_jugador,codigo_juego=codigo_juego)
+def añadir_frase_a_jugador(db: Session, apodo_jugador: str, frase_jugador: str, id_partida: str):
+    jugador = get_jugador_by_nombre_and_codigo(db=db,apodo_jugador=apodo_jugador,id_partida=id_partida)
     # Añadir la nueva frase al jugador
     jugador.frase_jugador = frase_jugador
     
@@ -93,14 +93,22 @@ def añadir_frase_a_jugador(db: Session, nombre_jugador: str, frase_jugador: str
     
     return jugador
 
-def obtener_cantidad_frases_codigo(db: Session, codigo_juego: int):
-    return db.query(func.count(Jugadores.frase_jugador)).filter(Jugadores.codigo_juego == codigo_juego).scalar()
+def obtener_cantidad_frases_codigo(db: Session, id_partida: int):
+    return db.query(func.count(Jugadores.frase_jugador)).filter(Jugadores.id_partida == id_partida).scalar()
 
 # Obtener frasen para ir mostrando por pantalla
-def get_frase_by_id_and_codigo(db: Session, id: int, codigo_juego: str):
+def get_frase_by_id_and_codigo(db: Session, id: int, id_partida: str):
     return db.query(Jugadores).filter(
         and_(
             Jugadores.id == id,
-            Jugadores.codigo_juego == codigo_juego
+            Jugadores.id_partida == id_partida
         )
     ).first()
+
+# Crear respuesta jugador:
+def crear_respuesta_jugador(db: Session, id_partida: str, apodo_jugador: str, frase_jugador: str, respuesta_jugador: int):
+    new_respuesta = Respuestas(id_partida=id_partida, apodo_jugador=apodo_jugador, frase_jugador=frase_jugador ,respuesta_jugador=respuesta_jugador)
+    db.add(new_respuesta)
+    db.commit()
+    db.refresh(new_respuesta)
+    return new_respuesta

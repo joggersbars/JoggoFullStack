@@ -13,18 +13,49 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Asignar el evento de clic al botón "ENTRAR"
     const entrarBtn = document.getElementById("entrar-btn");
-    entrarBtn.addEventListener("click", function() {
+    entrarBtn.addEventListener("click", async function() {
         // Obtener los valores de los campos
-        const idPartidaValue = document.getElementById("id_partida").value;
-        const apodoJugador = document.getElementById("apodo_jugador").value;
+        const id_partida = document.getElementById("id_partida").value;
+        const apodo_jugador = document.getElementById("apodo_jugador").value;
 
-        // Validar que ambos campos estén completos
-        if (idPartidaValue && apodoJugador) {
-            // Redirigir a /espera_jugador si ambos campos están completos
-            window.location.href = "/espera_jugador";
-        } else {
-            // Mostrar mensaje de error si algún campo está vacío
-            alert("Por favor, completa todos los campos para entrar en la partida.");
+        const data = { id_partida, apodo_jugador }
+
+         // Loggear los datos que se están enviando
+        console.log('Enviando datos al servidor:', data);
+
+        try {   
+            //console.log('Iniciando solicitud al backend...',apiUrl);
+            const response = await fetch('http://localhost:8002/crear_jugador', {  //${apiUrl}
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data) // Convertir los datos a JSON para enviarlos
+            });
+    
+            // Loggear el estado de la respuesta del servidor
+            console.log('Respuesta del servidor (status):', response.status);
+            // Procesar la respuesta del servidor
+            // Procesar la respuesta del servidor
+            if (response.ok) {
+                const result = await response.json();
+                // Loggear el mensaje recibido del servidor
+                console.log('Mensaje recibido del servidor:', result.message);
+    
+                // Comprobar si el mensaje es "Bienvenido"
+                if (result.message.includes('Jugador conectado correctamente')) {
+                    // Redirigir a la pantalla /games si la autenticación fue exitosa
+                    console.log('Autenticación exitosa. Redirigiendo a /espera_jugador...');
+                    window.location.href = `/espera_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodo_jugador}`;
+                } else if (result.message.includes('El nombre del jugador ya existe')) {
+                    alert('Error de autenticación: ' + result.message); // Mostrar el mensaje de error
+                }
+            } else {
+                alert('Error de autenticación: ' + response.statusText); // Mostrar error si la autenticación falla
+            }
+        } catch (error) {
+            console.error('Error al conectar con el servidor:', error);
+            alert('Hubo un problema al conectar con el servidor.');
         }
     });
 });
