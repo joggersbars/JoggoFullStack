@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="src\iconos\favicon.ico">
+  <title>Yo Nunca - Juego</title>
+
+  <link rel="stylesheet" href="src/estilos/yonunca_frase.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="src\iconos\Letters_YoNunca.png" alt="Logo" class="logo">
+  </div>
+
+  <div class="phrase">
+    <p>Introduzca tu frase de YO NUNCA en tu móvil</p>
+  </div>
+
+  <div id="lottie-container"></div>
+  <div id="lottie-container-timer"></div>
+
+
+  <script>
+    // Animación Lottie
+    var animation = lottie.loadAnimation({
+      container: document.getElementById('lottie-container'), // Contenedor donde se cargará la animación
+      renderer: 'svg', // Renderización en formato SVG
+      loop: false, // Repetir la animación
+      autoplay: true, // Reproducir automáticamente
+      path: 'src/lotties/Loading_bar1.json' // Ruta de la animación en formato JSON
+    });
+
+    animation.setSpeed(0.033);
+
+        // Animación Lottie
+      var animation_timer = lottie.loadAnimation({
+      container: document.getElementById('lottie-container-timer'), // Contenedor donde se cargará la animación
+      renderer: 'svg', // Renderización en formato SVG
+      loop: false, // Repetir la animación
+      autoplay: true, // Reproducir automáticamente
+      path: 'src/lotties/Timer.json' // Ruta de la animación en formato JSON
+    });
+
+
+  </script>  
+</body>
+</ht

@@ -1,0 +1,104 @@
+/* Estilos globales */
+@font-face {
+    font-family: 'ChauPhilomeneOne-Regular';
+    src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(90deg, #014AAD, #C96CE6);
+    }
+    
+    /* Contenedor principal */
+    .container {
+      text-align: center;
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+      width: 80%;
+      max-width: 900px;
+      position: relative;  /* Para posicionar el icono */
+    }
+
+    .logo {
+      margin-top: 10vh;
+      font-size: 8vw;
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      width:40vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
+      height: auto; /* Mantén la relación de aspecto correcta */
+      margin-top: 8vh;
+      margin-bottom: 4vh;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    /* Título del juego */
+    .title {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+    
+    /* Estilo de la frase del juego */
+    .phrase p {
+      font-size: 4vw;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 14vh;
+      margin-top: 10vh;
+      font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+      letter-spacing: 0.3vw;
+      text-shadow: 0.1vw 0.1vw 0.2vw rgb(244, 29, 29), -0.1vw -0.1vw 0.2vw rgb(0, 255, 255);
+      transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
+    }
+    
+    /* Icono de cerveza */
+    .icon {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+    
+    .icon img {
+      width: 5vw;
+      height: auto;
+    }
+
+    #lottie-container {
+      width: 60vw;   /* Ancho del contenedor */
+      height: 5vh;  /* Altura del contenedor */
+      background-color:rgba(240, 240, 240, 0); /* Color de fondo */
+      border-radius: 1.5vh; /* Bordes redondeados */
+      margin-top: 2vh;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    #lottie-container-timer {
+      width: 20vw;   /* Ancho del contenedor */
+      height: auto;  /* Altura del contenedor */
+      background-color:rgba(240, 240, 240, 0); /* Color de fondo */
+      border-radius: 1.5vh; /* Bordes redondeados */
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }

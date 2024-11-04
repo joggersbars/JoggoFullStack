@@ -1,4 +1,11 @@
 /* Estilos globales */
+@font-face {
+  font-family: 'ChauPhilomeneOne-Regular';
+  src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -12,9 +19,9 @@
   
   body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, #4A00E0, #8E2DE2, #56CCF2); /* Degradado de fondo */
+    background: linear-gradient(90deg, #014AAD, #C96CE6);
   }
   
   /* Contenedor principal */
@@ -29,6 +36,19 @@
     position: relative;  /* Para posicionar el icono */
   }
   
+  .logo {
+    margin-top: 10vh;
+    font-size: 8vw;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    width:40vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
+    height: auto; /* Mantén la relación de aspecto correcta */
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* Título del juego */
   .title {
     font-size: 48px;
@@ -38,11 +58,15 @@
   
   /* Estilo de la frase del juego */
   .phrase p {
-    font-family: 'Permanent Marker', cursive; /* Fuente personalizada para el texto */
-    font-size: 30px;
-    color: black;
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 4vw;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    letter-spacing: 0.3vw;
+    text-shadow: 0.1vw 0.1vw 0.2vw rgb(244, 29, 29), -0.1vw -0.1vw 0.2vw rgb(0, 255, 255);
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
   }
   
   /* Icono de cerveza */
@@ -53,7 +77,7 @@
   }
   
   .icon img {
-    width: 80px;
+    width: 5vw;
     height: auto;
   }
   
