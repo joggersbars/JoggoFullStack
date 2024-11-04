@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app.util.model import User, Jugadores, Juego
+from app.util.model import User, Jugadores, Juego, Respuestas
 from passlib.context import CryptContext
 from app.util.schemas import UserData
 from sqlalchemy import and_, func
@@ -104,3 +104,11 @@ def get_frase_by_id_and_codigo(db: Session, id: int, id_partida: str):
             Jugadores.id_partida == id_partida
         )
     ).first()
+
+# Crear respuesta jugador:
+def crear_respuesta_jugador(db: Session, id_partida: str, apodo_jugador: str, frase_jugador: str, respuesta_jugador: int):
+    new_respuesta = Respuestas(id_partida=id_partida, apodo_jugador=apodo_jugador, frase_jugador=frase_jugador ,respuesta_jugador=respuesta_jugador)
+    db.add(new_respuesta)
+    db.commit()
+    db.refresh(new_respuesta)
+    return new_respuesta

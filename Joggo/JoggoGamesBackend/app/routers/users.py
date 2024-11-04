@@ -112,6 +112,7 @@ async def crear_jugador(jugador: Jugador, db: Session=Depends(get_db)):
 # Endpoint para añadir frase al jugador correspondiente Joao me tiene que enviar Frase entrada(schemas.py)
 @router.post('/añadir_frase', tags=['Add-ons'], description="Añadiendo frase de jugador")
 async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_db)):
+    print(f"Jugador: {frase_entrada.apodo_jugador}, Id Partida: {frase_entrada.id_partida}, frase: {frase_entrada.frase_jugador}")
     check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=frase_entrada.apodo_jugador, id_partida=frase_entrada.id_partida)
     if crear_jugador == None:
         return JSONResponse(content={"message":"Esa frase ya está cogida"}, status_code=status.HTTP_404_NOT_FOUND)
@@ -127,16 +128,16 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
 @router.post('/empezar_partida', tags=["Empezar Partida"], description="Empezando la partida")
 async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get_db)):
     if message.mensaje_inicio == "vamos a empezar partida yo nunca":
-        Iterator.establecer_cantidad_frases(crud.obtener_cantidad_frases_codigo(db=db, id_partida=message.id_partida))
-        Iterator.mostrar_cantidad_frases()
+        iterator.establecer_cantidad_frases(cantidad_frases=int(crud.obtener_cantidad_frases_codigo(db=db, id_partida=message.id_partida)))
+        iterator.mostrar_cantidad_frases()
     else:
         raise HTTPException(status_code=400, detail="El mensaje es incorrecto")
 
 # Endpoint para coger la frase que se mostrará por pantalla
 @router.get('/coger_frase', tags=["Frases Juego"], description="Frases que se van a ir poniendo en la pantalla del bar")
 async def coger_frase(id_partida: str, db: Session=Depends(get_db)):
-    frase_pantalla = crud.get_frase_by_id_and_codigo(db=db,id=Iterator.retornar_id(),id_partida=id_partida)
-    Iterator.incrementar_contador()
+    frase_pantalla = crud.get_frase_by_id_and_codigo(db=db,id=iterator.retornar_id(),id_partida=id_partida)
+    iterator.incrementar_contador()
     response_frase_pantalla = {"frase":frase_pantalla}
     json_response = JSONResponse(content=response_frase_pantalla, status_code=status.HTTP_201_CREATED)
     return json_response
@@ -144,6 +145,8 @@ async def coger_frase(id_partida: str, db: Session=Depends(get_db)):
 # Endpoint respuesta jugador
 # @router.post('/recibir_respuesta',tags=["Respuestas Jugadores"], description="Las respuestas a las frases de yo nunca de los jugadores")
 # async def recibir_respuesta(respuesta_jugador: RespuestaJugador, db: Session=Depends(get_db)):
+#     check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=respuesta_jugador.apodo_jugador, id_partida=respuesta_jugador.id_partida)
+#     if check_jugador:
 
 
 
