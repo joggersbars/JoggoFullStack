@@ -7,8 +7,8 @@
   <link rel="icon" type="image/png" href="src\iconos\favicon.ico">
   <title>Yo Nunca - Juego</title>
 
-  <!-- Enlace a archivo de CSS -->
   <link rel="stylesheet" href="src/estilos/yonunca_game.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
 
 </head>
 <body>
@@ -21,12 +21,32 @@
     <div class="phrase">
       <p>FRASE QUE SE CARGA DESDE LA BBDD DEL BACKEND</p>
     </div>
-
-    <!-- Icono de cerveza -->
-    <div class="icon">
-      <img src="scr/iconos/beer-icon.png" alt="Icono de cerveza">
-    </div>
   </div>
+
+  <div id="lottie-container"></div>
+
+  <script>
+    // Animación Lottie
+    var animation = lottie.loadAnimation({
+      container: document.getElementById('lottie-container'), // Contenedor donde se cargará la animación
+      renderer: 'svg', // Renderización en formato SVG
+      loop: false, // Repetir la animación
+      autoplay: true, // Reproducir automáticamente
+      path: 'src/lotties/Loading_bar1.json' // Ruta de la animación en formato JSON
+    });
+
+    animation.setSpeed(0.033);
+
+     // Detectar cuando termina la animación
+  animation.addEventListener('complete', function() {
+    // Acción a realizar cuando termina la animación
+    //document.getElementById('message').textContent = "¡Completado!"; // Cambia el texto
+    
+    // Para navegar a otra pantalla, usa:
+     window.location.href = 'index.html';
+  });
+
+  </script>  
 
 </body>
 </ht
