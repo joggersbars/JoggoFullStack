@@ -35,7 +35,7 @@ animation_timer.addEventListener('complete', async function() {
     localStorage.setItem("idPartida", id_actual_partida); 
 
     console.log("Id partida",id_actual_partida)
-    const id_partida = { id_actual_partida }
+    const id_partida = { id_partida: id_actual_partida };
 
     // 2. Enviar la solicitud `fetch` al backend con `id_partida` en formato JSON
     try {

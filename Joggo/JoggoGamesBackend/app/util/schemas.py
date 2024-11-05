@@ -9,6 +9,9 @@ class UserData(BaseModel):
 class UserId(UserData):
     id: int
 
+class IdPartida(BaseModel):
+    id_partida: str
+    
 class Jugador(BaseModel):
     id_partida: str
     apodo_jugador: str 

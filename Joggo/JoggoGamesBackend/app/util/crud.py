@@ -103,16 +103,15 @@ def actualizar_id_frases_para_partida(db: Session, id_partida: str):
     
     # Guarda los cambios
     db.commit()
-    db.refresh(jugadores)
 
 def obtener_cantidad_frases_codigo(db: Session, id_partida: int):
     return db.query(func.count(Jugadores.frase_jugador)).filter(Jugadores.id_partida == id_partida).scalar()
 
 # Obtener frasen para ir mostrando por pantalla
-def get_frase_by_id_and_codigo(db: Session, id: int, id_partida: str):
+def get_frase_by_id_and_codigo(db: Session, id_frase: int, id_partida: str):
     return db.query(Jugadores).filter(
         and_(
-            Jugadores.id == id,
+            Jugadores.id_frase == id_frase,
             Jugadores.id_partida == id_partida
         )
     ).first()
