@@ -14,7 +14,7 @@ const id_actual_partida = getIdPartidaFromURL();
             const gameStarted = localStorage.getItem("ComienzaPartida");
             const id_partida =  localStorage.getItem("idPartida");
             // Se comprueba que se ha pulsado el boton comenzar y que el id corresponde a dicha partida
-            if (gameStarted === "true" && id_partida == id_actual_partida) {
+            if (gameStarted === "true" && id_partida === id_actual_partida) {
 
                 // Eliminar el indicador para evitar redirecciones futuras
                 localStorage.removeItem("ComienzaPartida");
@@ -26,7 +26,7 @@ const id_actual_partida = getIdPartidaFromURL();
             const Fin_temporizador = localStorage.getItem("Fin_temporizador");
             const id_partida =  localStorage.getItem("idPartida");
             // Si el temporizardor termina , se redirige a yonunca_jugador.html asociado al ID_partida
-            if (Fin_temporizador === "true" && id_partida == id_actual_partida) {
+            if (Fin_temporizador === "true" && id_partida === id_actual_partida) {
 
                 // Eliminar el indicador para evitar redirecciones futuras
                 localStorage.removeItem("Fin_temporizador");

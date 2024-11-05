@@ -17,6 +17,15 @@ var animation = lottie.loadAnimation({
 
 animation.setSpeed(0.033);
 
+// Animación Lottie para el temporizador
+var animation_timer = lottie.loadAnimation({
+    container: document.getElementById('lottie-container-timer'), // Contenedor donde se cargará la animación
+    renderer: 'svg', // Renderización en formato SVG
+    loop: false, // No repetir la animación
+    autoplay: true, // Reproducir automáticamente
+    path: 'src/lotties/Timer.json' // Ruta de la animación en formato JSON
+});
+
 // Detectar el final de la animación del temporizador
 animation_timer.addEventListener('complete', async function() {
     console.log("El temporizador ha terminado");
