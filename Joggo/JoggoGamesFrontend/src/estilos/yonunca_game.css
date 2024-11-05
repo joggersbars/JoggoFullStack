@@ -35,6 +35,17 @@
     max-width: 900px;
     position: relative;  /* Para posicionar el icono */
   }
+
+  #lottie-container {
+    width: 60vw;   /* Ancho del contenedor */
+    height: 5vh;  /* Altura del contenedor */
+    background-color:rgba(240, 240, 240, 0); /* Color de fondo */
+    border-radius: 1.5vh; /* Bordes redondeados */
+    margin-top: 5vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
   
   .logo {
     margin-top: 10vh;
