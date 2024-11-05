@@ -144,10 +144,13 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
 
 # Endpoint para coger la frase que se mostrará por pantalla
 @router.get('/coger_frase', tags=["Frases Juego"], description="Frases que se van a ir poniendo en la pantalla del bar")
-async def coger_frase(id_partida: str, db: Session=Depends(get_db)):
-    frase_pantalla = crud.get_frase_by_id_and_codigo(db=db,id=iterator.retornar_id(),id_partida=id_partida)
+async def coger_frase(id_partida: IdPartida, db: Session=Depends(get_db)):
+    frase_pantalla = crud.get_frase_by_id_and_codigo(db=db,id=iterator.retornar_id(),id_partida=id_partida.id_partida)
     iterator.incrementar_contador()
-    response_frase_pantalla = {"frase":frase_pantalla}
+    if iterator.contador != 0:
+        response_frase_pantalla = {"frase": frase_pantalla}
+    else:
+        response_frase_pantalla = {"frase": "Fin_frases"}
     json_response = JSONResponse(content=response_frase_pantalla, status_code=status.HTTP_201_CREATED)
     return json_response
 

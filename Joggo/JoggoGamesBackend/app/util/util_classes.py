@@ -7,7 +7,7 @@ class Iterator():
         if self.contador < self.cantidad_frases:
             self.contador = self.contador + 1
         elif self.contador == self.cantidad_frases:
-            self.contador=1
+            self.contador=0
     
     def establecer_cantidad_frases(self, cantidad_frases: int):
         self.cantidad_frases = cantidad_frases
