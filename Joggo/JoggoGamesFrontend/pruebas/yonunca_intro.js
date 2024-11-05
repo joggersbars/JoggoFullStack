@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             console.error('Error al iniciar la partida:', response.statusText);
         }
+
     } catch (error) {
         console.error('Error al enviar la solicitud para empezar la partida:', error);
     }
@@ -64,6 +65,7 @@ document.getElementById("start-game-btn").addEventListener("click", async () => 
         await empezarPartida();
         localStorage.setItem("ComienzaPartida", "true"); //Guardar señal de inicio en localStorage
         localStorage.setItem("idPartida", idPartida);
+        window.location.href = `/yonunca_frase.html?id_partida=${idPartida}`;
     } else {
         console.error("No se ha obtenido un ID de partida válido.");
     }

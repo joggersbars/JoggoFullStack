@@ -34,6 +34,9 @@ animation_timer.addEventListener('complete', async function() {
     localStorage.setItem("Fin_temporizador", "true");
     localStorage.setItem("idPartida", id_actual_partida); 
 
+    console.log("Id partida",id_actual_partida)
+    const id_partida = { id_actual_partida }
+
     // 2. Enviar la solicitud `fetch` al backend con `id_partida` en formato JSON
     try {
         const response = await fetch('http://localhost:8002/establecer_indices_frases', {
@@ -41,7 +44,7 @@ animation_timer.addEventListener('complete', async function() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id_partida: id_actual_partida })
+            body: JSON.stringify(id_partida)
         });
 
         if (response.ok) {
