@@ -5,6 +5,7 @@ function getIdPartidaFromURL() {
 }
 
 const id_actual_partida = getIdPartidaFromURL();
+const id_partida = { id_partida: id_actual_partida };
 
 // Configuración de la animación Lottie
 
@@ -18,7 +19,7 @@ let animation = lottie.loadAnimation({
 
    // animation.setSpeed(0.033);
    animation.setSpeed(0.133);
-   
+
     // Detectar cuando la animación del temporizador termina
     animation.addEventListener('complete', function() {
         solicitarNuevaFrase();
@@ -90,5 +91,9 @@ async function solicitarNuevaFrase() {
         window.location.href = "/yonunca_stats.html?id_partida=" + id_actual_partida;
     }
 }
-// Iniciar el primer temporizador al cargar la página
-iniciarTemporizadorLottie();
+// Mostrar la primera frase al cargar la página
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector(".phrase p").textContent = frasesSimuladas[fraseIndex];
+    fraseIndex++; // Avanzar el índice para la próxima frase
+    iniciarTemporizadorLottie(); // Iniciar el temporizador Lottie para la primera frase
+});
