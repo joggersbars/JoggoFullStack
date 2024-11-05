@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const entrarBtn = document.getElementById("entrar-btn");
     entrarBtn.addEventListener("click", async function() {
         // Obtener los valores de los campos
-        const frase_jugador = document.getElementById("frase_usuario").value;
+        const frase_jugador = document.getElementById("frase_usuario").value; //almacenamos la frase para enviar al servidor BackEnd
 
         // Crear el objeto de datos para enviar
         const data = { id_partida, apodo_jugador, frase_jugador };
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (response.ok) {
                 const result = await response.json();
                 console.log('Mensaje recibido del servidor:', result.message);
-
+                //Si todo ha ido bien --> servidor BackEnd aprueba continuar la ejecucion
                 if (result.message.includes('Frase añadida correctamente')) {
                     console.log('Frase añadida exitosamente.');
                     window.location.href = `/espera_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodo_jugador}`;
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         } catch (error) {
             console.error('Error al conectar con el servidor:', error);
-            alert('Hubo un problema al conectar con el servidor.');
+            alert('Hubo un problema en la respuesta del servidor.');
         }
     });
 });
