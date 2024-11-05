@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pprint import pprint
-from app.util.schemas import UserData, UserId, Jugador, FraseEntrada, MensajeInicioPartida, RespuestaJugador
+from app.util.schemas import UserData, UserId, Jugador, FraseEntrada, MensajeInicioPartida, RespuestaJugador, IdPartida
 import app.util.crud as crud
 from app.util.utils import generate_code, generate_unique_code
 from app.database.database_configuration import Base
@@ -126,8 +126,9 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
     
 # Endpoint para establecer indices numéricos a la frases de esa partida concreta
 @router.post('/establecer_indices_frases', tags=["Indices Frases"], description= "Establecemos el orden iterativo de las frases de la partida")
-async def establecer_indices_frases(id_partida: str, db: Session=Depends(get_db)):
-    crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida)    
+async def establecer_indices_frases(id_partida: IdPartida, db: Session=Depends(get_db)):
+    print(f"Estableciendo los indices en las frases de la partida: {id_partida.id_partida}\n")
+    crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida.id_partida)    
     response_frase = {"message":"Indices añadidos correctamente"}
     json_response = JSONResponse(content=response_frase, status_code=status.HTTP_201_CREATED)
     return json_response
