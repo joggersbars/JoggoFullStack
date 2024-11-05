@@ -20,7 +20,19 @@ const id_actual_partida = getIdPartidaFromURL();
                 window.location.href = currentUrl.replace("espera_jugador.html", "frase_jugador.html");; //redireccion a la pantalla /frase_jugador.html
             }
         }
+        async function checkAllphrasesDoneStart() {
+            const gameStarted = localStorage.getItem("FrasesIntroducidas");
+            const id_partida =  localStorage.getItem("idPartida");
+            // Si el juego ha comenzado, redirigir a frase_jugador.html
+            if (gameStarted === "true" && id_partida == id_actual_partida) {
+
+                // Eliminar el indicador para evitar redirecciones futuras
+                localStorage.removeItem("FrasesIntroducidas");
+                window.location.href = currentUrl.replace("espera_jugador.html", "yonunca_jugador.html");; //redireccion a la pantalla /frase_jugador.html
+            }
+        }
 
     // Verificar cada 0.5 segundos (500 milisegundos) si se ha pulsado COMENZAR en la pantalla /yonunca_intro
     setInterval(checkGameStart, 300);
+    setInterval(checkAllphrasesDoneStart, 300);
 

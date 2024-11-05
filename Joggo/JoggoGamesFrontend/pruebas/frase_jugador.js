@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 if (result.message.includes('Frase añadida correctamente')) {
                     console.log('Frase añadida exitosamente.');
-                    window.location.href = `/yonunca_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodo_jugador}`;
+                    window.location.href = `/espera_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodo_jugador}`;
                 } else {
                     alert('Error: ' + result.message);
                 }
