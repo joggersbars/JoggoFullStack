@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         } catch (error) {
             console.error('Error al conectar con el servidor:', error);
-            alert('Hubo un problema en la respuesta del servidor.');
+            alert('Hubo un problema en la respuesta dl servidor.');
         }
     });
 });
