@@ -75,7 +75,7 @@ def get_jugador_by_nombre_and_codigo(db: Session, apodo_jugador: str, id_partida
 
 # Crear jugador y añadirlo a la base de datos
 def crear_jugador(db: Session, apodo_jugador: str, id_partida: str):
-    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="")
+    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="", id_frase=0)
     db.add(new_jugador)
     db.commit()
     db.refresh(new_jugador)
@@ -92,6 +92,18 @@ def añadir_frase_a_jugador(db: Session, apodo_jugador: str, frase_jugador: str,
     db.refresh(jugador)
     
     return jugador
+
+def actualizar_id_frases_para_partida(db: Session, id_partida: str):
+    # Obtiene todos los jugadores de la partida específica, ordenados por su ID
+    jugadores = db.query(Jugadores).filter(Jugadores.id_partida == id_partida).order_by(Jugadores.id).all()
+    
+    # Itera y asigna un id_frase secuencial
+    for index, jugador in enumerate(jugadores, start=1):
+        jugador.id_frase = index  # Supón que has añadido una columna `id_frase` en la tabla
+    
+    # Guarda los cambios
+    db.commit()
+    db.refresh(jugadores)
 
 def obtener_cantidad_frases_codigo(db: Session, id_partida: int):
     return db.query(func.count(Jugadores.frase_jugador)).filter(Jugadores.id_partida == id_partida).scalar()

@@ -21,6 +21,7 @@ class Jugadores(Base):
     apodo_jugador = Column(String(STRING_LENGTH)) # Nombre del gamer
     id_partida = Column(String(STRING_LENGTH)) # Codigo Juego
     frase_jugador = Column(String(100)) # Frase Jugador
+    id_frase = Column(Integer) # Id de la frase
 
 # Tabla juego
 class Juego(Base):
