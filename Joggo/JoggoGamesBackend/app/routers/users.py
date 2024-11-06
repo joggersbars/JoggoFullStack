@@ -143,15 +143,16 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
         raise HTTPException(status_code=400, detail="El mensaje es incorrecto")
 
 # Endpoint para coger la frase que se mostrará por pantalla
-@router.get('/coger_frase', tags=["Frases Juego"], description="Frases que se van a ir poniendo en la pantalla del bar")
+@router.post('/coger_frase', tags=["Frases Juego"], description="Frases que se van a ir poniendo en la pantalla del bar")
 async def coger_frase(id_partida: IdPartida, db: Session=Depends(get_db)):
-    frase_pantalla = crud.get_frase_by_id_and_codigo(db=db,id=iterator.retornar_id(),id_partida=id_partida.id_partida)
-    iterator.incrementar_contador()
-    if iterator.contador != 0:
+    frase_pantalla = str(crud.get_frase_by_id_and_codigo(db=db,id_frase=iterator.retornar_id(),id_partida=id_partida.id_partida)[0])
+    print(f"La frase que se va enviar:{frase_pantalla}")
+    if iterator.contador != 0 or frase_pantalla:
         response_frase_pantalla = {"frase": frase_pantalla}
     else:
         response_frase_pantalla = {"frase": "Fin_frases"}
     json_response = JSONResponse(content=response_frase_pantalla, status_code=status.HTTP_201_CREATED)
+    iterator.incrementar_contador()
     return json_response
 
 # Endpoint respuesta jugador

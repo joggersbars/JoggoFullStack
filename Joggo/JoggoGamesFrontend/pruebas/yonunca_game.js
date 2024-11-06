@@ -29,21 +29,9 @@ let animation = lottie.loadAnimation({
         animation.goToAndPlay(0); // Volver al inicio de la animación y reproducirla
     }
 
-// Lista de frases simulada
-const frasesSimuladas = [
-    "Yo nunca he viajado al extranjero",
-    "Yo nunca he comido sushi",
-    "Yo nunca he cantado en público",
-    "Yo nunca he practicado un deporte extremo",
-    "Yo nunca he visto una película de terror solo"
-];
-
-let fraseIndex = 0; // Índice para llevar el seguimiento de la frase actual
-
 // Función para solicitar una nueva frase al backend
 async function solicitarNuevaFrase() {
 
-    /*
     try {
         // Preparar el cuerpo de la solicitud en formato JSON
         const data = { id_partida: id_actual_partida };
@@ -75,25 +63,10 @@ async function solicitarNuevaFrase() {
         }
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
-    }*/
-       // Comprobar si hay más frases en la lista simulada
-       if (fraseIndex < frasesSimuladas.length) {
-        const nuevaFrase = frasesSimuladas[fraseIndex];
-        fraseIndex++; // Pasar a la siguiente frase en la próxima llamada
-
-        // Actualizar el contenido de la frase en la pantalla
-        document.querySelector(".phrase p").textContent = nuevaFrase;
-
-        // Reiniciar el temporizador Lottie para la próxima frase
-        iniciarTemporizadorLottie();
-    } else {
-        // Simulación de "Fin_frases": redirigir a /yonunca_stats.html
-        window.location.href = "/yonunca_stats.html?id_partida=" + id_actual_partida;
     }
 }
-// Mostrar la primera frase al cargar la página
+// // Mostrar la primera frase al cargar la página
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector(".phrase p").textContent = frasesSimuladas[fraseIndex];
-    fraseIndex++; // Avanzar el índice para la próxima frase
-    iniciarTemporizadorLottie(); // Iniciar el temporizador Lottie para la primera frase
+     iniciarTemporizadorLottie(); // Iniciar el temporizador Lottie para la primera frase
+     solicitarNuevaFrase()
 });

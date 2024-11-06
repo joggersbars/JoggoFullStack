@@ -109,7 +109,7 @@ def obtener_cantidad_frases_codigo(db: Session, id_partida: int):
 
 # Obtener frasen para ir mostrando por pantalla
 def get_frase_by_id_and_codigo(db: Session, id_frase: int, id_partida: str):
-    return db.query(Jugadores).filter(
+    return db.query(Jugadores.frase_jugador).filter(
         and_(
             Jugadores.id_frase == id_frase,
             Jugadores.id_partida == id_partida

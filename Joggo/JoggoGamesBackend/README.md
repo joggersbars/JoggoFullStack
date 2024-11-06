@@ -15,3 +15,8 @@
       '$make create-environment'
 
 2.- To access al SWAGGER UI http://127.0.0.1:8000/docs
+
+3.- To create a docker container with the database use the following commands in terminal:
+   $ docker load -i database_joggo.tar
+   $ docker run --name db -d database_joggo
+
