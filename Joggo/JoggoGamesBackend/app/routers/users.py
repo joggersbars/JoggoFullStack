@@ -145,10 +145,10 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
 # Endpoint para coger la frase que se mostrará por pantalla
 @router.post('/coger_frase', tags=["Frases Juego"], description="Frases que se van a ir poniendo en la pantalla del bar")
 async def coger_frase(id_partida: IdPartida, db: Session=Depends(get_db)):
-    frase_pantalla = str(crud.get_frase_by_id_and_codigo(db=db,id_frase=iterator.retornar_id(),id_partida=id_partida.id_partida)[0])
+    frase_pantalla = crud.get_frase_by_id_and_codigo(db=db,id_frase=iterator.retornar_id(),id_partida=id_partida.id_partida)
     print(f"La frase que se va enviar:{frase_pantalla}")
-    if iterator.contador != 0 or frase_pantalla:
-        response_frase_pantalla = {"frase": frase_pantalla}
+    if iterator.contador != 0 or frase_pantalla != None:
+        response_frase_pantalla = {"frase": str(frase_pantalla[0])}
     else:
         response_frase_pantalla = {"frase": "Fin_frases"}
     json_response = JSONResponse(content=response_frase_pantalla, status_code=status.HTTP_201_CREATED)
@@ -156,10 +156,26 @@ async def coger_frase(id_partida: IdPartida, db: Session=Depends(get_db)):
     return json_response
 
 # Endpoint respuesta jugador
-# @router.post('/recibir_respuesta',tags=["Respuestas Jugadores"], description="Las respuestas a las frases de yo nunca de los jugadores")
-# async def recibir_respuesta(respuesta_jugador: RespuestaJugador, db: Session=Depends(get_db)):
-#     check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=respuesta_jugador.apodo_jugador, id_partida=respuesta_jugador.id_partida)
-#     if check_jugador:
+@router.post('/recibir_respuesta/{id_partida}/{apodo_jugador}/{frase}/{respuesta}', tags=["Respuestas Jugadores"], description="Las respuestas a las frases de yo nunca de los jugadores")
+async def recibir_respuesta(id_partida: str, apodo_jugador: str, frase: str, respuesta: str , db: Session = Depends(get_db)):
+    try:
+        check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=apodo_jugador, id_partida=id_partida)
+        if check_jugador:
+            print("Almacenando respuesta jugador")
+            nueva_respuesta = crud.crear_respuesta_jugador(
+                db=db,
+                id_partida=id_partida,
+                apodo_jugador=apodo_jugador,
+                frase_jugador=frase,
+                respuesta_jugador=respuesta
+            )
+            return {"message": "Respuesta almacenada correctamente"}
+        else:
+            raise HTTPException(status_code=400, detail="La respuesta falló al almacenarse")
+    except Exception as e:
+        print("Error:", e)
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 
 

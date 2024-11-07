@@ -23,5 +23,8 @@ class MensajeInicioPartida(BaseModel):
     mensaje_inicio: str
     id_partida: str
 
-class RespuestaJugador(FraseEntrada):
-    respuesta_jugador: int
+class RespuestaJugador(BaseModel):
+    apodo_jugador: str
+    frase_juego: str
+    id_partida: str
+    respuesta_jugador: str

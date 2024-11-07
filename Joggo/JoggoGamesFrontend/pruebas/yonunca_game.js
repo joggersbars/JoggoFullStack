@@ -46,15 +46,15 @@ async function solicitarNuevaFrase() {
 
         if (response.ok) {
             const result = await response.json();
-            console.log("Respuesta del backend:", result);
+            console.log("Respuesta del backend:", result.message);
 
-            if (result.message === "Fin_frases") {
+            if (result.message == "Fin_frases") {
                 // Si el backend responde con "Fin_frases", redirigimos a /yonunca_stats.html
                 window.location.href = "/yonunca_stats.html?id_partida=" + id_actual_partida;
             } else {
                 // Si se recibe una nueva frase, actualizar el contenido de la frase
                 document.querySelector(".phrase p").textContent = result.frase;
-
+                localStorage.setItem('frase_juego', result.frase);
                 // Reiniciar el temporizador Lottie para la próxima frase
                 iniciarTemporizadorLottie();
             }

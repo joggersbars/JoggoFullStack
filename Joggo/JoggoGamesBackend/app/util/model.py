@@ -38,8 +38,8 @@ class Respuestas(Base):
     id = Column(Integer, primary_key=True, index=True)
     id_partida = Column(String(STRING_LENGTH))
     apodo_jugador = Column(String(STRING_LENGTH))
-    frase_jugador = Column(String(STRING_LENGTH))
-    respuesta_jugador = Column(Integer)
+    frase_jugador = Column(String(200))
+    respuesta_jugador = Column(String(STRING_LENGTH))
 
 # Tabla Juego con las frases
 # class GamePlayer(Base):
