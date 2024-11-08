@@ -29,11 +29,12 @@
   .container {
     text-align: center;
     color: white;
-    padding: 40px;
-    border-radius: 20px;
+    padding: 4vw;
+    border-radius: 5vh;
     background-color: rgba(179, 136, 43, 0); /* Fondo semitransparente */
-    width: 80%;
-    position: relative;  /* Para posicionar el icono */
+    width: 90%;
+    height: auto;
+    margin-bottom: 2vh;
   }
 
   .logo {
@@ -43,8 +44,8 @@
     font-weight: bold;
     width:80vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
     height: auto; /* Mantén la relación de aspecto correcta */
-    margin-top: 4vh;
-    margin-bottom: 4vh;
+    margin-top: 3vh;
+    margin-bottom: 0vh;
     margin-left: auto;
     margin-right: auto;
   }

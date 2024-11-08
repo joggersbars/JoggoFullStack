@@ -25,7 +25,7 @@ function getResponsiveFontSize() {
     };
 
 function renderChart(){
-    fetch('pruebas/yonunca_result.json')
+    fetch('pruebas/yonunca_result10.json')
         .then(response => response.json())
         .then(data => {
             // Obtener los datos del JSON
@@ -39,12 +39,13 @@ function renderChart(){
                 data: {
                     labels: jugadores,
                     datasets: [{
-                        label: 'Conteo por Jugador',
+                        label: 'Nº Si',
                         data: conteo,
-                        color: 'white', // Color del texto en el eje Y
+                        color: 'white',
                         backgroundColor: 'rgba(255, 255, 255, 1)',
-                        borderColor: 'rgba(255, 255, 255, 1)',
-                        borderWidth: 1
+                        borderColor: 'rgba(0, 0, 0, 1)',
+                        borderWidth: 2,
+                        borderRadius: 10
                     }]
                 },
                 options: {
@@ -54,14 +55,16 @@ function renderChart(){
                             ticks: {
                                 color: 'white', // Color del texto en el eje Y
                                 font: {   
+                                    family:'ChauPhilomeneOne-Regular',
                                     size: getResponsiveFontSize() // Tamaño del texto en el eje Y
                                 }
                             }
                         },
                         x: {
                             ticks: {
-                                color: 'white', // Color del texto en el eje Y
+                                color: 'white', // Color del texto en el eje X
                                 font: {
+                                    family:'ChauPhilomeneOne-Regular',
                                     size: getResponsiveFontSize()// Tamaño del texto en el eje X
                                 }
                             }
@@ -72,11 +75,13 @@ function renderChart(){
                             labels: {
                                 color: 'white', // Color del texto en el eje Y
                                 font: {
+                                    family:'ChauPhilomeneOne-Regular',
                                     size: getResponsiveFontSize() // Tamaño del texto en la leyenda
                                 }
                             }
                         },
                         tooltip: {
+                            color: 'white', // Color del texto en el eje Y
                             titleFont: {
                                 size: getResponsiveFontSize() // Tamaño del texto en el título del tooltip
                             },
