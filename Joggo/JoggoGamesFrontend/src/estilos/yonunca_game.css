@@ -32,7 +32,6 @@
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
     width: 80%;
-    max-width: 900px;
     position: relative;  /* Para posicionar el icono */
   }
 
