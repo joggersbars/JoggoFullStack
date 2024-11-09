@@ -117,9 +117,38 @@ def get_frase_by_id_and_codigo(db: Session, id_frase: int, id_partida: str):
     ).first()
 
 # Crear respuesta jugador:
-def crear_respuesta_jugador(db: Session, id_partida: str, apodo_jugador: str, frase_jugador: str, respuesta_jugador: str):
-    new_respuesta = Respuestas(id_partida=id_partida, apodo_jugador=apodo_jugador, frase_jugador=frase_jugador ,respuesta_jugador=respuesta_jugador)
-    db.add(new_respuesta)
-    db.commit()
-    db.refresh(new_respuesta)
-    return new_respuesta
+def crear_respuesta_jugador(db: Session, id_partida: str, apodo_jugador: str, respuesta_jugador: str):
+    # Buscar si ya existe una entrada para el jugador y el código de partida
+    respuesta_existente = db.query(Respuestas).filter(
+        Respuestas.id_partida == id_partida,
+        Respuestas.apodo_jugador == apodo_jugador,
+    ).first()
+    
+    # Si existe y la respuesta es "si", incrementar respuesta_jugador
+    if respuesta_existente:
+        print(respuesta_jugador)
+        if respuesta_jugador.lower() == "si":
+            print(respuesta_existente.respuesta_jugador)
+            respuesta_existente.respuesta_jugador = respuesta_existente.respuesta_jugador + 1
+            db.commit()
+            db.refresh(respuesta_existente)
+            return respuesta_existente
+        else:
+            # Si la respuesta no es "si", se ignora o podrías manejarlo de otra forma
+            return {"message": "Respuesta no almacenada porque no es 'si'."}
+    else:
+        # Si no existe, crear una nueva entrada
+        new_respuesta = Respuestas(
+            id_partida=id_partida,
+            apodo_jugador=apodo_jugador,
+            respuesta_jugador=1 if respuesta_jugador.lower() == "si" else 0
+        )
+        db.add(new_respuesta)
+        db.commit()
+        db.refresh(new_respuesta)
+        return new_respuesta
+    
+def get_stats(db: Session, id_partida: str):
+    return db.query(Respuestas.apodo_jugador, Respuestas.respuesta_jugador).filter(
+        Respuestas.id_partida == id_partida
+    ).order_by(Respuestas.respuesta_jugador.desc()).all()

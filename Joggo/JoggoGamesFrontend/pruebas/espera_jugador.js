@@ -36,7 +36,7 @@ const id_actual_partida = getIdPartidaFromURL();
         }
 
     // Verifica cada 0.3 segundos (300 milisegundos) si se ha pulsado COMENZAR en la pantalla /yonunca_intro
-    setInterval(checkGameStart, 300);
+    setInterval(checkGameStart, 10);
     // Verifica cada 0.3 segundos (300 milisegundos) si se terminado el contador en la pantalla /yonunca_frase
-    setInterval(checkAllphrasesDoneStart, 300);
+    setInterval(checkAllphrasesDoneStart, 10);
 

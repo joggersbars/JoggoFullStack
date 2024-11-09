@@ -25,6 +25,5 @@ class MensajeInicioPartida(BaseModel):
 
 class RespuestaJugador(BaseModel):
     apodo_jugador: str
-    frase_juego: str
     id_partida: str
     respuesta_jugador: str

@@ -9,13 +9,20 @@ function getParamsFromURL() {
 }
 
 // Función para obtener la frase desde `localStorage` y actualizar el HTML
+let fraseActual = localStorage.getItem("frase_juego"); // Guardar la frase actual
+
 function mostrarFraseDesdeLocalStorage() {
     // Obtener la frase guardada en `localStorage`
     const frase = localStorage.getItem("frase_juego");
 
     // Verificar si existe una frase en `localStorage` y actualizar el HTML
     if (frase) {
-        document.querySelector(".main-heading").textContent = frase; // Actualiza el `<h1>`
+        // Solo actualizar si la frase ha cambiado
+        if (frase !== fraseActual) {
+            document.querySelector(".main-heading").textContent = frase; // Actualiza el `<h1>`
+            fraseActual = frase; // Actualizar `fraseActual`
+            habilitarBoton(); // Habilitar el botón si la frase cambió
+        }
     } else {
         console.log("No hay frase guardada en localStorage");
     }
@@ -24,8 +31,7 @@ function mostrarFraseDesdeLocalStorage() {
 // Función para enviar la respuesta al endpoint
 async function enviarRespuesta(respuesta) {
     const { id_partida, apodo_jugador } = getParamsFromURL();
-    const frase = localStorage.getItem("frase_juego");
-    const url = `http://localhost:8002/recibir_respuesta/${id_partida}/${apodo_jugador}/${encodeURIComponent(frase)}/${respuesta}`
+    const url = `http://localhost:8002/recibir_respuesta/${id_partida}/${apodo_jugador}/${respuesta}`;
 
     try {
         const response = await fetch(url, {
@@ -39,13 +45,25 @@ async function enviarRespuesta(respuesta) {
         if (response.ok) {
             const result = await response.json();
             console.log("Respuesta del backend:", result.message);
-            // Aquí podrías hacer algo, como mostrar un mensaje de confirmación o cambiar la frase
         } else {
             console.error("Error en la respuesta del backend:", response.statusText);
         }
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
+
+    // Desactivar el botón después de enviar la respuesta
+    deshabilitarBoton();
+}
+
+// Función para deshabilitar el botón "Si"
+function deshabilitarBoton() {
+    document.querySelector(".btn-Si").disabled = true;
+}
+
+// Función para habilitar el botón "Si"
+function habilitarBoton() {
+    document.querySelector(".btn-Si").disabled = false;
 }
 
 // Ejecutar `mostrarFraseDesdeLocalStorage` cuando la página cargue
@@ -57,10 +75,5 @@ document.addEventListener("DOMContentLoaded", function() {
         enviarRespuesta("Si");
     });
 
-    document.querySelector(".btn-No").addEventListener("click", function() {
-        enviarRespuesta("No");
-    });
-
     setInterval(mostrarFraseDesdeLocalStorage, 100);
 });
-
