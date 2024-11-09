@@ -18,11 +18,10 @@ function mostrarFraseDesdeLocalStorage() {
     // Verificar si existe una frase en `localStorage` y actualizar el HTML
     if (frase) {
         // Solo actualizar si la frase ha cambiado
-        if (frase !== fraseActual) {
-            document.querySelector(".main-heading").textContent = frase; // Actualiza el `<h1>`
-            fraseActual = frase; // Actualizar `fraseActual`
-            habilitarBoton(); // Habilitar el botón si la frase cambió
-        }
+        document.querySelector(".main-heading").textContent = frase; // Actualiza el `<h1>`
+        fraseActual = frase; // Actualizar `fraseActual`
+        habilitarBoton(); // Habilitar el botón si la frase cambió
+        
     } else {
         console.log("No hay frase guardada en localStorage");
     }
@@ -31,6 +30,7 @@ function mostrarFraseDesdeLocalStorage() {
 // Función para enviar la respuesta al endpoint
 async function enviarRespuesta(respuesta) {
     const { id_partida, apodo_jugador } = getParamsFromURL();
+
     const url = `http://localhost:8002/recibir_respuesta/${id_partida}/${apodo_jugador}/${respuesta}`;
 
     try {
@@ -75,5 +75,5 @@ document.addEventListener("DOMContentLoaded", function() {
         enviarRespuesta("Si");
     });
 
-    setInterval(mostrarFraseDesdeLocalStorage, 100);
+    setInterval(mostrarFraseDesdeLocalStorage, 10);
 });

@@ -1,109 +1,98 @@
 let myChart; // Variable global para almacenar el gráfico
 
+// Función para obtener el parámetro "id_partida" de la URL
+function getIdPartidaFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("id_partida"); 
+}
+
 function getResponsiveFontSize() {
-    // Ajusta el tamaño de fuente en función del ancho de la ventana
     return Math.max(window.innerWidth * 0.02, 12); // Mínimo de 12px
 }
 
-// Plugin para agregar sombra
-/*const shadowPlugin = {
-    id: 'shadowPlugin',
-    beforeDatasetDraw: (chart, args, options) => {
-        const ctx = chart.ctx;
-        const datasetIndex = args.index;
-        const dataset = chart.data.datasets[datasetIndex];
-        const meta = chart.getDatasetMeta(datasetIndex);
-
-        meta.data.forEach((bar) => {
-            ctx.save();
-            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'; // Color de la sombra
-            ctx.shadowBlur = 10; // Nivel de desenfoque
-            ctx.shadowOffsetX = 4; // Desplazamiento en X
-            ctx.shadowOffsetY = 4; // Desplazamiento en Y
-
-            // Dibujar la barra con sombra
-            ctx.fillStyle = dataset.backgroundColor;
-            ctx.fillRect(bar.x - bar.width / 2, bar.y, bar.width, bar.base - bar.y);
-            ctx.restore();
-        });
+// Función para renderizar el gráfico
+async function renderChart() {
+    const id_partida = getIdPartidaFromURL(); // Obtiene el id_partida de la URL
+    if (!id_partida) {
+        console.error("No se encontró el parámetro 'id_partida' en la URL.");
+        return;
     }
-};*/
 
-function renderChart() {
-    fetch('pruebas/yonunca_result10.json')
-        .then(response => response.json())
-        .then(data => {
-            // Obtener los datos del JSON
-            const jugadores = data.jugadores;
-            const conteo = data.conteo;
+    try {
+        const response = await fetch(`http://localhost:8002/mandar_stats/${id_partida}`);
+        const data = await response.json();
+        
+        // Convertir el diccionario de estadísticas en arrays de jugadores y conteo
+        const jugadores = Object.keys(data.estadisticas);
+        const conteo = Object.values(data.estadisticas);
 
-            // Si el gráfico ya existe, destrúyelo antes de crear uno nuevo
-            if (myChart) {
-                myChart.destroy();
-            }
+        // Si el gráfico ya existe, destrúyelo antes de crear uno nuevo
+        if (myChart) {
+            myChart.destroy();
+        }
 
-            // Crear el gráfico de barras con Chart.js
-            const ctx = document.getElementById('myChart').getContext('2d');
-            myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: jugadores,
-                    datasets: [{
-                        label: 'Nº Si',
-                        data: conteo,
-                        color: 'yellow',
-                        backgroundColor: 'rgba(255, 255, 255, 1)',
-                        borderColor: 'rgba(0, 0, 0, 1)',
-                        borderWidth: 2,
-                        borderRadius: 10
-                    }]
+        // Crear el gráfico de barras con Chart.js
+        const ctx = document.getElementById('myChart').getContext('2d');
+        myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: jugadores,
+                datasets: [{
+                    label: 'Nº Si',
+                    data: conteo,
+                    color: 'white',
+                    backgroundColor: 'rgba(255, 255, 255, 1)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
+                    borderWidth: 2,
+                    borderRadius: 10
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: 'white', // Color del texto en el eje Y
+                            font: {   
+                                family: 'ChauPhilomeneOne-Regular',
+                                size: getResponsiveFontSize()
+                            }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'white', // Color del texto en el eje X
+                            font: {
+                                family: 'ChauPhilomeneOne-Regular',
+                                size: getResponsiveFontSize()
+                            }
+                        }
+                    }
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                color: 'white', // Color del texto en el eje Y
-                                font: {   
-                                    family: 'ChauPhilomeneOne-Regular',
-                                    size: getResponsiveFontSize() // Tamaño del texto en el eje Y
-                                }
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                color: 'white', // Color del texto en el eje X
-                                font: {
-                                    family: 'ChauPhilomeneOne-Regular',
-                                    size: getResponsiveFontSize() // Tamaño del texto en el eje X
-                                }
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white', // Cambia el color del texto de la leyenda aquí
+                            font: {
+                                family: 'ChauPhilomeneOne-Regular',
+                                size: getResponsiveFontSize() // Tamaño del texto en la leyenda
                             }
                         }
                     },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: 'white', // Cambia el color del texto de la leyenda aquí
-                                font: {
-                                    family: 'ChauPhilomeneOne-Regular',
-                                    size: getResponsiveFontSize() // Tamaño del texto en la leyenda
-                                }
-                            }
+                    tooltip: {
+                        titleFont: {
+                            size: getResponsiveFontSize()
                         },
-                        tooltip: {
-                            titleFont: {
-                                size: getResponsiveFontSize() // Tamaño del texto en el título del tooltip
-                            },
-                            bodyFont: {
-                                size: getResponsiveFontSize() // Tamaño del texto en el cuerpo del tooltip
-                            }
+                        bodyFont: {
+                            size: getResponsiveFontSize()
                         }
-                    },
-                    //plugins: [shadowPlugin] // Activar el plugin de sombra
+                    }
                 }
-            });
-        })
-        .catch(error => console.error('Error al cargar el archivo JSON:', error));
+            }
+        });
+    } catch (error) {
+        console.error('Error al cargar las estadísticas:', error);
+    }
 }
 
 // Llamar a renderChart al cargar la página
