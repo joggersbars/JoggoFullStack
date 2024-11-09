@@ -156,17 +156,16 @@ async def coger_frase(id_partida: IdPartida, db: Session=Depends(get_db)):
     return json_response
 
 # Endpoint respuesta jugador
-@router.post('/recibir_respuesta/{id_partida}/{apodo_jugador}/{frase}/{respuesta}', tags=["Respuestas Jugadores"], description="Las respuestas a las frases de yo nunca de los jugadores")
-async def recibir_respuesta(id_partida: str, apodo_jugador: str, frase: str, respuesta: str , db: Session = Depends(get_db)):
+@router.post('/recibir_respuesta/{id_partida}/{apodo_jugador}/{respuesta}', tags=["Respuestas Jugadores"], description="Las respuestas a las frases de yo nunca de los jugadores")
+async def recibir_respuesta(id_partida: str, apodo_jugador: str, respuesta: str , db: Session = Depends(get_db)):
     try:
         check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=apodo_jugador, id_partida=id_partida)
-        if check_jugador:
+        if check_jugador and check_jugador:
             print("Almacenando respuesta jugador")
             nueva_respuesta = crud.crear_respuesta_jugador(
                 db=db,
                 id_partida=id_partida,
                 apodo_jugador=apodo_jugador,
-                frase_jugador=frase,
                 respuesta_jugador=respuesta
             )
             return {"message": "Respuesta almacenada correctamente"}

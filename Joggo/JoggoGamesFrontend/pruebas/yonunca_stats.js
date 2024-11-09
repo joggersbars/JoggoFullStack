@@ -25,7 +25,7 @@ function getResponsiveFontSize() {
     };
 
 function renderChart(){
-    fetch('pruebas/yonunca_result10.json')
+    fetch('pruebas/yonunca_result5.json')
         .then(response => response.json())
         .then(data => {
             // Obtener los datos del JSON

@@ -46,9 +46,9 @@ async function solicitarNuevaFrase() {
 
         if (response.ok) {
             const result = await response.json();
-            console.log("Respuesta del backend:", result.message);
+            console.log("Respuesta del backend:", result);
 
-            if (result.message == "Fin_frases") {
+            if (result.frase == "Fin_frases") {
                 // Si el backend responde con "Fin_frases", redirigimos a /yonunca_stats.html
                 window.location.href = "/yonunca_stats.html?id_partida=" + id_actual_partida;
             } else {
