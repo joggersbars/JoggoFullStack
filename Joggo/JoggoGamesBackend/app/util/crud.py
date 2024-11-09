@@ -148,4 +148,7 @@ def crear_respuesta_jugador(db: Session, id_partida: str, apodo_jugador: str, re
         db.refresh(new_respuesta)
         return new_respuesta
     
-# def traer_veinte_mejores(db: Session. id_partida:str):
+def get_stats(db: Session, id_partida: str):
+    return db.query(Respuestas.apodo_jugador, Respuestas.respuesta_jugador).filter(
+        Respuestas.id_partida == id_partida
+    ).order_by(Respuestas.respuesta_jugador.desc()).all()
