@@ -51,7 +51,7 @@ function renderChart() {
                     datasets: [{
                         label: 'Nº Si',
                         data: conteo,
-                        color: 'white',
+                        color: 'yellow',
                         backgroundColor: 'rgba(255, 255, 255, 1)',
                         borderColor: 'rgba(0, 0, 0, 1)',
                         borderWidth: 2,
@@ -63,7 +63,7 @@ function renderChart() {
                         y: {
                             beginAtZero: true,
                             ticks: {
-                                color: 'red', // Color del texto en el eje Y
+                                color: 'white', // Color del texto en el eje Y
                                 font: {   
                                     family: 'ChauPhilomeneOne-Regular',
                                     size: getResponsiveFontSize() // Tamaño del texto en el eje Y
@@ -72,7 +72,7 @@ function renderChart() {
                         },
                         x: {
                             ticks: {
-                                color: 'brown', // Color del texto en el eje X
+                                color: 'white', // Color del texto en el eje X
                                 font: {
                                     family: 'ChauPhilomeneOne-Regular',
                                     size: getResponsiveFontSize() // Tamaño del texto en el eje X
@@ -81,9 +81,15 @@ function renderChart() {
                         }
                     },
                     plugins: {
-                        /*legend: {
-                            display: false
-                        },*/
+                        legend: {
+                            labels: {
+                                color: 'white', // Cambia el color del texto de la leyenda aquí
+                                font: {
+                                    family: 'ChauPhilomeneOne-Regular',
+                                    size: getResponsiveFontSize() // Tamaño del texto en la leyenda
+                                }
+                            }
+                        },
                         tooltip: {
                             titleFont: {
                                 size: getResponsiveFontSize() // Tamaño del texto en el título del tooltip
