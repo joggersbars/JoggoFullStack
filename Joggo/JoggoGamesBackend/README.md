@@ -25,21 +25,21 @@
    - Escribir en terminal:
       * $ docker exec -it db bash
    - Cuando entre os ponda a la izquierda `mysql>`, ejecutar el siguiente comando:
-      * `mysql>` mysql - p
+      * `mysql>`$ mysql -p
       * Introduce password: 12345
    - Escoger base de datos que estamos usando, en este caso se llama `test`: 
-       `mysql>` use test;
+       `mysql>` $ use test;
    - Mostrar tablas:
-       `mysql>` show tables;
+       `mysql>` $ show tables;
    - Tenemos 4 <tablas>:
       * `juego`: Almacena el id partida, el juego que se está jugando, y el número de jugadores (esto está pendiente de arreglar)
       * `jugadores`: Almacena apodo del jugador, id de la partida, frase jugador y el id de la frase.
       * `respuestas`: Almacena id partida, apodo jugador, frase jugador y respuesta jugador (Cantidad de síes que el jugador dice).
       * `users`: Almacena el username del bar y el password del bar (pantalla de login)
    - Si queremos acceder a las tablas y verlas usar:
-       `mysql>` select * from <tabla>;
+       `mysql>` $ select * from <tabla>;
    - Si queremos ver información de los tipos de las variables:
-       `mysql>` describe <tabla>;     
+       `mysql>` $ describe <tabla>;     
 
 
 
