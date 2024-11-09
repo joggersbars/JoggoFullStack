@@ -118,11 +118,23 @@
     box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
   }
 
+  .btn-Si:active {
+    background-color: #3a2c08; /* Cambia a un color más oscuro o diferente cuando se presiona */
+    transform: translateY(0.5vh); /* Mueve el botón hacia abajo para simular la acción de clic */
+    box-shadow: 0.5vw 0.5vw 1vw rgba(0, 0, 0, 0.3); /* Ajusta la sombra durante el clic */
+}
+
   .btn-No:hover {
     background-color: #4b3810;
     transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
     box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
   }
+
+  .btn-No:active {
+    background-color: #3a2c08; /* Cambia a un color más oscuro o diferente cuando se presiona */
+    transform: translateY(0.5vh); /* Mueve el botón hacia abajo para simular la acción de clic */
+    box-shadow: 0.5vw 0.5vw 1vw rgba(0, 0, 0, 0.3); /* Ajusta la sombra durante el clic */
+}
 
   .btn-like {
     background-color: #f0b223;
@@ -148,6 +160,11 @@
     box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
   }
 
+  .btn-like:active {
+    background-color: #fd5a90; /* Cambia a un color más oscuro o diferente cuando se presiona */
+    transform: translateY(0.5vh); /* Mueve el botón hacia abajo para simular la acción de clic */
+    box-shadow: 0.5vw 0.5vw 1vw rgba(0, 0, 0, 0.3); /* Ajusta la sombra durante el clic */
+}
   .icono-like {
     width: 12vw; /* Ajusta el tamaño del icono */
     height: auto;
