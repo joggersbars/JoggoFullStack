@@ -174,15 +174,15 @@ async def recibir_respuesta(id_partida: str, apodo_jugador: str, respuesta: str 
     except Exception as e:
         print("Error:", e)
         raise HTTPException(status_code=500, detail=str(e))
+
+# Mandar resultados
+@router.get("/mandar_stats/{id_partida}", tags=["Mandando estadísticas"], description="Mandando estadísticas de la partida")
+async def mandar_stats(id_partida: str, db: Session = Depends(get_db)):
+    # Obtiene las estadísticas de la partida específica
+    statistics = crud.get_stats(db=db, id_partida=id_partida)
     
-    # Mandar resultados
-    @router.get("/mandar_stats/{id_partida}", tags=["Mandando estadísticas"], description="Mandando estadísticas de la partida")
-    async def mandar_stats(id_partida: str, db: Session = Depends(get_db)):
-        # Obtiene las estadísticas de la partida específica
-        statistics = crud.traer_jugadores_por_partida_ordenados(db=db, id_partida=id_partida)
-        
-        # Convierte los resultados a un diccionario
-        jugadores_dict = {resultado.apodo_jugador: resultado.respuesta_jugador for resultado in statistics}
-        
-        # Crea una respuesta JSON
-        return JSONResponse(content={"estadisticas": jugadores_dict},status_code=status.HTTP_201_CREATED)
+    # Convierte los resultados a un diccionario
+    jugadores_dict = {resultado.apodo_jugador: resultado.respuesta_jugador for resultado in statistics}
+    
+    # Crea una respuesta JSON
+    return JSONResponse(content={"estadisticas": jugadores_dict},status_code=status.HTTP_201_CREATED)
