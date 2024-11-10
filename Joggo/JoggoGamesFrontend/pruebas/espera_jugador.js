@@ -9,14 +9,19 @@ const id_actual_partida = getIdPartidaFromURL();
 const currentUrl = window.location.href;
 
 // Verifica si el juego ha comenzado mediante un llamado al backend
-async function checkGameStart() {
-    const response = await fetch(`${API_URL}/game/status/${id_actual_partida}`);
-    const data = await response.json();
-    
-    if (data.estado === "comenzado") {
-        window.location.href = currentUrl.replace("espera_jugador.html", "frase_jugador.html");
+const intervalId = setInterval(async () => {
+    try {
+        const response = await fetch(`${API_URL}/game/status/${id_actual_partida}`);
+        const data = await response.json();
+        
+        if (data.estado === "comenzado") {
+            clearInterval(intervalId); // Detiene el intervalo para que no se ejecute más
+            window.location.href = currentUrl.replace("espera_jugador.html", "frase_jugador.html");
+        }
+    } catch (error) {
+        console.error("Error al verificar el estado del juego:", error);
     }
-}
+}, 3000);
 
 // Verifica si el temporizador ha terminado
 async function checkAllphrasesDoneStart() {
@@ -29,5 +34,4 @@ async function checkAllphrasesDoneStart() {
 }
 
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkGameStart, 300);
 setInterval(checkAllphrasesDoneStart, 300);
