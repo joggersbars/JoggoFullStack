@@ -146,6 +146,27 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
     else:
         raise HTTPException(status_code=400, detail="El mensaje es incorrecto")
 
+# Endpoint para setear que el bar ha dado a comenzar la partida
+@router.post("/game/start/{id_partida}", tags = ["Comenzando la partida por el bar"], description="El bar le da a comenzar la partida")
+async def bar_empieza_partida(id_partida: str, db: Session=Depends(get_db)):
+    crud.empezar_partida(db=db,id_partida=id_partida,estado_juego="comenzado")
+    response_dict = {"id_partida": id_partida, "estado": "comenzado"}
+    return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
+
+# Endpoint para setear que el yo nunca empiece
+@router.post("/game/start_frases/{id_partida}", tags = ["Comenzando la partida para mostrar frases"], description="Comienza el juego de frases")
+async def bar_empieza_partida_frases(id_partida: str, db: Session=Depends(get_db)):
+    crud.empezar_partida_temporizador(db=db,id_partida=id_partida,estado_juego="mostrar_frases")
+    response_dict = {"id_partida": id_partida, "estado": "mostrar_frases"}
+    return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
+
+# Endpoint para checkear el estado de la partida
+@router.get("/game/status/{id_partida}", tags = ["Checkear el estado de la partida"], description="Los jugadores checkean el estado de la partida")
+async def bar_empieza_partida(id_partida: str, db: Session=Depends(get_db)):
+    estado = crud.consultar_estado_partida(db=db,id_partida=id_partida)
+    response_dict = {"id_partida": id_partida, "estado": estado}
+    return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
+
 # Endpoint para coger la frase que se mostrará por pantalla
 @router.post('/coger_frase', tags=["Frases Juego"], description="Frases que se van a ir poniendo en la pantalla del bar")
 async def coger_frase(id_partida: IdPartida, db: Session=Depends(get_db)):

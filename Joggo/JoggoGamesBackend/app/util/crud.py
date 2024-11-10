@@ -47,6 +47,7 @@ def login_user(db: Session, username: str, password: str):
 
 ### Funciones de Partidas (Games) ###
 
+
 # Obtener una partida por su codigo
 def get_partida_by_codigo(db: Session, id_partida: int):
     return db.query(Juego).filter(Juego.id_partida == id_partida).first()
@@ -57,11 +58,28 @@ def get_partida_codigos(db: Session):
 
 # Crear una nueva partida
 def create_partida(db: Session, id_partida: str, nombre_juego: str, num_jugadores: int):
-    new_game = Juego(id_partida=id_partida, nombre_juego=nombre_juego, num_jugadores=num_jugadores)
+    new_game = Juego(id_partida=id_partida, nombre_juego=nombre_juego, num_jugadores=num_jugadores, estado_juego="IDLE")
     db.add(new_game)
     db.commit()
     db.refresh(new_game)
     return new_game
+
+def empezar_partida(db: Session, id_partida: str, estado_juego: str):
+    juego = db.query(Juego).filter(Juego.id_partida==id_partida).first()
+    juego.estado_juego = estado_juego
+    db.commit()
+    db.refresh(juego)
+    return juego
+
+def empezar_partida_temporizador(db: Session, id_partida: str, estado_juego: str):
+    juego = db.query(Juego).filter(Juego.id_partida==id_partida).first()
+    juego.estado_juego = estado_juego
+    db.commit()
+    db.refresh(juego)
+    return juego
+
+def consultar_estado_partida(db: Session, id_partida: str):
+    return db.query(Juego.estado_juego).filter(Juego.id_partida == id_partida).first()
 
 ### Funciones de Jugadores en Partida ###
 # Obtener jugador por nombre

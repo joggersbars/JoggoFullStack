@@ -31,6 +31,7 @@ class Juego(Base):
     id_partida = Column(String(STRING_LENGTH)) # Id de la partida
     nombre_juego = Column(String(STRING_LENGTH)) # Nombre del juego
     num_jugadores = Column(Integer) # Número total de jugadores
+    estado_juego = Column(String(50)) # Estado del juego
 
 class Respuestas(Base):
     __tablename__ = 'respuestas'

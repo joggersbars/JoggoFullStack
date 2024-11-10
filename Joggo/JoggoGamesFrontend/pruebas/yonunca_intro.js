@@ -57,6 +57,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error al enviar la solicitud para empezar la partida:', error);
     }
+    try {
+        const response = await fetch(`${API_URL}/game/start/${idPartida}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Respuesta del servidor al empezar partida:', result);
+        } else {
+            console.error('Error al iniciar la partida:', response.statusText);
+        }
+
+    } catch (error) {
+        console.error('Error al enviar la solicitud para empezar la partida:', error);
+    }
 }
 
 // Evento de clic en el botón "Comenzar" para iniciar la partida
