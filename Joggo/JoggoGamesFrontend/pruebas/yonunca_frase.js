@@ -1,3 +1,5 @@
+const API_URL = process.env.API_URL || 'http://152.42.129.144:8002'
+
 // Función para obtener el parámetro "id_partida" de la URL
 function getIdPartidaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -39,7 +41,7 @@ animation_timer.addEventListener('complete', async function() {
 
     // 2. Enviar la solicitud `fetch` al backend con `id_partida` en formato JSON
     try {
-        const response = await fetch('http://localhost:8002/establecer_indices_frases', {
+        const response = await fetch(`${API_URL}/establecer_indices_frases`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

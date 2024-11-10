@@ -1,3 +1,5 @@
+const API_URL = process.env.API_URL || 'http://152.42.129.144:8002'
+
 // Obtener parámetros url
 function getParamsFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -31,7 +33,7 @@ function mostrarFraseDesdeLocalStorage() {
 async function enviarRespuesta(respuesta) {
     const { id_partida, apodo_jugador } = getParamsFromURL();
 
-    const url = `http://localhost:8002/recibir_respuesta/${id_partida}/${apodo_jugador}/${respuesta}`;
+    const url = `${API_URL}/recibir_respuesta/${id_partida}/${apodo_jugador}/${respuesta}`;
 
     try {
         const response = await fetch(url, {

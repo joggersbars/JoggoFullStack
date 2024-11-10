@@ -5,6 +5,8 @@ services:
     build: ./JoggoGamesFrontend
     ports:
       - '8001:8001'
+    environment:
+      - API_URL=${API_URL}
     depends_on:
       - backend
     networks:

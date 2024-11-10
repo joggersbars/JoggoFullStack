@@ -1,3 +1,5 @@
+const API_URL = process.env.API_URL || 'http://152.42.129.144:8002'
+
 // Función para obtener el parámetro "id_partida" de la URL
 function getIdPartidaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -36,7 +38,7 @@ async function solicitarNuevaFrase() {
         // Preparar el cuerpo de la solicitud en formato JSON
         const data = { id_partida: id_actual_partida };
 
-        const response = await fetch('http://localhost:8002/coger_frase', { 
+        const response = await fetch(`${API_URL}/coger_frase`, { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

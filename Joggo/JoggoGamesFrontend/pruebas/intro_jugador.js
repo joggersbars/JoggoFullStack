@@ -1,3 +1,5 @@
+const API_URL = process.env.API_URL || 'http://152.42.129.144:8002'
+
 // Función para obtener el parámetro "id_partida" de la URL
 function getIdPartidaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -25,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         try {   
             //console.log('Iniciando solicitud al backend...',apiUrl);
-            const response = await fetch('http://localhost:8002/crear_jugador', {  //${apiUrl}
+            const response = await fetch(`${API_URL}/crear_jugador`, {  //${apiUrl}
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

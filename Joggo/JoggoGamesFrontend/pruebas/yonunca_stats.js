@@ -1,4 +1,5 @@
 let myChart; // Variable global para almacenar el gráfico
+const API_URL = process.env.API_URL || 'http://152.42.129.144:8002'
 
 // Función para obtener el parámetro "id_partida" de la URL
 function getIdPartidaFromURL() {
@@ -19,7 +20,7 @@ async function renderChart() {
     }
 
     try {
-        const response = await fetch(`http://localhost:8002/mandar_stats/${id_partida}`);
+        const response = await fetch(`${API_URL}/mandar_stats/${id_partida}`);
         const data = await response.json();
         
         // Convertir el diccionario de estadísticas en arrays de jugadores y conteo

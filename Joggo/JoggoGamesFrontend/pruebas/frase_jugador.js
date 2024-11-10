@@ -1,4 +1,5 @@
 // Función para obtener los parámetros "id_partida" y "apodo_jugador" de la URL
+const API_URL = process.env.API_URL || 'http://152.42.129.144:8002'
 function getParamsFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const id_partida = urlParams.get("id_partida");
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         try {
             // Enviar la solicitud POST al servidor
-            const response = await fetch('http://localhost:8002/añadir_frase', {
+            const response = await fetch(`${API_URL}/añadir_frase`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
