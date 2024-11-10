@@ -4,7 +4,7 @@ let idPartida;
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         // Hacer una solicitud GET al servidor para obtener el ID de la partida
-        const response = await fetch(`http://localhost:8002/crear_partida/${'Yo_nunca'}`, { 
+        const response = await fetch(`${API_URL}/crear_partida/${'Yo_nunca'}`, { 
             method: 'GET',
         });
 
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Generar el código QR con el ID de la partida
             const qr = new QRious({
                 element: document.getElementById('qrPartida'),
-                value: `http://localhost:8001/intro_jugador.html?id_partida=${idPartida}`, // URL con el ID de la partida
+                value: `${API_URL}/intro_jugador.html?id_partida=${idPartida}`, // URL con el ID de la partida
                 size: 250,
                 backgroundAlpha: 0, // Fondo transparente
                 foreground: '#000',  // Color del QR
