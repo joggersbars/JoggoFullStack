@@ -94,6 +94,15 @@ def establecer_jugador_conectado(db: Session, id_partida: str, apodo_jugador: st
     
     return jugador
 
+def checkear_conexion_jugador(db: Session, id_partida:str, apodo_jugador:str):
+    estado = db.query(Jugadores.connected).filter(
+        Jugadores.id_partida==id_partida,
+        Jugadores.apodo_jugador == apodo_jugador
+    ).first()
+    
+    # Devuelve True si el estado es "CONNECTED", de lo contrario, devuelve False
+    return estado[0] == "CONNECTED" if estado else False
+
 def checkear_jugadores_conectados(db: Session, id_partida: str):
     jugadores_no_conectados = db.query(Jugadores).filter(
         Juego.id_partida == id_partida,

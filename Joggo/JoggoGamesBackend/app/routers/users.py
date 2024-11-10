@@ -142,6 +142,13 @@ async def establecer_indices_frases(id_partida: IdPartida, db: Session=Depends(g
 async def jugador_conectado_para_introducir_frases(id_partida: str, apodo_jugador:str, db: Session=Depends(get_db)):
     jugador_conectado = crud.establecer_jugador_conectado(db=db, id_partida=id_partida, apodo_jugador=apodo_jugador)
 
+# Endpoint para checkear el estado del jugador
+@router.get('/game/is_jugador_connected/{id_partida}/{apodo_jugador}', tags = ["Checkea si el jugador está conectado"])
+async def is_jugador_connected(id_partida: str, apodo_jugador: str, db: Session=Depends(get_db)):
+    connected = crud.checkear_conexion_jugador(db=db, id_partida=id_partida, apodo_jugador=apodo_jugador)
+    response_dict = {"connected": connected}
+    return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
+
 # Endpoint para ver si todos los jugadores están conectados
 @router.get('/game/all_connected/{id_partida}', tags=["Checkeo de que todos los jugadores están conectados"])
 async def are_all_users_connected(id_partida: str, db: Session=Depends(get_db)):
