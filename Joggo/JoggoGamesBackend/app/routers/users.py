@@ -140,6 +140,7 @@ async def establecer_indices_frases(id_partida: IdPartida, db: Session=Depends(g
 # Endpoint para ir conectando a cada jugador a la pantalla esperando antes de empezar las frases
 @router.post('/game/jugador_conectado/{id_partida}', tags=["Jugador llevado a introducir frase"])
 async def jugador_conectado_para_introducir_frases(id_partida: str, db: Session=Depends(get_db)):
+    print(f"El contador inverso:{iterator.contador_inverso}")
     iterator.decrementar_contador()
     response_dict = {"contador": iterator.contador_inverso}
     return JSONResponse(content=response_dict,status_code=status.HTTP_201_CREATED)
