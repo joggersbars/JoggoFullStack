@@ -15,13 +15,22 @@ async function checkGameStart() {
     
     if (data.estado === "comenzado") {
         window.location.href = currentUrl.replace("espera_jugador.html", "frase_jugador.html");
-        const response = await fetch(`${API_URL}/game/pause/${id_actual_partida}`, {
+        const response_conect = await fetch(`${API_URL}/game/jugador_conectado/${id_partida_actual}`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
         });
+        data_conect = await response_conect.json();
 
+        if (data_conect.contador == 0) {
+            response = await fetch(`${API_URL}/game/pause/${id_actual_partida}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+        }
     }
 }
 
