@@ -7,6 +7,8 @@ mashumaro==3.5
 pyhocon==0.3.60
 aiosqlite==0.17.0
 fastapi==0.95.2
+tenacity==8.0.1
+
 pydantic==1.10.12
 tortoise-orm==0.19.3
 python-jose[cryptography]==3.3.0

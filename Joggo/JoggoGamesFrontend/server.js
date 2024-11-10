@@ -93,6 +93,6 @@ http.createServer((req, res) => {
       res.end(content, 'utf-8');
     }
   });
-}).listen(port, () => {                                             // Iniciar el servidor
+}).listen(port,'0.0.0.0',() => {                                             // Iniciar el servidor
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
