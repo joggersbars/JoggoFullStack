@@ -36,5 +36,5 @@ async function checkAllphrasesDoneStart() {
 }
 
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkGameStart, 300);
+setInterval(checkGameStart, 5000);
 setInterval(checkAllphrasesDoneStart, 300);
