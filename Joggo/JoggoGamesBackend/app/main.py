@@ -11,13 +11,10 @@ import uvicorn
 _logger = logging.getLogger(__name__)
 
 def get_app():
-    origins = [
-        "http://localhost:8001"  # Agrega cualquier otro origen que necesites permitir
-    ]
     app = FastAPI()
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=origins,  # Reemplaza con la URL de tu frontend http://localhost:8001/
+        allow_origins=["*"],  # Reemplaza con la URL de tu frontend http://localhost:8001/
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],

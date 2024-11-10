@@ -17,6 +17,7 @@ services:
     ports:
       - '8002:8002'
     environment:
+      - FRONTEND_URL=${FRONTEND_URL}
       - DB_NAME=${DB_NAME}
       - DB_HOST=db
       - DB_USER=${DB_USER}

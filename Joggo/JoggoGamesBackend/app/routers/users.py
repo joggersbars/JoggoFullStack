@@ -13,13 +13,17 @@ from sqlalchemy.orm import Session
 from app.database.database_configuration import engine, localSession
 
 from typing import List
-
-import logging
+from dotenv import load_dotenv
+import logging, os
 import requests
 
 Base.metadata.create_all(bind=engine)
 
 _logger = logging.getLogger(__name__)
+
+load_dotenv()
+
+FRONTEND_URL = os.getenv('FRONTEND_URL')
 
 router = APIRouter()
 
@@ -86,7 +90,7 @@ async def crear_partida(nombre_juego: str, num_jugadores: int = 150, db: Session
     check_codes = crud.get_partida_codigos(db)
     id_partida = generate_unique_code(check_codes)
     nueva_partida = crud.create_partida(db=db,id_partida=id_partida,nombre_juego=nombre_juego,num_jugadores=num_jugadores)
-    url_partida = f"http://localhost:8001/{nombre_juego.lower().replace(' ','_')}_{id_partida}"
+    url_partida = f"{FRONTEND_URL}/{nombre_juego.lower().replace(' ','_')}_{id_partida}"
     response = {'id_partida':id_partida, 'url_partida':url_partida}
     print("La partida tiene estos datos:")
     pprint(response)
