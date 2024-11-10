@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Generar el código QR con el ID de la partida
             const qr = new QRious({
                 element: document.getElementById('qrPartida'),
-                value: `${API_URL}/intro_jugador.html?id_partida=${idPartida}`, // URL con el ID de la partida
+                value: `${FRONTEND_URL}/intro_jugador.html?id_partida=${idPartida}`, // URL con el ID de la partida
                 size: 250,
                 backgroundAlpha: 0, // Fondo transparente
                 foreground: '#000',  // Color del QR
