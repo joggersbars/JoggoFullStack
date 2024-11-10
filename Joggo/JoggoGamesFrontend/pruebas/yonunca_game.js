@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL || 'http://152.42.129.144:8002'
+import { API_URL } from './config'
 
 // Función para obtener el parámetro "id_partida" de la URL
 function getIdPartidaFromURL() {
