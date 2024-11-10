@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8002
 
 # Comando para ejecutar la aplicación usando Uvicorn
-CMD ["python", "run.py"]
+CMD ["python", "Run.py"]
