@@ -1,5 +1,4 @@
 let myChart; // Variable global para almacenar el gráfico
-import { API_URL } from './config'
 
 // Función para obtener el parámetro "id_partida" de la URL
 function getIdPartidaFromURL() {

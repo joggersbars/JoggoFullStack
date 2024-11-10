@@ -1,5 +1,4 @@
 // Función para obtener los parámetros "id_partida" y "apodo_jugador" de la URL
-import { API_URL } from './config'
 function getParamsFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const id_partida = urlParams.get("id_partida");

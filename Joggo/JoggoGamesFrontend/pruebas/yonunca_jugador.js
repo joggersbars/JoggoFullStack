@@ -1,4 +1,4 @@
-import { API_URL } from './config'
+
 
 // Obtener parámetros url
 function getParamsFromURL() {
