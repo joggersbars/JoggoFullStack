@@ -1,5 +1,4 @@
 //# Pruebas unitarias o de integración
-import { API_URL } from './config'
 document.getElementById('login-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Evitar que el formulario recargue la página
     //const apiUrl = process.env.REACT_APP_API_URL;
