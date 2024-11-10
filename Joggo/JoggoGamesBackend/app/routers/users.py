@@ -153,10 +153,17 @@ async def bar_empieza_partida(id_partida: str, db: Session=Depends(get_db)):
     response_dict = {"id_partida": id_partida, "estado": "comenzado"}
     return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
 
+# Endpoint para setear que el bar ha dado a comenzar la partida
+@router.post("/game/pause/{id_partida}", tags = ["Esperando la partida por el bar"], description="El bar le da a esperar la partida")
+async def bar_empieza_partida(id_partida: str, db: Session=Depends(get_db)):
+    crud.empezar_partida(db=db,id_partida=id_partida,estado_juego="idle")
+    response_dict = {"id_partida": id_partida, "estado": "idle"}
+    return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
+
 # Endpoint para setear que el yo nunca empiece
 @router.post("/game/start_frases/{id_partida}", tags = ["Comenzando la partida para mostrar frases"], description="Comienza el juego de frases")
 async def bar_empieza_partida_frases(id_partida: str, db: Session=Depends(get_db)):
-    crud.empezar_partida_temporizador(db=db,id_partida=id_partida,estado_juego="mostrar_frases")
+    crud.empezar_partida(db=db,id_partida=id_partida,estado_juego="mostrar_frases")
     response_dict = {"id_partida": id_partida, "estado": "mostrar_frases"}
     return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
 

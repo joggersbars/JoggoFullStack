@@ -71,13 +71,6 @@ def empezar_partida(db: Session, id_partida: str, estado_juego: str):
     db.refresh(juego)
     return juego
 
-def empezar_partida_temporizador(db: Session, id_partida: str, estado_juego: str):
-    juego = db.query(Juego).filter(Juego.id_partida==id_partida).first()
-    juego.estado_juego = estado_juego
-    db.commit()
-    db.refresh(juego)
-    return juego
-
 def consultar_estado_partida(db: Session, id_partida: str):
     return db.query(Juego.estado_juego).filter(Juego.id_partida == id_partida).first()
 
