@@ -1,29 +1,38 @@
 // Obtenemos el id_partida de la URL
 function getIdPartidaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("id_partida");
+    id_partida = urlParams.get("id_partida")
+    apodo_jugador = urlParams.get("apodo_jugador")
+    return { id_partida, apodo_jugador };
 }
-const id_actual_partida = getIdPartidaFromURL();
+const {id_actual_partida, apodo_jugador} = getIdPartidaFromURL();
 
 // URL actual
 const currentUrl = window.location.href;
 
 // Verifica si el juego ha comenzado mediante un llamado al backend
 async function checkGameStart() {
+    {id_actual_partida, apodo_jugador} = getIdPartidaFromURL();
     const response = await fetch(`${API_URL}/game/status/${id_actual_partida}`);
     const data = await response.json();
     
     if (data.estado === "comenzado") {
         window.location.href = currentUrl.replace("espera_jugador.html", "frase_jugador.html");
-        const response_conect = await fetch(`${API_URL}/game/jugador_conectado/${id_partida_actual}`,{
+        const response_conect = await fetch(`${API_URL}/game/jugador_conectado/${id_partida_actual}/${apodo_jugador}`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
         });
-        data_conect = await response_conect.json();
-
-        if (data_conect.contador == 0) {
+        
+        const response_all_connected = await fetch(`${API_URL}/game/all_connected/${id_partida_actual}`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }); 
+        data = await response_all_connected.json()
+        if (data.connected) {
             response = await fetch(`${API_URL}/game/pause/${id_actual_partida}`, {
                 method: 'POST',
                 headers: {
@@ -45,5 +54,5 @@ async function checkAllphrasesDoneStart() {
 }
 
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkGameStart, 1000);
+setInterval(checkGameStart, 30);
 setInterval(checkAllphrasesDoneStart, 300);

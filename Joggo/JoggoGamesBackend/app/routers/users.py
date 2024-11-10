@@ -138,11 +138,15 @@ async def establecer_indices_frases(id_partida: IdPartida, db: Session=Depends(g
     return json_response
 
 # Endpoint para ir conectando a cada jugador a la pantalla esperando antes de empezar las frases
-@router.get('/game/jugador_conectado/{id_partida}', tags=["Jugador llevado a introducir frase"])
-async def jugador_conectado_para_introducir_frases(id_partida: str, db: Session=Depends(get_db)):
-    print(f"El contador inverso:{iterator.contador_inverso}")
-    iterator.decrementar_contador()
-    response_dict = {"contador": iterator.contador_inverso}
+@router.post('/game/jugador_conectado/{id_partida}/{apodo_jugador}', tags=["Jugador llevado a introducir frase"])
+async def jugador_conectado_para_introducir_frases(id_partida: str, apodo_jugador:str, db: Session=Depends(get_db)):
+    jugador_conectado = crud.establecer_jugador_conectado(db=db, id_partida=id_partida, apodo_jugador=apodo_jugador)
+
+# Endpoint para ver si todos los jugadores están conectados
+@router.get('/game/all_connected/{id_partida}', tags=["Checkeo de que todos los jugadores están conectados"])
+async def are_all_users_connected(id_partida: str, db: Session=Depends(get_db)):
+    all_conected = crud.checkear_jugadores_conectados(db=db,id_partida=id_partida)
+    response_dict = {"connected": all_conected}
     return JSONResponse(content=response_dict,status_code=status.HTTP_201_CREATED)
 
 # Endpoint empezar_partida para sacar la cantidad de frases
