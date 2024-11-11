@@ -14,9 +14,9 @@ async function checkAllphrasesDoneStart() {
     const data = await response.json();
     
     if (data.estado === "frases") {
-        window.location.href = currentUrl.replace("espera__frases_jugador.html", "yonunca_jugador.html");
+        window.location.href = currentUrl.replace("espera_frases_jugador.html", "yonunca_jugador.html");
     }
 }
 
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkAllphrasesDoneStart, 5000);
+setInterval(checkAllphrasesDoneStart, 1000);
