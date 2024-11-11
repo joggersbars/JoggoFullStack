@@ -173,6 +173,7 @@ async def coger_frase(id_partida: IdPartida, db: Session=Depends(get_db)):
 # Endpoint para que en la pantalla de los jugadores se muestra la frase de pantalla
 @router.get("/coger_frase_jugador/{id_partida}", tags=["Frase jugador Pantalla"], description="Frases que se van a presentar en la pantalla de los jugadores")
 async def coger_frase_jugador(id_partida: str):
+    print(f"La frase actual es: {iterator.frase_actual}")
     response_frase = {"frase":iterator.frase_actual}
     return JSONResponse(content=response_frase, status_code=status.HTTP_201_CREATED)
 

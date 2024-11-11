@@ -30,15 +30,10 @@ async function mostrarFraseDesdeLocalStorage() {
             console.error("Error en la respuesta del backend:", response.statusText);
         }
         // Verificar si existe una frase en `localStorage` y actualizar el HTML
-        if (result.frase) {
-            // Solo actualizar si la frase ha cambiado
-            document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
-            fraseActual = result.frase; // Actualizar `fraseActual`
-            habilitarBoton(); // Habilitar el botón si la frase cambió
-
-        } else {
-            console.log("No hay frase guardada en localStorage");
-        }
+        // Solo actualizar si la frase ha cambiado
+        document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
+        fraseActual = result.frase; // Actualizar `fraseActual`
+        habilitarBoton(); // Habilitar el botón si la frase cambió
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
@@ -97,5 +92,5 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".btn-No").disabled = false;
     });
 
-    setInterval(mostrarFraseDesdeLocalStorage, 2000);
+    setInterval(mostrarFraseDesdeLocalStorage, 100);
 });
