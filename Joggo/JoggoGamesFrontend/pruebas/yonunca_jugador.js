@@ -16,7 +16,7 @@ async function mostrarFraseDesdeLocalStorage() {
     try {
         const response = await fetch(`${API_URL}/coger_frase_jugador/${id_partida}`,{
             method: 'GET', 
-            mode: "no-cors",
+            mode: "cors",
             headers: {
                 'Content-Type': 'application/json'
             }
