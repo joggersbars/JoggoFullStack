@@ -152,6 +152,7 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
 @router.get("/game/status/{id_partida}", tags = ["Checkear el estado de la partida"], description="Los jugadores checkean el estado de la partida")
 async def bar_empieza_partida(id_partida: str, db: Session=Depends(get_db)):
     estado = crud.consultar_estado_partida(db=db,id_partida=id_partida)
+    print(estado)
     response_dict = {"id_partida": id_partida, "estado": estado[0]}
     return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
 
