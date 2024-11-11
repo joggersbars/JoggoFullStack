@@ -36,7 +36,9 @@ http.createServer((req, res) => {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_stats.html');
   } else if (pathname === '/espera_jugador') {
     filePath = path.join(__dirname, 'public/Recursos', 'espera_jugador.html');
-  } else if (pathname === '/yonunca_frase') {
+  } else if (pathname === '/espera_frases_jugador') {
+    filePath = path.join(__dirname, 'public/Recursos', 'espera_frases_jugador.html');
+  }else if (pathname === '/yonunca_frase') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_frase.html');
   }
 

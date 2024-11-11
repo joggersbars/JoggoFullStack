@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Espera</title>
+    <link rel="icon" type="image/png" href="src\iconos\favicon.ico">
+    <link rel="stylesheet" href="src/estilos/espera_frases_jugador.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.6/lottie.min.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logo y título -->
+        <div class="logo-container">
+            <img src="src\iconos\LOGO_JOGGO_L.png" alt="Logo" class="logo">
+        </div>
+        <div id="lottie-container"></div>
+        <h1 class="main-heading">Cargando</h1>
+        <h2 class="second-heading">Los jugadores están metiendo su frase, espere</h2>
+        <h3 class="third-heading">No abandone la pantalla</h3>
+        
+    </div>
+
+
+    <script>
+        // Animación Lottie
+      var animation = lottie.loadAnimation({
+        container: document.getElementById('lottie-container'), // Contenedor donde se cargará la animación
+        renderer: 'svg', // Renderización en formato SVG
+        loop: true, // Repetir la animación
+        autoplay: true, // Reproducir automáticamente
+        path: 'src/lotties/loading1.json' // Ruta de la animación en formato JSON
+      });
+    </script>
+
+    <script src="pruebas/espera_frases_jugador.js"></script>
+
+</body>
+</html>
+
