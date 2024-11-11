@@ -162,22 +162,9 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
     if message.mensaje_inicio == "vamos a empezar partida yo nunca":
         iterator.establecer_cantidad_frases(cantidad_frases=int(crud.obtener_cantidad_frases_codigo(db=db, id_partida=message.id_partida)))
         iterator.mostrar_cantidad_frases()
+        crud.empezar_partida(db=db,id_partida=message.id_partida,estado_juego="comenzado")
     else:
         raise HTTPException(status_code=400, detail="El mensaje es incorrecto")
-
-# Endpoint para setear que el bar ha dado a comenzar la partida
-@router.post("/game/start/{id_partida}", tags = ["Comenzando la partida por el bar"], description="El bar le da a comenzar la partida")
-async def bar_empieza_partida(id_partida: str, db: Session=Depends(get_db)):
-    crud.empezar_partida(db=db,id_partida=id_partida,estado_juego="comenzado")
-    response_dict = {"id_partida": id_partida, "estado": "comenzado"}
-    return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
-
-# Endpoint para setear que el bar ha dado a comenzar la partida
-@router.post("/game/pause/{id_partida}", tags = ["Esperando la partida por el bar"], description="El bar le da a esperar la partida")
-async def bar_empieza_partida(id_partida: str, db: Session=Depends(get_db)):
-    crud.empezar_partida(db=db,id_partida=id_partida,estado_juego="idle")
-    response_dict = {"id_partida": id_partida, "estado": "idle"}
-    return JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
 
 # Endpoint para setear que el yo nunca empiece
 @router.post("/game/start_frases/{id_partida}", tags = ["Comenzando la partida para mostrar frases"], description="Comienza el juego de frases")

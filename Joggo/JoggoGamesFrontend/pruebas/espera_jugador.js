@@ -15,16 +15,8 @@ async function checkGameStart() {
     
     if (data.estado === "comenzado") {
         window.location.href = currentUrl.replace("espera_jugador.html", "frase_jugador.html");
-        const response = await fetch(`${API_URL}/game/pause/${id_actual_partida}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        });
     }
 }
 
-
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkGameStart, 3000);
-setInterval(checkAllphrasesDoneStart, 300);
+setInterval(checkGameStart, 300);
