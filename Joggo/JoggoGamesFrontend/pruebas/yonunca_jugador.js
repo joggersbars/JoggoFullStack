@@ -24,15 +24,16 @@ async function mostrarFraseDesdeLocalStorage() {
         });
 
         if (response.ok) {
-            const result = await response.json();
+            result = await response.json();
             console.log("Respuesta del backend:", result.frase);
+            document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
+        fraseActual = result.frase; // Actualizar `fraseActual`
         } else {
             console.error("Error en la respuesta del backend:", response.statusText);
         }
         // Verificar si existe una frase en `localStorage` y actualizar el HTML
         // Solo actualizar si la frase ha cambiado
-        document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
-        fraseActual = result.frase; // Actualizar `fraseActual`
+        
         habilitarBoton(); // Habilitar el botón si la frase cambió
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
