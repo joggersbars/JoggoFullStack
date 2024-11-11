@@ -15,7 +15,7 @@ async function mostrarFraseDesdeLocalStorage() {
     // Obtener la frase guardada en en el backend
     try {
         const response = await fetch(`${API_URL}/coger_frase_jugador/${id_partida}`,{
-            method: 'POST', 
+            method: 'GET', 
             mode: "no-cors",
             headers: {
                 'Content-Type': 'application/json'
@@ -97,5 +97,5 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".btn-No").disabled = false;
     });
 
-    setInterval(mostrarFraseDesdeLocalStorage, 1000);
+    setInterval(mostrarFraseDesdeLocalStorage, 2000);
 });
