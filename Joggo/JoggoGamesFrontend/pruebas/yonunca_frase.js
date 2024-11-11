@@ -57,22 +57,6 @@ animation_timer.addEventListener('complete', async function() {
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
-    try {
-        const response = await fetch(`${API_URL}/game/start_frases/${id_actual_partida}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        });
-
-        if (response.ok) {
-            console.log("Solicitud al backend exitosa: cantidad de frases establecida.");
-        } else {
-            console.error("Error en la respuesta del backend:", response.statusText);
-        }
-    } catch (error) {
-        console.error("Error al conectar con el backend:", error);
-    }
 
     // 3. Redirigir a la pantalla /yonunca_game.html pasando `id_partida`
     window.location.href = `/yonunca_game.html?id_partida=${id_actual_partida}`;

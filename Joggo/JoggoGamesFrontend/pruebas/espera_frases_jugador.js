@@ -13,10 +13,10 @@ async function checkAllphrasesDoneStart() {
     const response = await fetch(`${API_URL}/game/status/${id_actual_partida}`);
     const data = await response.json();
     
-    if (data.estado === "mostrar_frases") {
+    if (data.estado === "frases") {
         window.location.href = currentUrl.replace("espera__frases_jugador.html", "yonunca_jugador.html");
     }
 }
 
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkAllphrasesDoneStart, 300);
+setInterval(checkAllphrasesDoneStart, 5000);
