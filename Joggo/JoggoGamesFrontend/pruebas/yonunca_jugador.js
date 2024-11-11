@@ -92,5 +92,5 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".btn-No").disabled = false;
     });
 
-    setInterval(mostrarFraseDesdeLocalStorage, 100);
+    setInterval(mostrarFraseDesdeLocalStorage, 1000);
 });
