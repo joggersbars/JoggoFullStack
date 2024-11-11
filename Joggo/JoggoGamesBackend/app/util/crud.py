@@ -72,7 +72,7 @@ def empezar_partida(db: Session, id_partida: str, estado_juego: str):
     return juego
 
 def consultar_estado_partida(db: Session, id_partida: str):
-    return db.query(Juego.estado_juego).filter(Juego.id_partida == id_partida).first()    
+    return db.query(Juego.estado_juego).filter(Juego.id_partida == id_partida).first()
 
 ### Funciones de Jugadores en Partida ###
 # Obtener jugador por nombre
@@ -84,37 +84,9 @@ def get_jugador_by_nombre_and_codigo(db: Session, apodo_jugador: str, id_partida
         )
     ).first()
 
-def establecer_jugador_conectado(db: Session, id_partida: str, apodo_jugador: str):
-    jugador = get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=apodo_jugador, id_partida=id_partida)
-    jugador.connected = "CONNECTED"
-    
-    # Guardar los cambios en la base de datos
-    db.commit()
-    db.refresh(jugador)
-    
-    return jugador
-
-def checkear_conexion_jugador(db: Session, id_partida:str, apodo_jugador:str):
-    estado = db.query(Jugadores.connected).filter(
-        Jugadores.id_partida==id_partida,
-        Jugadores.apodo_jugador == apodo_jugador
-    ).first()
-    
-    # Devuelve True si el estado es "CONNECTED", de lo contrario, devuelve False
-    return estado[0] == "CONNECTED" if estado else False
-
-def checkear_jugadores_conectados(db: Session, id_partida: str):
-    jugadores_no_conectados = db.query(Jugadores).filter(
-        Juego.id_partida == id_partida,
-        Juego.connected != "CONNECTED"
-    ).count()
-    
-    # Si no hay jugadores "no conectados", todos están "CONNECTED"
-    return jugadores_no_conectados == 0
-
 # Crear jugador y añadirlo a la base de datos
 def crear_jugador(db: Session, apodo_jugador: str, id_partida: str):
-    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="", id_frase=0, connected="NOT_CONNECTED")
+    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="", id_frase=0)
     db.add(new_jugador)
     db.commit()
     db.refresh(new_jugador)
