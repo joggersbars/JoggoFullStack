@@ -14,7 +14,7 @@ async function checkAllphrasesDoneStart() {
     const data = await response.json();
     
     if (data.estado === "mostrar_frases") {
-        window.location.href = currentUrl.replace("espera_jugador.html", "yonunca_jugador.html");
+        window.location.href = currentUrl.replace("espera__frases_jugador.html", "yonunca_jugador.html");
     }
 }
 
