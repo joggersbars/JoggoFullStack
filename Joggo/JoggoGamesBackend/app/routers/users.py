@@ -200,11 +200,18 @@ async def coger_frase(id_partida: IdPartida, db: Session=Depends(get_db)):
     print(f"La frase que se va enviar:{frase_pantalla}")
     if iterator.contador != 0 or frase_pantalla != None:
         response_frase_pantalla = {"frase": str(frase_pantalla[0])}
+        iterator.frase_actual = response_frase_pantalla["frase"]
     else:
         response_frase_pantalla = {"frase": "Fin_frases"}
     json_response = JSONResponse(content=response_frase_pantalla, status_code=status.HTTP_201_CREATED)
     iterator.incrementar_contador()
     return json_response
+
+# Endpoint para que en la pantalla de los jugadores se muestra la frase de pantalla
+@router.get("/coger_frase_jugador/{id_partida}", tags=["Frase jugador Pantalla"], description="Frases que se van a presentar en la pantalla de los jugadores")
+async def coger_frase_jugador(id_partida: str):
+    response_frase = {"frase":iterator.frase_actual}
+    return JSONResponse(content=response_frase, status_code=status.HTTP_201_CREATED)
 
 # Endpoint respuesta jugador
 @router.post('/recibir_respuesta/{id_partida}/{apodo_jugador}/{respuesta}', tags=["Respuestas Jugadores"], description="Las respuestas a las frases de yo nunca de los jugadores")

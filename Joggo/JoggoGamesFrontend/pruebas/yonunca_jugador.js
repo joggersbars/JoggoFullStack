@@ -10,22 +10,37 @@ function getParamsFromURL() {
     return { id_partida, apodo_jugador };
 }
 
-// Función para obtener la frase desde `localStorage` y actualizar el HTML
-let fraseActual = localStorage.getItem("frase_juego"); // Guardar la frase actual
+async function mostrarFraseDesdeLocalStorage() {
+    const { id_partida, apodo_jugador } = getParamsFromURL();
+    // Obtener la frase guardada en en el backend
+    try {
+        const response = await fetch(`${API_URL}/coger_frase_jugador/${id_partida}`,{
+            method: 'POST', 
+            mode: "no-cors",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            
+        });
 
-function mostrarFraseDesdeLocalStorage() {
-    // Obtener la frase guardada en `localStorage`
-    const frase = localStorage.getItem("frase_juego");
+        if (response.ok) {
+            const result = await response.json();
+            console.log("Respuesta del backend:", result.frase);
+        } else {
+            console.error("Error en la respuesta del backend:", response.statusText);
+        }
+        // Verificar si existe una frase en `localStorage` y actualizar el HTML
+        if (result.frase) {
+            // Solo actualizar si la frase ha cambiado
+            document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
+            fraseActual = result.frase; // Actualizar `fraseActual`
+            habilitarBoton(); // Habilitar el botón si la frase cambió
 
-    // Verificar si existe una frase en `localStorage` y actualizar el HTML
-    if (frase) {
-        // Solo actualizar si la frase ha cambiado
-        document.querySelector(".main-heading").textContent = frase; // Actualiza el `<h1>`
-        fraseActual = frase; // Actualizar `fraseActual`
-        habilitarBoton(); // Habilitar el botón si la frase cambió
-        
-    } else {
-        console.log("No hay frase guardada en localStorage");
+        } else {
+            console.log("No hay frase guardada en localStorage");
+        }
+    } catch (error) {
+        console.error("Error al conectar con el backend:", error);
     }
 }
 
@@ -61,11 +76,13 @@ async function enviarRespuesta(respuesta) {
 // Función para deshabilitar el botón "Si"
 function deshabilitarBoton() {
     document.querySelector(".btn-Si").disabled = true;
+    document.querySelector(".btn-No").disabled = true;
 }
 
 // Función para habilitar el botón "Si"
 function habilitarBoton() {
     document.querySelector(".btn-Si").disabled = false;
+    document.querySelector(".btn-No").disabled = false;
 }
 
 // Ejecutar `mostrarFraseDesdeLocalStorage` cuando la página cargue
@@ -76,6 +93,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".btn-Si").addEventListener("click", function() {
         enviarRespuesta("Si");
     });
+    document.querySelector(".btn-No").addEventListener("click", function() {
+        document.querySelector(".btn-No").disabled = false;
+    });
 
-    setInterval(mostrarFraseDesdeLocalStorage, 10);
+    setInterval(mostrarFraseDesdeLocalStorage, 1000);
 });

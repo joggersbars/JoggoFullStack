@@ -3,6 +3,7 @@ class Iterator():
         self.cantidad_frases: int = cantidad_frases
         self.contador: int = 1
         self.contador_inverso: int = cantidad_frases
+        self.frase_actual: str = ""
 
     def incrementar_contador(self):
         if self.contador < self.cantidad_frases:
