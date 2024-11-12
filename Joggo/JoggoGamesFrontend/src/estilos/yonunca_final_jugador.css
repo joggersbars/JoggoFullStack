@@ -1,54 +1,99 @@
-/* Fichero de estilos de la pantalla --> src/estilos/yonunca_final_jugador.css */
-
-* {
+@font-face {
+    font-family: 'ChauPhilomeneOne-Regular';
+    src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
+    height: 100vh;
     display: flex;
     justify-content: center;
+    /*align-items: center;*/
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(90deg, #014AAD, #C96CE6);
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .logo-container {
+    margin-top: 4vh;
+  }
+  
+  .logo {
+    font-size: 8vw;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    width: 90vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
+    height: auto; /* Mantén la relación de aspecto correcta */
+    margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  h1 {
+    font-size: 16vw;
+    font-weight: bold;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    letter-spacing: 0.3vw;
+    text-shadow: 0.1vw 0.1vw 0.2vw rgb(244, 29, 29), -0.1vw -0.1vw 0.2vw rgb(0, 255, 255);
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
+  }
+
+  h2 {
+    font-size: 24vw;
+    font-weight: bold;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    letter-spacing: 0.3vw;
+    text-shadow: 0.1vw 0.1vw 0.2vw rgb(244, 29, 29), -0.1vw -0.1vw 0.2vw rgb(0, 255, 255);
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
+  }
+
+  h3 {
+    font-size: 7vw;
+    font-weight: bold;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    letter-spacing: 0.3vw;
+    color: white;
+    text-shadow: 0.1vw 0.1vw 0.2vw rgb(244, 29, 29), -0.1vw -0.1vw 0.2vw rgb(0, 255, 255);
+    transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
+  }
+  
+  .core-container {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en una fila */
+    align-items: center; /* Alinea verticalmente los elementos */
+    gap: 2vh; /* Espacio entre los botones y la animación */
+    margin-bottom: 2vh;
+  }
+  
+  .icon {
+    width: 5vw;
+    height: auto;
+    margin-right: 1vw;
+  }
+  
+  #lottie-container {
+    width: 50vw;   /* Ancho del contenedor */
+    height: auto;  /* Altura del contenedor */
+    background-color:rgba(240, 240, 240, 0); /* Color de fondo */
+    border-radius: 1.5vh; /* Bordes redondeados */
+    margin: 5vh auto; 
     align-items: center;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f5; /* Cambia el color de fondo según tu preferencia */
-}
-
-.container {
+    justify-content: center;
     text-align: center;
-    padding: 20px;
-}
-
-/* Título estilizado */
-.titulo-final {
-    font-size: 2.5em;
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-/* Contenedor de Lottie */
-#lottie-container {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-}
-
-/* Estilos para el formato de resultado */
-.mensaje-final {
-    font-size: 2em; /* Tamaño del texto */
-    color: #357edd; /* Color azul similar al de la imagen */
-    font-weight: bold;
-    text-align: center;
-}
-
-.frases-pulsadas, .frases-totales {
-    font-family: "Comic Sans MS", cursive, sans-serif; /* Cambia la fuente si es necesario */
-}
-
-.separador {
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    margin: 0 5px; /* Espaciado entre los números y el separador */
-}
+  }

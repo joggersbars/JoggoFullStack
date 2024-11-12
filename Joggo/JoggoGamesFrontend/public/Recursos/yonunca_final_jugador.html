@@ -3,25 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla Final del Jugador</title>
+    <title>Pantalla de Espera</title>
+    <link rel="icon" type="image/png" href="src\iconos\favicon.ico">
     <link rel="stylesheet" href="src/estilos/yonunca_final_jugador.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.6/lottie.min.js"></script>
+
 </head>
 <body>
 
-    <!-- Contenedor principal -->
     <div class="container">
-        <!-- Título estilizado -->
-        <h1 class="titulo-final">Final de la Partida</h1>
-        
-        <!-- Frase de finalización -->
-        <p class="mensaje-final">La partida ha finalizado</p>
-        
-        <!-- Contenedor para la animación Lottie -->
+        <!-- Logo y título -->
+        <div class="logo-container">
+            <img src="src\iconos\Letters_YoNunca.png" alt="Logo" class="logo">
+        </div>
+        <h1 class="main-heading">Tu resultado</h1>
+        <h2 class="second-heading">5/25</h2>
         <div id="lottie-container"></div>
+        
+        
     </div>
 
-    
-    <script src="yonunca_final_jugador.js"></script>
+
+    <script>
+        // Animación Lottie
+      var animation = lottie.loadAnimation({
+        container: document.getElementById('lottie-container'), // Contenedor donde se cargará la animación
+        renderer: 'svg', // Renderización en formato SVG
+        loop: true, // Repetir la animación
+        autoplay: true, // Reproducir automáticamente
+        path: 'src/lotties/Pacman.json' // Ruta de la animación en formato JSON
+      });
+    </script>
+
+    <script src="pruebas/yonunca_final_jugador.js"></script>
     <script src="pruebas/config.js"></script>
+
 </body>
 </html>
+
