@@ -29,16 +29,26 @@ body {
     text-transform: uppercase;
 }
 
-/* Frase de finalización */
-.mensaje-final {
-    font-size: 1.5em;
-    color: #666;
-    margin-bottom: 30px;
-}
-
 /* Contenedor de Lottie */
 #lottie-container {
     width: 200px;
     height: 200px;
     margin: 0 auto;
+}
+
+/* Estilos para el formato de resultado */
+.mensaje-final {
+    font-size: 2em; /* Tamaño del texto */
+    color: #357edd; /* Color azul similar al de la imagen */
+    font-weight: bold;
+    text-align: center;
+}
+
+.frases-pulsadas, .frases-totales {
+    font-family: "Comic Sans MS", cursive, sans-serif; /* Cambia la fuente si es necesario */
+}
+
+.separador {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    margin: 0 5px; /* Espaciado entre los números y el separador */
 }
