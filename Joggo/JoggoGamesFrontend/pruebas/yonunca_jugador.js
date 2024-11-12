@@ -1,5 +1,4 @@
 
-
 // Obtener parámetros url
 function getParamsFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -95,3 +94,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
     setInterval(mostrarFraseDesdeLocalStorage, 100); // Mirar para ajustar cuando se cambie de frase
 });
+
