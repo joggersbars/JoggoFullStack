@@ -93,5 +93,5 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".btn-No").disabled = false;
     });
 
-    setInterval(mostrarFraseDesdeLocalStorage, 1000);
+    setInterval(mostrarFraseDesdeLocalStorage, 100); // Mirar para ajustar cuando se cambie de frase
 });
