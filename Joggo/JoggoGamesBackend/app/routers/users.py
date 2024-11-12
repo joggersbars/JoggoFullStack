@@ -202,9 +202,17 @@ async def recibir_respuesta(id_partida: str, apodo_jugador: str, respuesta: str 
 async def mandar_stats(id_partida: str, db: Session = Depends(get_db)):
     # Obtiene las estadísticas de la partida específica
     statistics = crud.get_stats(db=db, id_partida=id_partida)
-    
+    crud.empezar_partida(db=db,id_partida=id_partida,estado_juego="finalizado")
     # Convierte los resultados a un diccionario
     jugadores_dict = {resultado.apodo_jugador: resultado.respuesta_jugador for resultado in statistics}
     
     # Crea una respuesta JSON
     return JSONResponse(content={"estadisticas": jugadores_dict},status_code=status.HTTP_201_CREATED)
+
+# Endpoint para mandar a cada jugador su cantidad de sies
+@router.get("/resultado_jugador/{id_partida}/{apodo_jugador}")
+async def mandar_resultado_jugador(id_partida: str, apodo_jugador: str, db: Session=Depends(get_db)):
+    resultado_jugador = crud.get_resultados_jugador(db=db, id_partida=id_partida, apodo_jugador=apodo_jugador)
+    print(resultado_jugador)
+    resultado_dict = {"result":resultado_jugador}
+    return JSONResponse(content=resultado_dict, status_code=status.HTTP_201_CREATED)
