@@ -142,7 +142,7 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
 async def establecer_indices_frases(id_partida: IdPartida, db: Session=Depends(get_db)):
     print(f"Estableciendo los indices en las frases de la partida: {id_partida.id_partida}\n")
     crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida.id_partida)   
-    crud.empezar_partida(db=db,id_partida=id_partida.id_partida, estado_juego="frases") 
+    crud.cambiar_estado_partida(db=db,id_partida=id_partida.id_partida, estado_juego="frases") 
     response_frase = {"message":"Indices añadidos correctamente"}
     json_response = JSONResponse(content=response_frase, status_code=status.HTTP_201_CREATED)
     return json_response
@@ -153,7 +153,7 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
     if message.mensaje_inicio == "vamos a empezar partida yo nunca":
         iterator.establecer_cantidad_frases(cantidad_frases=int(crud.obtener_cantidad_frases_codigo(db=db, id_partida=message.id_partida)))
         iterator.mostrar_cantidad_frases()
-        crud.empezar_partida(db=db,id_partida=message.id_partida,estado_juego="comenzado")
+        crud.cambiar_estado_partida(db=db,id_partida=message.id_partida,estado_juego="comenzado")
         crud.actualizar_num_jugadores(db=db, id_partida=message.id_partida)
     else:
         raise HTTPException(status_code=400, detail="El mensaje es incorrecto")
@@ -212,7 +212,7 @@ async def recibir_respuesta(id_partida: str, apodo_jugador: str, respuesta: str 
 async def mandar_stats(id_partida: str, db: Session = Depends(get_db)):
     # Obtiene las estadísticas de la partida específica
     statistics = crud.get_stats(db=db, id_partida=id_partida)
-    crud.empezar_partida(db=db,id_partida=id_partida,estado_juego="finalizado")
+    crud.cambiar_estado_partida(db=db,id_partida=id_partida,estado_juego="finalizado")
     # Convierte los resultados a un diccionario
     jugadores_dict = {resultado.apodo_jugador: resultado.respuesta_jugador for resultado in statistics}
     

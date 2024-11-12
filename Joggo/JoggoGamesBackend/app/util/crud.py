@@ -62,8 +62,8 @@ def create_partida(db: Session, id_partida: str, nombre_juego: str, num_jugadore
     db.refresh(new_game)
     return new_game
 
-# Empezamos partida
-def empezar_partida(db: Session, id_partida: str, estado_juego: str):
+# Cambiar estado partida
+def cambiar_estado_partida(db: Session, id_partida: str, estado_juego: str):
     juego = db.query(Juego).filter(Juego.id_partida==id_partida).first()
     juego.estado_juego = estado_juego
     db.commit()
