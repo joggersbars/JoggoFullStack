@@ -11,9 +11,9 @@ function mostrarDatosJugador(data) {
     
     // Formatear el resultado para que se muestre como "5/20" (frases pulsadas / frases totales)
     document.querySelector('.mensaje-final').innerHTML = `
-        <span class="frases-pulsadas">{6}</span>
+        <span class="frases-pulsadas">${result.result}</span>
         <span class="separador">/</span>
-        <span class="frases-totales">{25}</span>
+        <span class="frases-totales">${result.frases_totales}</span>
     `;
 }
 
@@ -26,9 +26,18 @@ async function obtenerDatosJugador() {
         return;
     }
 
+    const url = `${API_URL}/resultado_jugador/${id_partida}/${apodo_jugador}`;
     try {
         // Realizar la solicitud al backend
-        const response = await fetch(`${API_URL}/resultado_jugador/${id_partida}/${apodo_jugador}`);
+        
+        const response = await fetch(url, {
+            method: 'GET', 
+            mode: "cors",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
         if (!response.ok) throw new Error("Error al obtener los datos del jugador");
 
         const result = await response.json();
