@@ -40,6 +40,8 @@ http.createServer((req, res) => {
     filePath = path.join(__dirname, 'public/Recursos', 'espera_frases_jugador.html');
   }else if (pathname === '/yonunca_frase') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_frase.html');
+  }else if (pathname === '/yonunca_final_jugador') {
+    filePath = path.join(__dirname, 'public/Recursos', 'yonunca_final_jugador.html');
   }
 
   // Si es una solicitud para los archivos estáticos en "src" o "pruebas" (CSS, JS, imágenes)

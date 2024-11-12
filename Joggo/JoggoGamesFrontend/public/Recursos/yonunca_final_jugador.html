@@ -3,42 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla Final </title>
-    <link rel="icon" type="image/png" href="src\iconos\favicon.ico">
-     <!-- Falta colocar el .css de la pantalla final -->
+    <title>Pantalla Final del Jugador</title>
     <link rel="stylesheet" href="src/estilos/yonunca_final_jugador.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.6/lottie.min.js"></script>
-
 </head>
 <body>
 
+    <!-- Contenedor principal -->
     <div class="container">
-        <!-- Logo y título -->
-        <div class="logo-container">
-            <img src="src\iconos\LOGO_JOGGO_L.png" alt="Logo" class="logo">
-        </div>
-        <div id="lottie-container"></div>
-        <h1 class="main-heading">Cargando</h1>
-        <h2 class="second-heading">Los jugadores están metiendo su frase, espere</h2>
-        <h3 class="third-heading">No abandone la pantalla</h3>
+        <!-- Título estilizado -->
+        <h1 class="titulo-final">Final de la Partida</h1>
         
+        <!-- Frase de finalización -->
+        <p class="mensaje-final">La partida ha finalizado</p>
+        
+        <!-- Contenedor para la animación Lottie -->
+        <div id="lottie-container"></div>
     </div>
 
-
-    <script>
-        // Animación Lottie
-      var animation = lottie.loadAnimation({
-        container: document.getElementById('lottie-container'), // Contenedor donde se cargará la animación
-        renderer: 'svg', // Renderización en formato SVG
-        loop: true, // Repetir la animación
-        autoplay: true, // Reproducir automáticamente
-        path: 'src/lotties/loading1.json' // Ruta de la animación en formato JSON
-      });
-    </script>
-
-    <script src="pruebas/yonunca_final_jugador.js"></script>
-    <script src="pruebas/config.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.6/lottie.min.js"></script>
+    <script src="yonunca_final_jugador.js"></script>
+    <!-- Aquí puedes cargar el script que gestionará la animación Lottie -->
 </body>
 </html>
-
