@@ -1,3 +1,4 @@
+let fraseActual = ""; // Almacena la frase anterior para detectar cambios
 
 // Obtener parámetros url
 function getParamsFromURL() {
@@ -25,8 +26,14 @@ async function mostrarFraseDesdeLocalStorage() {
         if (response.ok) {
             result = await response.json();
             console.log("Respuesta del backend:", result.frase);
-            document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
-        fraseActual = result.frase; // Actualizar `fraseActual`
+
+            if (result.frase !== fraseActual) { 
+                document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
+                fraseActual = result.frase; //Actualiza `fraseActual` con la nueva frase
+                habilitarBoton(); //Habilita los botones cuando cambia la frase
+            }
+
+           
         } else {
             console.error("Error en la respuesta del backend:", response.statusText);
         }
