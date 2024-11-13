@@ -40,7 +40,6 @@ async function mostrarFraseDesdeLocalStorage() {
         // Verificar si existe una frase en `localStorage` y actualizar el HTML
         // Solo actualizar si la frase ha cambiado
         
-        habilitarBoton(); // Habilitar el botón si la frase cambió
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
@@ -112,4 +111,4 @@ async function checkGameFinish() {
     }
 }
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkGameFinish, 300);
+setInterval(checkGameFinish, 1000);

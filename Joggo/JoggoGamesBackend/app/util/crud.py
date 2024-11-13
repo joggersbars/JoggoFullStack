@@ -126,13 +126,13 @@ def obtener_num_jugadores(db: Session, id_partida: str) -> int:
 def actualizar_num_jugadores(db: Session, id_partida: str):
     # Contar la cantidad de jugadores asociados al id_partida en la tabla Jugadores
     num_jugadores = obtener_num_jugadores(db=db, id_partida=id_partida)
-    
+    print(num_jugadores)
     # Obtener la partida correspondiente en la tabla Juego
     partida = db.query(Juego).filter(Juego.id_partida == id_partida).first()
     
     # Actualizar el campo num_jugadores en la partida
     if partida:
-        partida.num_jugadores = num_jugadores[0]
+        partida.num_jugadores = num_jugadores
         db.commit()
         db.refresh(partida)
     
