@@ -1,14 +1,3 @@
-
-
-// Función para obtener el parámetro "id_partida" de la URL
-function getIdPartidaFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("id_partida"); 
-}
-
-const id_actual_partida = getIdPartidaFromURL();
-const id_partida = { id_partida: id_actual_partida };
-
 // Configuración de la animación Lottie
 
 let animation = lottie.loadAnimation({
@@ -30,6 +19,35 @@ let animation = lottie.loadAnimation({
     function iniciarTemporizadorLottie() {
         animation.goToAndPlay(0); // Volver al inicio de la animación y reproducirla
     }
+
+const playPauseButton = document.getElementById("playPauseButton");
+let isPlaying = true;
+
+playPauseButton.addEventListener("click", () => {
+    if (isPlaying) {
+      // Acción para pausar
+      animation.pause(); // Pausar la animación
+      playPauseButton.innerText = "Play";   
+      // Aquí podrías añadir código para pausar animaciones, música o cualquier otro contenido
+    } else {
+      // Acción para reproducir
+      animation.play(); // Reproducir la animación
+      playPauseButton.innerText = "Pause";
+      // Aquí podrías añadir código para iniciar animaciones, música o cualquier otro contenido
+    }
+    isPlaying = !isPlaying; // Cambiar el estado
+  });
+
+// Función para obtener el parámetro "id_partida" de la URL
+function getIdPartidaFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("id_partida"); 
+}
+
+const id_actual_partida = getIdPartidaFromURL();
+const id_partida = { id_partida: id_actual_partida };
+
+
 
 // Función para solicitar una nueva frase al backend
 async function solicitarNuevaFrase() {

@@ -1,4 +1,4 @@
-/* Estilos globales */
+ /* Estilos globales */
 @font-face {
   font-family: 'ChauPhilomeneOne-Regular';
   src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
@@ -78,6 +78,30 @@
     text-shadow: 0.1vw 0.1vw 0.2vw rgb(244, 29, 29), -0.1vw -0.1vw 0.2vw rgb(0, 255, 255);
     transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
   }
+
+  .play-pause-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #playPauseButton {
+    background-color: #4b3810;
+    color: white;
+    width: 8vw;
+    height: 5vh;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    font-size: 1.5vw;
+    text-decoration: none;
+    border-radius: 4vh;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  #playPauseButton:active {
+    background-color: #cd9f3c; /* Cambia a un color más oscuro o diferente cuando se presiona */
+    transform: translateY(0.5vh); /* Mueve el botón hacia abajo para simular la acción de clic */
+    box-shadow: 0.5vw 0.5vw 1vw rgba(0, 0, 0, 0.3); /* Ajusta la sombra durante el clic */
+}
   
   /* Icono de cerveza */
   .icon {
