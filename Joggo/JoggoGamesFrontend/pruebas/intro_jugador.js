@@ -15,9 +15,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Asignar el evento de clic al botón "ENTRAR"
     const entrarBtn = document.getElementById("entrar-btn");
+
+    function toUpperCaseString(inputString) {
+        return inputString.toUpperCase();
+      }
+
     entrarBtn.addEventListener("click", async function() {
         // Obtener los valores de los campos
-        const id_partida = document.getElementById("id_partida").value;
+        const id_partida = toUpperCaseString(document.getElementById("id_partida").value);
         const apodo_jugador = document.getElementById("apodo_jugador").value;
 
         const data = { id_partida, apodo_jugador }
