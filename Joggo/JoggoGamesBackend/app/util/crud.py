@@ -46,8 +46,6 @@ def login_user(db: Session, username: str, password: str):
         return {"message": "Nombre de usuario o contraseña incorrectos"}
 
 ### Funciones de Partidas (Games) ###
-
-
 # Obtener una partida por su codigo
 def get_partida_by_codigo(db: Session, id_partida: int):
     return db.query(Juego).filter(Juego.id_partida == id_partida).first()
@@ -58,19 +56,21 @@ def get_partida_codigos(db: Session):
 
 # Crear una nueva partida
 def create_partida(db: Session, id_partida: str, nombre_juego: str, num_jugadores: int):
-    new_game = Juego(id_partida=id_partida, nombre_juego=nombre_juego, num_jugadores=num_jugadores, estado_juego="IDLE")
+    new_game = Juego(id_partida=id_partida, nombre_juego=nombre_juego, num_jugadores=num_jugadores, estado_juego="IDLE", num_jugadores_conectados=0)
     db.add(new_game)
     db.commit()
     db.refresh(new_game)
     return new_game
 
-def empezar_partida(db: Session, id_partida: str, estado_juego: str):
+# Cambiar estado partida
+def cambiar_estado_partida(db: Session, id_partida: str, estado_juego: str):
     juego = db.query(Juego).filter(Juego.id_partida==id_partida).first()
     juego.estado_juego = estado_juego
     db.commit()
     db.refresh(juego)
     return juego
 
+# Consultar el estado de la partida
 def consultar_estado_partida(db: Session, id_partida: str):
     return db.query(Juego.estado_juego).filter(Juego.id_partida == id_partida).first()
 
@@ -92,6 +92,52 @@ def crear_jugador(db: Session, apodo_jugador: str, id_partida: str):
     db.refresh(new_jugador)
     return new_jugador
 
+# Aumentar la cantidad de jugadores conectados en la partida
+def aumentar_jugador_conectado(db: Session, id_partida: str):
+    partida = db.query(Juego).filter(Juego.id_partida==id_partida).first()
+
+    # Aumentar en 1 el campo num_jugadores_conectados si la partida existe
+    if partida:
+        partida.num_jugadores_conectados += 1
+        db.commit()
+        db.refresh(partida)
+    
+    return partida
+
+# Verificamos si todos los jugadores se han conectado
+def verificar_jugadores_conectados(db: Session, id_partida: str) -> bool:
+    # Obtener la partida específica
+    partida = db.query(Juego).filter(Juego.id_partida == id_partida).first()
+    
+    # Comparar num_jugadores y num_jugadores_conectados
+    if partida and partida.num_jugadores == partida.num_jugadores_conectados:
+        return True
+    return False
+
+# Checkear cantidad de jugadores
+def obtener_num_jugadores(db: Session, id_partida: str) -> int:
+    # Obtener la partida específica
+    partida = db.query(Juego).filter(Juego.id_partida == id_partida).first()
+    
+    # Devolver el número de jugadores, si la partida existe
+    return partida.num_jugadores if partida else None
+
+# Actualizar el número de jugadores en una partida
+def actualizar_num_jugadores(db: Session, id_partida: str):
+    # Contar la cantidad de jugadores asociados al id_partida en la tabla Jugadores
+    num_jugadores = obtener_num_jugadores(db=db, id_partida=id_partida)
+    
+    # Obtener la partida correspondiente en la tabla Juego
+    partida = db.query(Juego).filter(Juego.id_partida == id_partida).first()
+    
+    # Actualizar el campo num_jugadores en la partida
+    if partida:
+        partida.num_jugadores = num_jugadores[0]
+        db.commit()
+        db.refresh(partida)
+    
+    return partida
+
 # Añadir frase a jugador en la base de datos
 def añadir_frase_a_jugador(db: Session, apodo_jugador: str, frase_jugador: str, id_partida: str):
     jugador = get_jugador_by_nombre_and_codigo(db=db,apodo_jugador=apodo_jugador,id_partida=id_partida)
@@ -104,6 +150,9 @@ def añadir_frase_a_jugador(db: Session, apodo_jugador: str, frase_jugador: str,
     
     return jugador
 
+def obtener_cantidad_frases_codigo(db: Session, id_partida: int):
+    return db.query(func.count(Jugadores.frase_jugador)).filter(Jugadores.id_partida == id_partida).scalar()
+
 def actualizar_id_frases_para_partida(db: Session, id_partida: str):
     # Obtiene todos los jugadores de la partida específica, ordenados por su ID
     jugadores = db.query(Jugadores).filter(Jugadores.id_partida == id_partida).order_by(Jugadores.id).all()
@@ -114,9 +163,6 @@ def actualizar_id_frases_para_partida(db: Session, id_partida: str):
     
     # Guarda los cambios
     db.commit()
-
-def obtener_cantidad_frases_codigo(db: Session, id_partida: int):
-    return db.query(func.count(Jugadores.frase_jugador)).filter(Jugadores.id_partida == id_partida).scalar()
 
 # Obtener frasen para ir mostrando por pantalla
 def get_frase_by_id_and_codigo(db: Session, id_frase: int, id_partida: str):

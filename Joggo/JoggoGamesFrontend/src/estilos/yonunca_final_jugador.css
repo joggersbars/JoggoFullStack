@@ -50,7 +50,7 @@
     transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
   }
 
-  h2 {
+ h2 {
     font-size: 24vw;
     font-weight: bold;
     margin-bottom: 4vh;
@@ -88,11 +88,11 @@
   }
   
   #lottie-container {
-    width: 50vw;   /* Ancho del contenedor */
+    width: 80vw;   /* Ancho del contenedor */
     height: auto;  /* Altura del contenedor */
     background-color:rgba(240, 240, 240, 0); /* Color de fondo */
     border-radius: 1.5vh; /* Bordes redondeados */
-    margin: 5vh auto; 
+    margin: 1vh auto; 
     align-items: center;
     justify-content: center;
     text-align: center;
