@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector(".btn-No").disabled = false;
     });
 
-    setInterval(mostrarFraseDesdeLocalStorage,300); // Mirar para ajustar cuando se cambie de frase
+    setInterval(mostrarFraseDesdeLocalStorage,10005); // Mirar para ajustar cuando se cambie de frase
 });
 
 // Verifica si el juego ha finalizado mediante un llamado al backend
