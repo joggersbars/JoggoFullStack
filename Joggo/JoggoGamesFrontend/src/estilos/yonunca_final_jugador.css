@@ -15,6 +15,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
+    overflow: hidden;
     /*align-items: center;*/
     font-family: 'Arial', sans-serif;
     background: linear-gradient(90deg, #014AAD, #C96CE6);
@@ -40,9 +41,11 @@
   }
   
   h1 {
-    font-size: 16vw;
+    font-size: 12vw;
     font-weight: bold;
-    margin-bottom: 4vh;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 4vh;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
     letter-spacing: 0.3vw;
@@ -53,7 +56,6 @@
  h2 {
     font-size: 24vw;
     font-weight: bold;
-    margin-bottom: 4vh;
     margin-top: 4vh;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
     letter-spacing: 0.3vw;

@@ -35,6 +35,7 @@
     width: 90vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
     height: auto; /* Mantén la relación de aspecto correcta */
     margin-top: 4vh;
+    margin-bottom: 4vh;
     margin-left: auto;
     margin-right: auto;
   }
@@ -42,7 +43,7 @@
   h1 {
     font-size: 12vw;
     font-weight: bold;
-    margin-bottom: 4vh;
+    margin-bottom: 6vh;
     margin-top: 4vh;
     font-family: 'ChauPhilomeneOne-Regular', sans-serif;
     letter-spacing: 0.3vw;
