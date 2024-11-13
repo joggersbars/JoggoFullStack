@@ -1,7 +1,7 @@
 /* Estilos globales */
 @font-face {
     font-family: 'ChauPhilomeneOne-Regular';
-    src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+    src: url('/src/fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
     font-weight: normal;
     font-style: normal;
   }

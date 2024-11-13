@@ -1,7 +1,7 @@
 /* Estilos globales */
 @font-face {
   font-family: 'ChauPhilomeneOne-Regular';
-  src: url('../fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+  src: url('/src/fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
   font-weight: normal;
   font-style: normal;
 }
@@ -108,20 +108,6 @@
     height: auto;
     margin-bottom: 1vh;
   }
-  
-  /*.qr-code p {
-    font-size: 2vw;
-    color: #f5da2c;
-    font-weight: bold;
-  }*/
-
-  /*p.partida-texto span{
-    font-size: 18px;
-    color: #f5da2c;
-    font-weight: bold;
-    margin-bottom: 10px;
-    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
-}*/
 
 /* Clase para el ID de la partida */
 #id_partida {
