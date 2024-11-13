@@ -98,20 +98,25 @@ async def crear_partida(nombre_juego: str, num_jugadores: int = 150, db: Session
     return JSONResponse(content=response, status_code=status.HTTP_201_CREATED)
 
 # Endpoint para crear jugador
-@router.post('/crear_jugador', tags= ["Añadiendo Jugador"], description="Añadiendo jugador")
-async def crear_jugador(jugador: Jugador, db: Session=Depends(get_db)):
+@router.post('/crear_jugador', tags=["Añadiendo Jugador"], description="Añadiendo jugador")
+async def crear_jugador(jugador: Jugador, db: Session = Depends(get_db)):
     print("Llego un jugador\n")
-    check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db,apodo_jugador=jugador.apodo_jugador, id_partida=jugador.id_partida)
-    if check_jugador != None:
-        #raise HTTPException(status_code=400, detail="El usuario no está registrado")
-        return JSONResponse(content={"message":"El nombre del jugador ya existe"}, status_code=status.HTTP_404_NOT_FOUND)
-    else:
-        if not jugador.id_partida or not jugador.apodo_jugador:
-            raise HTTPException(status_code=400, detail="Faltan datos obligatorios")
-        crud.crear_jugador(db=db,apodo_jugador=jugador.apodo_jugador,id_partida=jugador.id_partida)
-        response_jugador = {"message":"Jugador conectado correctamente"}
-        json_response = JSONResponse(content=response_jugador, status_code=status.HTTP_201_CREATED)
-        return json_response
+    check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=jugador.apodo_jugador, id_partida=jugador.id_partida)
+    
+    # Si el jugador ya existe, retorna la misma respuesta que cuando se crea exitosamente
+    if check_jugador is not None:
+        response_jugador = {"message": "Jugador conectado correctamente"}
+        return JSONResponse(content=response_jugador, status_code=status.HTTP_201_CREATED)
+    
+    # Si falta algún dato obligatorio, lanza una excepción
+    if not jugador.id_partida or not jugador.apodo_jugador:
+        raise HTTPException(status_code=400, detail="Faltan datos obligatorios")
+    
+    # Si el jugador no existe, crea el jugador
+    crud.crear_jugador(db=db, apodo_jugador=jugador.apodo_jugador, id_partida=jugador.id_partida)
+    response_jugador = {"message": "Jugador conectado correctamente"}
+    return JSONResponse(content=response_jugador, status_code=status.HTTP_201_CREATED)
+
     
 # Endpoint para checkear si todos los jugadores se han conectado 
 @router.get("/all_jugadores_conectados/{id_partida}", tags=["Checkeo Jugadores Conectados"], description="Checkeo de si todos los jugadores se han conectado")
