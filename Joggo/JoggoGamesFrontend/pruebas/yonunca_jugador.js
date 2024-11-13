@@ -111,4 +111,4 @@ async function checkGameFinish() {
     }
 }
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkGameFinish, 1000);
+setInterval(checkGameFinish, 10000);
