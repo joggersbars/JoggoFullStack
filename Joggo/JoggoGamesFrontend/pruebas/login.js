@@ -50,23 +50,3 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
     }
 });
 
-//document.querySelector('.btn-entrar'): Selecciona el botón con la clase btn-entrar en el HTML.
-//fetch('http://localhost:8000/login'): Hace una solicitud HTTP al servidor Node.js en 
-//el endpoint /login. Fetch es una API nativa de JavaScript para realizar solicitudes HTTP.
-
-
-//from flask import Flask, request, jsonify
-
-//app = Flask(__name__)
-
-//# Ruta que maneja la autenticación (en este caso es POST)
-//@app.route('/login', methods=['POST'])
-//def login():
-//    data = request.get_json()  # Recibimos los datos en formato JSON
-//    if data['action'] == 'entrar':
-//        return jsonify({'message': 'Autenticación exitosa'}), 200
- //   else:
- //       return jsonify({'message': 'Acción no reconocida'}), 400
-
-//if __name__ == '__main__':
- //   app.run(debug=True, port=5000)

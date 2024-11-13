@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   frontend:
+    container_name: frontend
     build: ./JoggoGamesFrontend
     ports:
       - '8001:8001'
@@ -13,6 +14,7 @@ services:
       - app-network
 
   backend:
+    container_name: backend
     build: ./JoggoGamesBackend
     ports:
       - '8002:8002'
