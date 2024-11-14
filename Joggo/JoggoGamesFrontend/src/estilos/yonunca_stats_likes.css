@@ -1,0 +1,145 @@
+/* Estilos globales */
+    @font-face {
+    font-family: 'ChauPhilomeneOne-Regular';
+    src: url('/src/fuentes/ChauPhilomeneOne-Regular.ttf') format('truetype'); /*ruta por referencia respecto carpeta donde se encuentra index.css*/
+    font-weight: normal;
+    font-style: normal;
+    }
+  
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body, html {
+      height: 100%;
+      font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: linear-gradient(90deg, #014AAD, #C96CE6);
+      overflow: hidden;
+    }
+    
+    /* Contenedor principal */
+    .container {
+      text-align: center;
+      color: white;
+      border-radius: 5vh;
+      background-color: rgba(179, 136, 43, 0); /* Fondo semitransparente */
+      width: 98%;
+      height: auto;
+    }
+
+    .rowContainer {
+        display: flex;
+        flex-direction: row; /* Disposición en fila */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        align-items: center; /* Alinea los elementos verticalmente */
+        text-align: center;
+        color: white;
+        border-radius: 5vh;
+        background-color: rgba(179, 136, 43, 0); /* Fondo semitransparente */
+        width: 98%;
+        height: auto;
+    }
+  
+    .logo {
+      margin-top: 10vh;
+      font-size: 8vw;
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      width:80vw;  /* Ajusta el ancho relativo al 50% del ancho del viewport */
+      height: auto; /* Mantén la relación de aspecto correcta */
+      margin-top: 3vh;
+      margin-bottom: 0vh;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #lottie-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
+        height: 200px; /* Ajusta la altura según el tamaño de la animación */
+        margin-bottom: 20px;
+      }
+
+    /* Título del juego */
+    .title {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+    
+    /* Estilo de la frase del juego */
+    h1 {
+        margin-top: 10vh;
+        font-size: 4vw;
+        font-weight: bold;
+        font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+        letter-spacing: 0.3vw;
+        color: rgb(0, 0, 0);
+        text-shadow: 0.05vw 0.05vw 0.1vw rgb(244, 29, 29), -0.05vw -0.05vw 0.1vw rgb(0, 255, 255);
+        transition: transform 0.3s ease, text-shadow 0.3s ease;
+        align-self:flex-start; /* Alinea hacia la parte superior en un contenedor Flex */
+    }
+    
+    h2 {
+        margin-top: 14vh;
+        font-size: 6vw;
+        font-weight: bold;
+        color: white;
+        font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+        letter-spacing: 0.3vw;
+        text-shadow: 0.05vw 0.05vw 0.1vw rgb(244, 29, 29), -0.05vw -0.05vw 0.1vw rgb(0, 255, 255);
+        transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
+      }
+    
+    h3 {
+        font-size: 4vw;
+        font-weight: bold;
+        margin-top: 15vh;
+        font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+        letter-spacing: 0.3vw;
+        color: rgb(0, 0, 0);
+        text-shadow: 0.05vw 0.05vw 0.1vw rgb(244, 29, 29), -0.05vw -0.05vw 0.1vw rgb(0, 255, 255);
+        transition: transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones suaves */
+      }
+
+    .overlay-text {
+        position: relative;
+        font-weight: bold;
+        z-index: 2; /* Coloca el texto por delante */
+        text-align: center;
+        transform: translateY(-50%);
+      }
+    
+    #lottie-background {
+        position: absolute;
+        margin-top: 2vh;
+        left: 50%;
+        width: 90vw;
+        height: auto;
+        transform: translateX(-50%); /* Centra horizontalmente */
+        z-index: 1; /* Coloca la animación detrás */
+    }
+      
+    /* Icono de cerveza */
+    .icon {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+    
+    .icon img {
+      width: 5vw;
+      height: auto;
+    }
+    
+    
+  

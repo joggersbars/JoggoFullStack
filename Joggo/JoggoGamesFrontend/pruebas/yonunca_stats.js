@@ -110,4 +110,11 @@ async function renderChart() {
 // Llama a renderChart una vez al cargar la página
 document.addEventListener("DOMContentLoaded", renderChart);
 // Agrega el evento de clic al botón
-document.getElementById("btn-go").addEventListener("click", goToYoNuncaStatsLikes);
+document.addEventListener("DOMContentLoaded", function() {
+    const button = document.getElementById("btn-go");
+    if (button) {
+        button.addEventListener("click", goToYoNuncaStatsLikes);
+    } else {
+        console.error("El botón con id 'btn-go' no se encontró en el DOM.");
+    }
+});
