@@ -1,6 +1,6 @@
 let fraseActual = ""; // Almacena la frase anterior para detectar cambios
 
-// Obtener parámetros url
+// Obtener parámetros URL
 function getParamsFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const id_partida = urlParams.get("id_partida");
@@ -10,6 +10,7 @@ function getParamsFromURL() {
     return { id_partida, apodo_jugador };
 }
 
+// Mostrar frase desde el servidor y actualizar el DOM si cambia
 async function mostrarFraseDesdeLocalStorage() {
     const { id_partida, apodo_jugador } = getParamsFromURL();
     try {
@@ -21,23 +22,24 @@ async function mostrarFraseDesdeLocalStorage() {
             }    
         });
         if (response.ok) {
-            result = await response.json();
+            const result = await response.json();
             console.log("Respuesta del backend:", result.frase);
 
             if (result.frase !== fraseActual) { 
-                document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
-                fraseActual = result.frase; //Actualiza `fraseActual` con la nueva frase
-                habilitarBoton(); //Habilita los botones cuando cambia la frase
-                resetBotones(); // Limpia el estado de los botones para la nueva frase
-            }     
+                document.querySelector(".main-heading").textContent = result.frase;
+                fraseActual = result.frase;
+                habilitarBoton(); // Habilita todos los botones al cambiar la frase
+                resetBotones(); // Limpia el estado visual de los botones
+            }
         } else {
             console.error("Error en la respuesta del backend:", response.statusText);
-        }       
+        }
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
 }
 
+// Enviar "Like" al backend
 async function enviarLike() {
     const { id_partida, apodo_jugador } = getParamsFromURL();
     const frase = encodeURIComponent(fraseActual);
@@ -61,10 +63,10 @@ async function enviarLike() {
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
-    document.querySelector(".btn-like").disabled = false;
+    document.querySelector(".btn-like").disabled = true; // Deshabilita el botón de like después de enviarlo
 }
 
-// Función para enviar la respuesta Si o No al endpoint
+// Enviar respuesta "Si" o "No" al backend y deshabilitar los botones correspondientes
 async function enviarRespuesta(respuesta) {
     const { id_partida, apodo_jugador } = getParamsFromURL();
     const url = `${API_URL}/recibir_respuesta/${id_partida}/${apodo_jugador}/${respuesta}`;
@@ -86,51 +88,54 @@ async function enviarRespuesta(respuesta) {
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
-    // Desactivar el botón después de enviar la respuesta
-    deshabilitarBoton();
+    // Desactiva solo los botones "Si" y "No"
+    deshabilitarBotonesRespuesta();
 }
 
-// Función para deshabilitar los botones
-function deshabilitarBoton() {
+// Función para deshabilitar solo los botones de respuesta "Si" y "No"
+function deshabilitarBotonesRespuesta() {
     document.querySelector(".btn-Si").disabled = true;
     document.querySelector(".btn-No").disabled = true;
 }
-// Función para habilitar los botones
+
+// Habilitar todos los botones
 function habilitarBoton() {
     document.querySelector(".btn-Si").disabled = false;
     document.querySelector(".btn-No").disabled = false;
     document.querySelector(".btn-like").disabled = false;
 }
-// Función para resetear el estado visual de los botones
+
+// Limpiar el estado visual de los botones
 function resetBotones() {
     document.querySelector(".btn-Si").classList.remove("active");
     document.querySelector(".btn-No").classList.remove("active");
     document.querySelector(".btn-like").classList.remove("active");
 }
 
-// Ejecutar `mostrarFraseDesdeLocalStorage` cuando la página cargue
+// Ejecutar `mostrarFraseDesdeLocalStorage` al cargar la página
 document.addEventListener("DOMContentLoaded", function() {
     mostrarFraseDesdeLocalStorage();
 
-    // Añadir eventos a los botones para capturar la respuesta
-    document.querySelector(".btn-Si").addEventListener("click",async function() {
+    // Añadir eventos a los botones
+    document.querySelector(".btn-Si").addEventListener("click", function() {
         enviarRespuesta("Si");
         this.classList.add("active");
     });
-    document.querySelector(".btn-No").addEventListener("click",async function() {
+    document.querySelector(".btn-No").addEventListener("click", function() {
+        enviarRespuesta("No");
         this.classList.add("active");
-        document.querySelector(".btn-No").disabled = true;
-        document.querySelector(".btn-Si").disabled = true;
     });
-    document.querySelector(".btn-like").addEventListener("click",async function() {
+    document.querySelector(".btn-like").addEventListener("click", function() {
         enviarLike();
         this.classList.add("active");
     });
 
-    setInterval(mostrarFraseDesdeLocalStorage,10000); 
+    // Refrescar la frase cada 10 segundos y verificar el estado del juego cada 20 segundos
+    setInterval(mostrarFraseDesdeLocalStorage, 10000); 
     checkGameInterval = setInterval(checkGameFinish, 20000);
 });
-// Verifica si el juego ha finalizado mediante un llamado al backend
+
+// Verificar si el juego ha finalizado y redirigir
 async function checkGameFinish() {
     const { id_partida, apodo_jugador } = getParamsFromURL();
     try {
@@ -138,8 +143,7 @@ async function checkGameFinish() {
         const data = await response.json();
         
         if (data.estado === "finalizado") {
-            clearInterval(checkGameInterval); // Detiene el intervalo al detectar el estado "finalizado"
-            
+            clearInterval(checkGameInterval);
             const redirectUrl = `${window.location.origin}/yonunca_final_jugador.html?id_partida=${id_partida}&apodo_jugador=${apodo_jugador}`;
             window.location.href = redirectUrl;
         }
