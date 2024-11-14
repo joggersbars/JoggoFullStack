@@ -16,13 +16,15 @@
         <h1 class="main-heading">¡Introduce tu frase más pícara!</h1>
         <div class="core-container">  
             <div class="input-container">
-                <label for="Código de Partida">
+                <label for="frase_usuario">
                     <img src="/src/iconos/frase.png" alt="Frase de usuario" class="icon">
                 </label>
-                <input type="text" id="frase_usuario" placeholder="Introduce tu frase" class="input-field">
+                <input type="text" id="frase_usuario" placeholder="Yo nunca..." value=" Yo nunca" class="input-field">
             </div>
 
             <div class="button-container">
+                 <!-- Botón para generar la frase -->
+                 <button type="button" id="crear-frase-btn" class="btn-entrar">Crear Frase</button>
                 <!-- boton para generar accion de "enviar frase" al servidor BackEnd -->
                 <button type="submit" id="entrar-btn" class="btn-entrar">Enviar</button>
             </div>
