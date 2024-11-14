@@ -12,6 +12,7 @@ function getResponsiveFontSize() {
 
 // Función para renderizar el gráfico
 async function renderChart() {
+
     const id_partida = getIdPartidaFromURL(); // Obtiene el id_partida de la URL
     if (!id_partida) {
         console.error("No se encontró el parámetro 'id_partida' en la URL.");
@@ -19,6 +20,7 @@ async function renderChart() {
     }
 
     try {
+
         const response = await fetch(`${API_URL}/mandar_stats/${id_partida}`);
         const data = await response.json();
         
@@ -56,6 +58,9 @@ async function renderChart() {
                             font: {   
                                 family: 'ChauPhilomeneOne-Regular',
                                 size: getResponsiveFontSize()
+                            },
+                            callback: function(value) {
+                                return Number.isInteger(value) ? value : null;
                             }
                         }
                     },
