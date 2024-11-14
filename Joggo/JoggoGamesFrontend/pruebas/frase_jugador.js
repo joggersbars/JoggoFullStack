@@ -12,6 +12,36 @@ function getParamsFromURL() {
 document.addEventListener("DOMContentLoaded", function() {
     const { id_partida, apodo_jugador } = getParamsFromURL();
 
+    // Referencia al campo de frase
+    const fraseInput = document.getElementById("frase_usuario");
+
+    // Asignar el evento al botón "Crear Frase"
+    const crearFraseBtn = document.getElementById("crear-frase-btn");
+    crearFraseBtn.addEventListener("click", async function() {
+        try {
+            // Solicitar una frase al backend con id_partida y apodo_jugador
+            const response = await fetch(`${API_URL}/obtener_frase/${id_partida}&${apodo_jugador}`, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                fraseInput.value = result.frase || "Yo nunca..."; // Asigna la frase recibida al campo de entrada
+                console.log('Frase recibida del servidor:', result.frase);
+            } else {
+                console.error("Error al obtener la frase:", response.statusText);
+                alert("No se pudo obtener una frase. Intenta nuevamente.");
+            }
+        } catch (error) {
+            console.error("Error al conectar con el servidor:", error);
+            alert("Hubo un problema al obtener la frase.");
+        }
+    });
+
     // Asignar el evento de clic al botón "Enviar"
     const entrarBtn = document.getElementById("entrar-btn");
     entrarBtn.addEventListener("click", async function() {
