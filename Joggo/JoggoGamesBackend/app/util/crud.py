@@ -84,9 +84,27 @@ def get_jugador_by_nombre_and_codigo(db: Session, apodo_jugador: str, id_partida
         )
     ).first()
 
+# Obtener Jugador por frase e id
+def get_jugador_by_frase_and_codigo(db: Session, frase_jugador: str, id_partida: str):
+    return db.query(Jugadores).filter(
+        and_(
+            Jugadores.apodo_jugador == frase_jugador,
+            Jugadores.id_partida == id_partida
+        )
+    ).first()
+
+# Aumentar contador de likes
+def aumenta_likes_frase_de_jugador(db: Session, frase_jugador: str, id_partida: str):
+    jugador = get_jugador_by_frase_and_codigo(db=db,frase_jugador=frase_jugador,id_partida=id_partida)
+    if jugador:
+        jugador.contador_like_frases += 1
+        db.commit()
+        db.refresh(jugador)
+    return jugador
+
 # Crear jugador y añadirlo a la base de datos
 def crear_jugador(db: Session, apodo_jugador: str, id_partida: str):
-    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="", id_frase=0)
+    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="", id_frase=0, contador_like_frases=0)
     db.add(new_jugador)
     db.commit()
     db.refresh(new_jugador)

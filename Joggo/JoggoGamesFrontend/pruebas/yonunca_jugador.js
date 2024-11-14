@@ -41,11 +41,11 @@ async function mostrarFraseDesdeLocalStorage() {
 async function enviarLike() {
     const { id_partida, apodo_jugador } = getParamsFromURL();
     const frase = encodeURIComponent(fraseActual);
-    const url = `${API_URL}/enviar_like?id_partida=${id_partida}&apodo_jugador=${apodo_jugador}&frase=${frase}`;
+    const url = `${API_URL}/enviar_like/${id_partida}/${frase}`;
  
     try {
         const response = await fetch(url, {
-            method: 'GET',
+            method: 'POST',
             mode: "cors",
             headers: {
                 'Content-Type': 'application/json'
@@ -61,6 +61,7 @@ async function enviarLike() {
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
+    deshabilitarBoton();
 }
 
 // Función para enviar la respuesta Si o No al endpoint

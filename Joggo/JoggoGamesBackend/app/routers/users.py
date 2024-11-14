@@ -213,6 +213,14 @@ async def recibir_respuesta(id_partida: str, apodo_jugador: str, respuesta: str 
         print("Error:", e)
         raise HTTPException(status_code=500, detail=str(e))
 
+# Endpoint para aumentar el like de una frase
+@router.post("/enviar_like/{id_partida}/{frase}", tags=["Aumentar Like Frase"])
+async def aumentar_like(id_partida: str, frase: str, db: Session=Depends(get_db)):
+    crud.aumenta_likes_frase_de_jugador(db=db, frase_jugador=frase,id_partida=id_partida)
+    response = {"like":"ok"}
+    return JSONResponse(content=response,status=status.HTTP_201_CREATED)
+
+
 # Mandar resultados
 @router.get("/mandar_stats/{id_partida}", tags=["Mandando estadísticas"], description="Mandando estadísticas de la partida")
 async def mandar_stats(id_partida: str, db: Session = Depends(get_db)):
