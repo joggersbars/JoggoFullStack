@@ -61,7 +61,7 @@ async function enviarLike() {
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
-    deshabilitarBoton();
+    document.querySelector(".btn-like").disabled = false;
 }
 
 // Función para enviar la respuesta Si o No al endpoint
@@ -94,7 +94,6 @@ async function enviarRespuesta(respuesta) {
 function deshabilitarBoton() {
     document.querySelector(".btn-Si").disabled = true;
     document.querySelector(".btn-No").disabled = true;
-    document.querySelector(".btn-like").disabled = true;
 }
 // Función para habilitar los botones
 function habilitarBoton() {
@@ -114,21 +113,22 @@ document.addEventListener("DOMContentLoaded", function() {
     mostrarFraseDesdeLocalStorage();
 
     // Añadir eventos a los botones para capturar la respuesta
-    document.querySelector(".btn-Si").addEventListener("click", function() {
+    document.querySelector(".btn-Si").addEventListener("click",async function() {
         enviarRespuesta("Si");
         this.classList.add("active");
     });
-    document.querySelector(".btn-No").addEventListener("click", function() {
+    document.querySelector(".btn-No").addEventListener("click",async function() {
         this.classList.add("active");
+        document.querySelector(".btn-No").disabled = true;
+        document.querySelector(".btn-Si").disabled = true;
     });
-    document.querySelector(".btn-like").addEventListener("click", function() {
-        document.querySelector(".btn-No").disabled = false;
+    document.querySelector(".btn-like").addEventListener("click",async function() {
         enviarLike();
         this.classList.add("active");
     });
 
-    setInterval(mostrarFraseDesdeLocalStorage,5000); 
-    checkGameInterval = setInterval(checkGameFinish, 5000);
+    setInterval(mostrarFraseDesdeLocalStorage,10000); 
+    checkGameInterval = setInterval(checkGameFinish, 20000);
 });
 // Verifica si el juego ha finalizado mediante un llamado al backend
 async function checkGameFinish() {
