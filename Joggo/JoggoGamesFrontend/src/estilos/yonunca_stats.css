@@ -82,3 +82,30 @@
     height: auto;
   }
   
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    width: 20%;
+    height: 4vh;
+    align-items: flex-end; /* Alinea los elementos al final del contenedor (a la derecha) */
+  }
+  
+  .btn-go {
+    background-color: #29211d;
+    color: white;
+    font-size: 6vw;
+    text-decoration: none;
+    border-radius: 4vh;
+    transition: background-color 0.3s ease;
+    font-family: 'ChauPhilomeneOne-Regular', sans-serif;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-go:hover {
+    background-color: #4b3810;
+    transform: translateY(-0.5vh); /* Mueve el botón hacia arriba */
+    box-shadow: 1vw 1vw 2vw rgba(0, 0, 0, 0.4); /* Mueve la sombra */
+  }
