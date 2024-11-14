@@ -22,7 +22,7 @@ class Jugadores(Base):
     id_partida = Column(String(STRING_LENGTH)) # Codigo Juego
     frase_jugador = Column(String(100)) # Frase Jugador
     id_frase = Column(Integer) # Id de la frase
-    contador_likes_frases = Column(Integer) # Contador like frases
+    contador_like_frases = Column(Integer) # Contador like frases
 
 # Tabla juego
 class Juego(Base):
