@@ -100,9 +100,9 @@ async function renderChart() {
     }
 }
 
+// Llamar a renderChart al cargar la página
+renderChart();
 
-// Ejecuta la verificación cada 300 milisegundos
-setInterval(renderChart, 1000);
 // Escuchar el evento de cambio de tamaño de la ventana para redimensionar
 window.addEventListener('resize', () => {
     renderChart(); // Volver a renderizar el gráfico con el nuevo tamaño de fuente
