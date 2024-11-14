@@ -104,7 +104,7 @@ def aumenta_likes_frase_de_jugador(db: Session, frase_jugador: str, id_partida: 
 
 # Crear jugador y añadirlo a la base de datos
 def crear_jugador(db: Session, apodo_jugador: str, id_partida: str):
-    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="", id_frase=0, contador_likes_frases=0)
+    new_jugador = Jugadores(apodo_jugador=apodo_jugador, id_partida=id_partida, frase_jugador="", id_frase=0, contador_like_frases=0)
     db.add(new_jugador)
     db.commit()
     db.refresh(new_jugador)
