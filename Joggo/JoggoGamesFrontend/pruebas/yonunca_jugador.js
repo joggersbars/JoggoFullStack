@@ -28,6 +28,7 @@ async function mostrarFraseDesdeLocalStorage() {
                 document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
                 fraseActual = result.frase; //Actualiza `fraseActual` con la nueva frase
                 habilitarBoton(); //Habilita los botones cuando cambia la frase
+                resetBotones(); // Limpia el estado de los botones para la nueva frase
             }     
         } else {
             console.error("Error en la respuesta del backend:", response.statusText);
@@ -43,7 +44,7 @@ async function enviarRespuesta(respuesta) {
     try {
         const response = await fetch(url, {
             method: 'POST', 
-            mode: "no-cors",
+            mode: "cors",
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -74,6 +75,13 @@ function habilitarBoton() {
     document.querySelector(".btn-No").disabled = false;
 }
 
+// Función para resetear el estado visual de los botones
+function resetBotones() {
+    document.querySelector(".btn-Si").classList.remove("active");
+    document.querySelector(".btn-No").classList.remove("active");
+    document.querySelector(".btn-like").classList.remove("active");
+}
+
 // Ejecutar `mostrarFraseDesdeLocalStorage` cuando la página cargue
 document.addEventListener("DOMContentLoaded", function() {
     mostrarFraseDesdeLocalStorage();
@@ -81,9 +89,15 @@ document.addEventListener("DOMContentLoaded", function() {
     // Añadir eventos a los botones para capturar la respuesta
     document.querySelector(".btn-Si").addEventListener("click", function() {
         enviarRespuesta("Si");
+        this.classList.add("active");
     });
     document.querySelector(".btn-No").addEventListener("click", function() {
+        this.classList.add("active");
+    });
+    document.querySelector(".btn-like").addEventListener("click", function() {
         document.querySelector(".btn-No").disabled = false;
+        enviarRespuesta("like");
+        this.classList.add("active");
     });
 
     setInterval(mostrarFraseDesdeLocalStorage,10005); // Mirar para ajustar cuando se cambie de frase
