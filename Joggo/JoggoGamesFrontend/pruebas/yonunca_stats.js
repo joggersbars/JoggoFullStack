@@ -99,6 +99,15 @@ async function renderChart() {
         console.error('Error al cargar las estadísticas:', error);
     }
 }
+ // Función para redirigir a la página /yonunca_stats_likes.html con los parámetros id_jugador y apodo
+    function goToYoNuncaStatsLikes() {
+    const id_partida = getIdPartidaFromURL();
+
+    // Redirigir a la nueva URL con los parámetros
+    window.location.href = `/yonunca_stats_likes.html/${id_partida}`;
+}
 
 // Llama a renderChart una vez al cargar la página
 document.addEventListener("DOMContentLoaded", renderChart);
+// Agrega el evento de clic al botón
+document.getElementById("btn-go").addEventListener("click", goToYoNuncaStatsLikes);
