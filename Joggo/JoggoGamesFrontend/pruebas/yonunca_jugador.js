@@ -12,17 +12,14 @@ function getParamsFromURL() {
 
 async function mostrarFraseDesdeLocalStorage() {
     const { id_partida, apodo_jugador } = getParamsFromURL();
-    // Obtener la frase guardada en en el backend
     try {
         const response = await fetch(`${API_URL}/coger_frase_jugador/${id_partida}`,{
             method: 'GET', 
             mode: "cors",
             headers: {
                 'Content-Type': 'application/json'
-            }
-            
+            }    
         });
-
         if (response.ok) {
             result = await response.json();
             console.log("Respuesta del backend:", result.frase);
@@ -31,26 +28,18 @@ async function mostrarFraseDesdeLocalStorage() {
                 document.querySelector(".main-heading").textContent = result.frase; // Actualiza el `<h1>`
                 fraseActual = result.frase; //Actualiza `fraseActual` con la nueva frase
                 habilitarBoton(); //Habilita los botones cuando cambia la frase
-            }
-
-           
+            }     
         } else {
             console.error("Error en la respuesta del backend:", response.statusText);
-        }
-        // Verificar si existe una frase en `localStorage` y actualizar el HTML
-        // Solo actualizar si la frase ha cambiado
-        
+        }       
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
 }
-
 // Función para enviar la respuesta al endpoint
 async function enviarRespuesta(respuesta) {
     const { id_partida, apodo_jugador } = getParamsFromURL();
-
     const url = `${API_URL}/recibir_respuesta/${id_partida}/${apodo_jugador}/${respuesta}`;
-
     try {
         const response = await fetch(url, {
             method: 'POST', 
@@ -69,7 +58,6 @@ async function enviarRespuesta(respuesta) {
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
-
     // Desactivar el botón después de enviar la respuesta
     deshabilitarBoton();
 }
@@ -100,7 +88,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     setInterval(mostrarFraseDesdeLocalStorage,10005); // Mirar para ajustar cuando se cambie de frase
 });
-
 // Verifica si el juego ha finalizado mediante un llamado al backend
 async function checkGameFinish() {
     const response = await fetch(`${API_URL}/game/status/${id_actual_partida}`);
@@ -111,4 +98,4 @@ async function checkGameFinish() {
     }
 }
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkGameFinish, 10000);
+setInterval(checkGameFinish, 5000);

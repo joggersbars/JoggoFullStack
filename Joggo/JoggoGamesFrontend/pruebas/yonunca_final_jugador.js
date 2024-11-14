@@ -5,9 +5,9 @@ const id_partida = urlParams.get('id_partida');
 
 
 // Función para MOSTRAR los datos del jugador en pantalla
-function mostrarDatosJugador(data) {
+function mostrarDatosJugador(result) {
     // Cambiar el título
-    document.querySelector('.titulo-final').textContent = `Final de la partida de ${data.nombreJugador}`;
+    document.querySelector('.titulo-final').textContent = `Final de la partida de ${result.nombreJugador}`;
     
     // Formatear el resultado para que se muestre como "5/20" (frases pulsadas / frases totales)
     document.querySelector('.mensaje-final').innerHTML = `
@@ -20,8 +20,8 @@ function mostrarDatosJugador(data) {
 
 // Función para obtener datos del jugador desde el backend
 async function obtenerDatosJugador() {
-    if (!idUsuario) {
-        console.error("ID de usuario no encontrado en la URL");
+    if (!apodo_jugador || !id_partida) {
+        console.error("Apodo o ID de partida del usuario no encontrado en la URL");
         document.querySelector('.mensaje-final').textContent = "Error: No se pudo obtener la información del jugador.";
         return;
     }
