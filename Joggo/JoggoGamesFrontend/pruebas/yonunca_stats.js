@@ -5,11 +5,9 @@ function getIdPartidaFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("id_partida"); 
 }
-
 function getResponsiveFontSize() {
     return Math.max(window.innerWidth * 0.02, 12); // Mínimo de 12px
 }
-
 // Función para renderizar el gráfico
 async function renderChart() {
 
@@ -23,6 +21,8 @@ async function renderChart() {
 
         const response = await fetch(`${API_URL}/mandar_stats/${id_partida}`);
         const data = await response.json();
+        
+         
         
         // Convertir el diccionario de estadísticas en arrays de jugadores y conteo
         const jugadores = Object.keys(data.estadisticas);
@@ -100,10 +100,5 @@ async function renderChart() {
     }
 }
 
-
-// Ejecuta la verificación cada 300 milisegundos
-setInterval(renderChart, 1000);
-// Escuchar el evento de cambio de tamaño de la ventana para redimensionar
-window.addEventListener('resize', () => {
-    renderChart(); // Volver a renderizar el gráfico con el nuevo tamaño de fuente
-});
+// Llama a renderChart una vez al cargar la página
+document.addEventListener("DOMContentLoaded", renderChart);
