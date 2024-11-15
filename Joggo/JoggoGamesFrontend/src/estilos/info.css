@@ -12,9 +12,12 @@
   --title-color: hsl(var(--hue), 4%, 100%);
   --text-color: hsl(var(--hue), 4%, 85%);
   --text-color-light: hsl(var(--hue), 4%, 55%);
+  
 
   /*Green gradient*/
-  --body-color: linear-gradient(90deg, hsl(104, 28%, 40%) 0%, hsl(58, 28%, 40%) 100%);
+  /*--head-color: linear-gradient(90deg, hsl(288, 73%, 66%) 100%, hsl(214, 99%, 34%) 0%);*/
+  /*--body-color: linear-gradient(90deg, hsl(104, 28%, 40%) 0%, hsl(58, 28%, 40%) 100%);*/
+  --body-color: linear-gradient(90deg, hsl(214, 99%, 34%) 0%, hsl(288, 73%, 66%) 100%);
   --container-color: linear-gradient(136deg, hsl(104, 28%, 35%) 0%, hsl(58, 28%, 35%) 100%);
   
   /*Red gradient*/
@@ -145,7 +148,7 @@ button{
 /*=============== HEADER ===============*/
 .header{
   width: 100%;
-  background: var(--body-color); 
+  background: linear-gradient(90deg, #C96CE6, #014AAD); 
   position: fixed;
   top: 0;
   left: 0;
@@ -154,10 +157,12 @@ button{
 
 /*=============== NAV ===============*/
 .nav{
+  width: 100%;
   height: var(--header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /*background: linear-gradient(90deg, hsl(288, 73%, 66%) 100%, hsl(214, 99%, 34%) 100%);*/
 }
 
 .nav__logo{
@@ -168,7 +173,7 @@ button{
 }
 
 .nav__logo-img{
-  width: 3rem;
+  width: 9rem;
 }
 
 .nav__link,

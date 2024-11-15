@@ -138,12 +138,13 @@ def obtener_num_jugadores(db: Session, id_partida: str) -> int:
     partida = db.query(Juego).filter(Juego.id_partida == id_partida).first()
     
     # Devolver el número de jugadores, si la partida existe
-    return partida.num_jugadores if partida else None
+    return partida.num_jugadores_conectados if partida else None
 
 # Actualizar el número de jugadores en una partida
 def actualizar_num_jugadores(db: Session, id_partida: str):
     # Contar la cantidad de jugadores asociados al id_partida en la tabla Jugadores
     num_jugadores = obtener_num_jugadores(db=db, id_partida=id_partida)
+    print(num_jugadores)
     # Obtener la partida correspondiente en la tabla Juego
     partida = db.query(Juego).filter(Juego.id_partida == id_partida).first()
     
