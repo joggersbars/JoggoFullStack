@@ -63,7 +63,8 @@ async function enviarLike() {
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
-    document.querySelector(".btn-like").disabled = true; // Deshabilita el botón de like después de enviarlo
+    // Deshabilita el botón de like después de enviarlo
+    document.querySelector(".btn-like").disabled = true; 
 }
 
 // Enviar respuesta "Si" o "No" al backend y deshabilitar los botones correspondientes
@@ -88,7 +89,7 @@ async function enviarRespuesta(respuesta) {
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
     }
-    // Desactiva solo los botones "Si" y "No"
+    // Desactiva solo los botones "Si" y "No" despues de enviarlo
     deshabilitarBotonesRespuesta();
 }
 
@@ -107,11 +108,12 @@ function habilitarBoton() {
 
 // Limpiar el estado visual de los botones
 function resetBotones() {
-    document.querySelector(".btn-Si").classList.remove("active");
-    document.querySelector(".btn-No").classList.remove("active");
-    document.querySelector(".btn-like").classList.remove("active");
+    // Limpia las clases "active" de todos los botones
+    const botones = document.querySelectorAll(".btn-Si, .btn-No, .btn-like");
+    botones.forEach((boton) => {
+        boton.classList.remove("active");
+    });
 }
-
 // Ejecutar `mostrarFraseDesdeLocalStorage` al cargar la página
 document.addEventListener("DOMContentLoaded", function() {
     mostrarFraseDesdeLocalStorage();
@@ -131,7 +133,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Refrescar la frase cada 10 segundos y verificar el estado del juego cada 20 segundos
-    setInterval(mostrarFraseDesdeLocalStorage, 10000); 
+    setInterval(() => {
+        mostrarFraseDesdeLocalStorage();
+        resetBotones(); // Llamar a resetBotones aquí también, por si acaso.
+    }, 10000);
+    
     checkGameInterval = setInterval(checkGameFinish, 20000);
 });
 
