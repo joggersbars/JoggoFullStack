@@ -140,7 +140,7 @@ async def all_jugadores_conectados(id_partida: str, db: Session=Depends(get_db))
     return JSONResponse(content = response_dict, status_code = status.HTTP_201_CREATED)
 
 # Endpoint para añadir frase al jugador correspondiente Joao me tiene que enviar Frase entrada(schemas.py)
-@router.post('/añadir_frase', tags=['Add-ons'], description="Añadiendo frase de jugador")
+@router.post('/anadir_frase', tags=['Add-ons'], description="Añadiendo frase de jugador")
 async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_db)):
     print(f"Jugador: {frase_entrada.apodo_jugador}, Id Partida: {frase_entrada.id_partida}, frase: {frase_entrada.frase_jugador}")
     check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=frase_entrada.apodo_jugador, id_partida=frase_entrada.id_partida)
@@ -148,7 +148,7 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
         return JSONResponse(content={"message":"Esa frase ya está cogida"}, status_code=status.HTTP_404_NOT_FOUND)
     else:
         if not frase_entrada.frase_jugador:
-            raise HTTPException(status_code=400, detail="Faltan la frase")
+            raise HTTPException(status_code=400, detail="Falta la frase")
         print(frase_entrada)
         crud.añadir_frase_a_jugador(db=db,apodo_jugador=frase_entrada.apodo_jugador, frase_jugador=frase_entrada.frase_jugador, id_partida=frase_entrada.id_partida)
         crud.aumentar_jugador_conectado(db=db, id_partida=frase_entrada.id_partida)

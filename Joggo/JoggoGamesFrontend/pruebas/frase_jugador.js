@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         try {
             // Enviar la solicitud POST al servidor
-            const response = await fetch(`${API_URL}/añadir_frase`, {
+            const response = await fetch(`${API_URL}/anadir_frase`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
