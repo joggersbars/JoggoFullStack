@@ -1,6 +1,6 @@
 # app/routers.py
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Response
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pprint import pprint
@@ -67,7 +67,7 @@ async def register_user(usuario: UserData, db: Session = Depends(get_db)): # usu
     return crud.create_user(db=db, user=usuario)
 
 @router.post("/login_user", tags=["Autenticación"], description="Usuario logging")
-async def login_user(usuario: UserData, db: Session = Depends(get_db)):
+async def login_user(usuario: UserData, response: Response, db: Session = Depends(get_db)):
     print("\nLoggeando usuario:")
     check_name = crud.get_user_by_name(db=db, name=usuario.username)
     if check_name == None:
@@ -78,10 +78,19 @@ async def login_user(usuario: UserData, db: Session = Depends(get_db)):
         _logger.info("Entrando en el servidor")
         if not usuario.username or not usuario.password:
             raise HTTPException(status_code=400, detail="Faltan datos obligatorios")
-        response_dict = crud.login_user(db=db,username=usuario.username,password=usuario.password)
-        print(f"Loggeando usuario {usuario.username}, con contraseña: {usuario.password}\n")
-        _logger.info(f"Logging Usuario {usuario.username}: tipo: {usuario.password}")
-        json_response = JSONResponse(content=response_dict, status_code=status.HTTP_201_CREATED)
+        valid_user = crud.login_user(db=db,username=usuario.username,password=usuario.password)
+        if valid_user.get("message") == "Bienvenido":
+            _logger.info(f"Logging Usuario {usuario.username}: tipo: {usuario.password}")
+
+            # Establece la cookie de autenticación
+            # response.set_cookie(key="auth_cookie", value="valid", httponly=True, path="/")
+            
+            # Logs servidor
+            print(f"Loggeando usuario {usuario.username}, con contraseña: {usuario.password}\n")
+            
+            json_response = JSONResponse(content=valid_user, status_code=status.HTTP_201_CREATED)
+        else:
+            json_response = JSONResponse(content=valid_user, status_code=status.HTTP_201_CREATED)
         return json_response
 
 @router.get('/crear_partida/{nombre_juego}', tags=['Creando partida'], description="Creando la partida")

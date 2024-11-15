@@ -20,11 +20,19 @@ PANTALLAS CLIENTE (WEB)
 
 - `yonunca_stats`: Pantalla de final de partida donde apareceran las estadísticas de la partida
 
+- `yonunca_stats_likes`: Pantalla de final de partida donde apareceran la frase con más likes
+
+
+
 Pantallas jugadores (Mobile)
-- `intro_jugador`: Pantalla inicial de móvil donde el usuario accedera a traves del navegador o del QR que muestra la pantalla `yonunca_intro`
+- `intro_jugador`: Pantalla inicial de móvil donde el usuario accedera a traves del navegador o del QR que muestra la pantalla      `yonunca_intro`
 
-- `espera_jugador`: Pantalla de carga para cliente que iremos intercalando en los tiempos de espera de jugadores añadiendo a partida o situaciones similares.
+- `espera_jugador`: Pantalla de carga para jugador que utilizaremos para la espera antes de que empiece la partida.
 
-- `frase_jugador`: Pantalla de móvil donde el jugador se encargará de introducir su frase de Yo Nunca
+- `frase_jugador`: Pantalla de móvil donde el jugador se encargará de introducir su frase de Yo Nunca.
+
+- `espera_frases_jugador`: Pantalla de carga para jugador que utilizaremos para la espera después de introducir la frase.
 
 - `yonunca_jugador`: Pantalla de juego donde el usuario en su telefono marcará si lo ha hecho o no y si la frase que apareción le gusta
+
+- `yonunca_final_jugador`: Pantalla de móvil final donde aparece las veces que bebio el jugador.
