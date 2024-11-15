@@ -254,5 +254,5 @@ async def mandar_resultado_jugador(id_partida: str, apodo_jugador: str, db: Sess
     resultado_jugador = crud.get_resultados_jugador(db=db, id_partida=id_partida, apodo_jugador=apodo_jugador)
     num_frases = crud.obtener_num_jugadores(db=db, id_partida=id_partida)
     print(resultado_jugador, num_frases)
-    resultado_dict = {"result":resultado_jugador[0],"frases_totales":num_frases[0]}
+    resultado_dict = {"result":resultado_jugador,"frases_totales":num_frases}
     return JSONResponse(content=resultado_dict, status_code=status.HTTP_201_CREATED)
