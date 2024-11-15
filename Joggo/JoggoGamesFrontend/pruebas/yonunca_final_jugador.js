@@ -7,7 +7,7 @@ const id_partida = urlParams.get('id_partida');
 // Función para MOSTRAR los datos del jugador en pantalla
 function mostrarDatosJugador(result) {
     // Cambiar el título
-    document.querySelector('.titulo-final').textContent = `Final de la partida de ${result.nombreJugador}`;
+    document.querySelector('.titulo-final').textContent = `Final de la partida de ${apodo_jugador}`;
     
     // Formatear el resultado para que se muestre como "5/20" (frases pulsadas / frases totales)
     document.querySelector('.mensaje-final').innerHTML = `
