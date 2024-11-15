@@ -1,6 +1,6 @@
 # app/routers.py
 
-from fastapi import APIRouter, Depends, HTTPException, status, Response
+from fastapi import APIRouter, Depends, HTTPException, status, Request, Response
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pprint import pprint
@@ -22,6 +22,10 @@ Base.metadata.create_all(bind=engine)
 _logger = logging.getLogger(__name__)
 
 load_dotenv()
+
+# Simula la autenticación
+def is_authenticated(request: Request):
+    return request.cookies.get("session_token") == "valid_token"
 
 FRONTEND_URL = os.getenv('FRONTEND_URL')
 
@@ -82,8 +86,8 @@ async def login_user(usuario: UserData, response: Response, db: Session = Depend
         if valid_user.get("message") == "Bienvenido":
             _logger.info(f"Logging Usuario {usuario.username}: tipo: {usuario.password}")
 
-            # Establece la cookie de autenticación
-            # response.set_cookie(key="auth_cookie", value="valid", httponly=True, path="/")
+            #token = "valid_token"  # Generar un token real en producción
+            #response.set_cookie(key="auth_token", value=token, httponly=True, secure=True, path="/")
             
             # Logs servidor
             print(f"Loggeando usuario {usuario.username}, con contraseña: {usuario.password}\n")
@@ -156,7 +160,8 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
 @router.post('/establecer_indices_frases', tags=["Indices Frases"], description= "Establecemos el orden iterativo de las frases de la partida")
 async def establecer_indices_frases(id_partida: IdPartida, db: Session=Depends(get_db)):
     print(f"Estableciendo los indices en las frases de la partida: {id_partida.id_partida}\n")
-    crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida.id_partida)   
+    crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida.id_partida)
+    crud.actualizar_num_jugadores(db=db, id_partida=id_partida.id_partida)
     crud.cambiar_estado_partida(db=db,id_partida=id_partida.id_partida, estado_juego="frases") 
     response_frase = {"message":"Indices añadidos correctamente"}
     json_response = JSONResponse(content=response_frase, status_code=status.HTTP_201_CREATED)
@@ -228,7 +233,7 @@ async def recibir_respuesta(id_partida: str, apodo_jugador: str, respuesta: str 
 async def aumentar_like(id_partida: str, frase: str, db: Session=Depends(get_db)):
     crud.aumenta_likes_frase_de_jugador(db=db, frase_jugador=frase,id_partida=id_partida)
     response = {"like":"ok"}
-    return JSONResponse(content=response,status=status.HTTP_201_CREATED)
+    return JSONResponse(content=response,status_code=status.HTTP_201_CREATED)
 
 
 # Mandar resultados
