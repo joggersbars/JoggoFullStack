@@ -83,7 +83,7 @@ async def login_user(usuario: UserData, response: Response, db: Session = Depend
             _logger.info(f"Logging Usuario {usuario.username}: tipo: {usuario.password}")
 
             # Establece la cookie de autenticación
-            response.set_cookie(key="auth_cookie", value="valid", httponly=True, path="/")
+            # response.set_cookie(key="auth_cookie", value="valid", httponly=True, path="/")
             
             # Logs servidor
             print(f"Loggeando usuario {usuario.username}, con contraseña: {usuario.password}\n")
