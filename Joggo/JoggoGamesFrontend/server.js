@@ -18,9 +18,11 @@ http.createServer((req, res) => {
   // MAQUINA DE ESTADOS SEGUN LA URL QUE SE SOLICITE usando pathname en lugar de req.url
   if (pathname === '/login') {
     filePath = path.join(__dirname, 'public/Recursos', 'login.html');
+  } else if (pathname === '/info') {
+    filePath = path.join(__dirname, 'public/Recursos', 'info.html');
   } else if (pathname === '/games') {
     filePath = path.join(__dirname, 'public/Recursos', 'games.html');
-  } else if (pathname === '/yonunca_intro') {
+  }else if (pathname === '/yonunca_intro') {
     filePath = path.join(__dirname, 'public/Recursos', 'yonunca_intro.html');
   } else if (pathname === '/intro_jugador') {
     filePath = path.join(__dirname, 'public/Recursos', 'intro_jugador.html');
