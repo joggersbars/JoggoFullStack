@@ -145,9 +145,12 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
     print(f"Jugador: {frase_entrada.apodo_jugador}, Id Partida: {frase_entrada.id_partida}, frase: {frase_entrada.frase_jugador}")
     check_jugador = crud.get_jugador_by_nombre_and_codigo(db=db, apodo_jugador=frase_entrada.apodo_jugador, id_partida=frase_entrada.id_partida)
     if check_jugador == None:
+        print("Esa frase ya está")
         return JSONResponse(content={"message":"Esa frase ya está cogida"}, status_code=status.HTTP_404_NOT_FOUND)
     else:
+        print("El jugador existe")
         if not frase_entrada.frase_jugador:
+            print("La frase no la ha metido")
             raise HTTPException(status_code=400, detail="Falta la frase")
         print(frase_entrada)
         crud.añadir_frase_a_jugador(db=db,apodo_jugador=frase_entrada.apodo_jugador, frase_jugador=frase_entrada.frase_jugador, id_partida=frase_entrada.id_partida)
