@@ -113,8 +113,20 @@ def crear_jugador(db: Session, apodo_jugador: str, id_partida: str):
     return new_jugador
 
 # Aumentar la cantidad de jugadores conectados en la partida
-def aumentar_jugador_conectado(db: Session, id_partida: str, apodo_jugador: str):
+def aumentar_jugador_conectado(db: Session, id_partida: str):
+        
+    partida = db.query(Juego).filter(Juego.id_partida==id_partida).first()
+
+    # Aumentar en 1 el campo num_jugadores_conectados si la partida existe
+    if partida:
+        partida.num_jugadores_conectados += 1
+        db.commit()
+        db.refresh(partida)
     
+    return partida
+
+# Aumentar la cantidad de jugadores conectados en la partida
+def aumentar_jugador_partida(db: Session, id_partida: str, apodo_jugador: str):
     jugador_existente = db.query(Jugadores).filter(
         and_(
             Jugadores.id_partida == id_partida,
@@ -127,18 +139,6 @@ def aumentar_jugador_conectado(db: Session, id_partida: str, apodo_jugador: str)
         print(f"Jugador {apodo_jugador} ya está conectado en la partida {id_partida}.")
         return None
     
-    partida = db.query(Juego).filter(Juego.id_partida==id_partida).first()
-
-    # Aumentar en 1 el campo num_jugadores_conectados si la partida existe
-    if partida:
-        partida.num_jugadores_conectados += 1
-        db.commit()
-        db.refresh(partida)
-    
-    return partida
-
-# Aumentar la cantidad de jugadores conectados en la partida
-def aumentar_jugador_partida(db: Session, id_partida: str):
     partida = db.query(Juego).filter(Juego.id_partida==id_partida).first()
 
     # Aumentar en 1 el campo num_jugadores_conectados si la partida existe

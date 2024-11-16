@@ -128,7 +128,7 @@ async def crear_jugador(jugador: Jugador, db: Session = Depends(get_db)):
     
     # Si el jugador no existe, crea el jugador
     crud.crear_jugador(db=db, apodo_jugador=jugador.apodo_jugador, id_partida=jugador.id_partida)
-    crud.aumentar_jugador_partida(db=db,id_partida=jugador.id_partida)
+    crud.aumentar_jugador_partida(db=db,id_partida=jugador.id_partida, apodo_jugador=jugador.apodo_jugador)
     response_jugador = {"message": "Jugador conectado correctamente"}
     return JSONResponse(content=response_jugador, status_code=status.HTTP_201_CREATED)
 
