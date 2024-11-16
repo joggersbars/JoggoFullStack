@@ -42,8 +42,8 @@ async function mostrarFraseDesdeLocalStorage() {
 // Enviar "Like" al backend
 async function enviarLike() {
     const { id_partida, apodo_jugador } = getParamsFromURL();
-    const frase = encodeURIComponent(fraseActual);
-    const url = `${API_URL}/enviar_like/${id_partida}/${frase}`;
+    //const frase = encodeURIComponent(fraseActual);
+    const url = `${API_URL}/enviar_like/${id_partida}/${apodo_jugador}`;
  
     try {
         const response = await fetch(url, {

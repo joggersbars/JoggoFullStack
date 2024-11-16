@@ -26,15 +26,3 @@ def get_app():
 # Creando aplicación
 app = get_app()
 
-# # Configuración de señales 
-# def setup_signal_handlers():
-#     loop = asyncio.get_running_loop()
-#     for sig in (signal.SIGINT, signal.SIGTERM):
-#         loop.add_signal_handler(sig, lambda: asyncio.create_task(shutdown_app()))
-
-# async def shutdown_app():
-#     await app.router.shutdown()
-#     await engine.dispose()
-#     _logger.info("Señal de cierre recibida. Conexiones cerradas")
-
-# setup_signal_handlers()

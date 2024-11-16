@@ -94,8 +94,8 @@ def get_jugador_by_frase_and_codigo(db: Session, frase_jugador: str, id_partida:
     ).first()
 
 # Aumentar contador de likes
-def aumenta_likes_frase_de_jugador(db: Session, frase_jugador: str, id_partida: str):
-    jugador = get_jugador_by_nombre_and_codigo(db=db,frase_jugador=frase_jugador,id_partida=id_partida)
+def aumenta_likes_frase_de_jugador(db: Session, apodo_jugador: str, id_partida: str):
+    jugador = get_jugador_by_nombre_and_codigo(db=db,apodo_jugador=apodo_jugador,id_partida=id_partida)
     print("Aver si entro aqui si quiera")
     if jugador:
         print("Aumento like")
@@ -113,7 +113,20 @@ def crear_jugador(db: Session, apodo_jugador: str, id_partida: str):
     return new_jugador
 
 # Aumentar la cantidad de jugadores conectados en la partida
-def aumentar_jugador_conectado(db: Session, id_partida: str):
+def aumentar_jugador_conectado(db: Session, id_partida: str, apodo_jugador: str):
+    
+    jugador_existente = db.query(Jugadores).filter(
+        and_(
+            Jugadores.id_partida == id_partida,
+            Jugadores.apodo_jugador == apodo_jugador
+        )
+    ).first()
+
+    if jugador_existente:
+        # El jugador ya está conectado, no incrementa el contador
+        print(f"Jugador {apodo_jugador} ya está conectado en la partida {id_partida}.")
+        return None
+    
     partida = db.query(Juego).filter(Juego.id_partida==id_partida).first()
 
     # Aumentar en 1 el campo num_jugadores_conectados si la partida existe

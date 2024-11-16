@@ -147,7 +147,7 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
             raise HTTPException(status_code=400, detail="Falta la frase")
         print(frase_entrada)
         crud.añadir_frase_a_jugador(db=db,apodo_jugador=frase_entrada.apodo_jugador, frase_jugador=frase_entrada.frase_jugador, id_partida=frase_entrada.id_partida)
-        crud.aumentar_jugador_conectado(db=db, id_partida=frase_entrada.id_partida)
+        crud.aumentar_jugador_conectado(db=db, id_partida=frase_entrada.id_partida, apodo_jugador=frase_entrada.apodo_jugador)
         if crud.verificar_jugadores_conectados(db=db, id_partida=frase_entrada.id_partida):
             crud.actualizar_id_frases_para_partida(db=db,id_partida=frase_entrada.id_partida)
             crud.cambiar_estado_partida(db=db,id_partida=frase_entrada.id_partida, estado_juego="frases") 
@@ -226,10 +226,10 @@ async def recibir_respuesta(id_partida: str, apodo_jugador: str, respuesta: str 
         raise HTTPException(status_code=500, detail=str(e))
 
 # Endpoint para aumentar el like de una frase
-@router.post("/enviar_like/{id_partida}/{frase}", tags=["Aumentar Like Frase"])
-async def aumentar_like(id_partida: str, frase: str, db: Session=Depends(get_db)):
-    print(f"Entro y doy like a la frase: {frase}")
-    crud.aumenta_likes_frase_de_jugador(db=db, frase_jugador=frase,id_partida=id_partida)
+@router.post("/enviar_like/{id_partida}/{apodo_jugador}", tags=["Aumentar Like Frase"])
+async def aumentar_like(id_partida: str, apodo_jugador: str, db: Session=Depends(get_db)):
+    print(f"Entro y doy like a la frase de: {apodo_jugador}")
+    crud.aumenta_likes_frase_de_jugador(db=db, apodo_jugador=apodo_jugador,id_partida=id_partida)
     response = {"like":"ok"}
     return JSONResponse(content=response,status_code=status.HTTP_201_CREATED)
 
