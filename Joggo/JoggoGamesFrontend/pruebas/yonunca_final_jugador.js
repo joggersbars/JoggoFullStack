@@ -11,22 +11,21 @@ function mostrarDatosJugador(result) {
     
     // Formatear el resultado para que se muestre como "5/20" (frases pulsadas / frases totales)
     document.querySelector('.mensaje-final').innerHTML = `
-        <span class="frases-pulsadas">${result.result}</span>
+        <span class="frases-pulsadas" ${result.result}></span>
         <span class="separador">/</span>
-        <span class="frases-totales">${result.frases_totales}</span>
-    `;
+        <span class="frases-totales">${result.frases_totales}</span>`;
 }
-
 
 // Función para obtener datos del jugador desde el backend
 async function obtenerDatosJugador() {
     if (!apodo_jugador || !id_partida) {
         console.error("Apodo o ID de partida del usuario no encontrado en la URL");
-        document.querySelector('.mensaje-final').textContent = "Error: No se pudo obtener la información del jugador.";
+        document.querySelector('.mensaje-final').textContent = " Cargando datos....";
         return;
     }
-
+    
     const url = `${API_URL}/resultado_jugador/${id_partida}/${apodo_jugador}`;
+    console.log("URL para obtener datos:", url);
     try {
         // Realizar la solicitud al backend
         
@@ -38,9 +37,15 @@ async function obtenerDatosJugador() {
             }
         });
 
+        // Verifica si la respuesta es un 404 (no encontrado)
+        if (response.status === 404) {
+            throw new Error("Datos no encontrados para el jugador o la partida.");
+        }
+
         if (!response.ok) throw new Error("Error al obtener los datos del jugador");
 
         const result = await response.json();
+        console.log("Datos recibidos:", result);
         mostrarDatosJugador(result); // Mostrar los datos en la pantalla
     } catch (error) {
         console.error("Error:", error);
