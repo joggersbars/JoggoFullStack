@@ -19,4 +19,4 @@ async function checkAllphrasesDoneStart() {
 }
 
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkAllphrasesDoneStart, 5000);
+setInterval(checkAllphrasesDoneStart, 2000);
