@@ -96,7 +96,9 @@ def get_jugador_by_frase_and_codigo(db: Session, frase_jugador: str, id_partida:
 # Aumentar contador de likes
 def aumenta_likes_frase_de_jugador(db: Session, frase_jugador: str, id_partida: str):
     jugador = get_jugador_by_frase_and_codigo(db=db,frase_jugador=frase_jugador,id_partida=id_partida)
+    print("Aver si entro aqui si quiera")
     if jugador:
+        print("Aumento like")
         jugador.contador_like_frases += 1
         db.commit()
         db.refresh(jugador)
