@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
         resetBotones(); // Llamar a resetBotones aquí también, por si acaso.
     }, 10000);
     
-    checkGameInterval = setInterval(checkGameFinish, 5000);
+    checkGameInterval = setInterval(checkGameFinish, 1000);
 });
 
 // Verificar si el juego ha finalizado y redirigir

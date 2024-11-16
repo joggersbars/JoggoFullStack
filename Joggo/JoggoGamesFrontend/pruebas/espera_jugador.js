@@ -19,4 +19,4 @@ async function checkGameStart() {
 }
 
 // Ejecuta la verificación cada 300 milisegundos
-setInterval(checkGameStart, 5000);
+setInterval(checkGameStart, 1000);
