@@ -62,9 +62,7 @@ async function enviarLike() {
         }
     } catch (error) {
         console.error("Error al conectar con el backend:", error);
-    }
-    // Deshabilita el botón de like después de enviarlo
-    document.querySelector(".btn-like").disabled = true; 
+    } 
 }
 
 // Enviar respuesta "Si" o "No" al backend y deshabilitar los botones correspondientes
@@ -130,6 +128,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".btn-like").addEventListener("click", function() {
         enviarLike();
         this.classList.add("active");
+        // Deshabilita el botón de like después de enviarlo
+        document.querySelector(".btn-like").disabled = true;
     });
 
     // Refrescar la frase cada 10 segundos y verificar el estado del juego cada 20 segundos
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
         resetBotones(); // Llamar a resetBotones aquí también, por si acaso.
     }, 10000);
     
-    checkGameInterval = setInterval(checkGameFinish, 20000);
+    checkGameInterval = setInterval(checkGameFinish, 5000);
 });
 
 // Verificar si el juego ha finalizado y redirigir
