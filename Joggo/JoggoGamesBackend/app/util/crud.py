@@ -229,7 +229,9 @@ def get_stats(db: Session, id_partida: str):
     ).order_by(Respuestas.respuesta_jugador.desc()).all()
 
 def get_resultados_jugador(db: Session, id_partida: str, apodo_jugador: str):
-    return db.query(Respuestas.respuesta_jugador).filter(
+    return db.query(Respuestas.respuesta_jugador).join(
+        Jugadores, Respuestas.apodo_jugador == Jugadores.apodo_jugador
+    ).filter(
         and_(
             Jugadores.id_partida == id_partida,
             Jugadores.apodo_jugador == apodo_jugador
