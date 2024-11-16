@@ -122,6 +122,18 @@ def aumentar_jugador_conectado(db: Session, id_partida: str):
     
     return partida
 
+# Aumentar la cantidad de jugadores conectados en la partida
+def aumentar_jugador_partida(db: Session, id_partida: str):
+    partida = db.query(Juego).filter(Juego.id_partida==id_partida).first()
+
+    # Aumentar en 1 el campo num_jugadores_conectados si la partida existe
+    if partida:
+        partida.num_jugadores += 1
+        db.commit()
+        db.refresh(partida)
+    
+    return partida
+
 # Verificamos si todos los jugadores se han conectado
 def verificar_jugadores_conectados(db: Session, id_partida: str) -> bool:
     # Obtener la partida específica

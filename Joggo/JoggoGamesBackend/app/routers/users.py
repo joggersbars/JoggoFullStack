@@ -99,7 +99,7 @@ async def login_user(usuario: UserData, response: Response, db: Session = Depend
         return json_response
 
 @router.get('/crear_partida/{nombre_juego}', tags=['Creando partida'], description="Creando la partida")
-async def crear_partida(nombre_juego: str, num_jugadores: int = 150, db: Session=Depends(get_db)):
+async def crear_partida(nombre_juego: str, num_jugadores: int = 0, db: Session=Depends(get_db)):
     print("Entro")
     check_codes = crud.get_partida_codigos(db)
     id_partida = generate_unique_code(check_codes)
@@ -128,6 +128,7 @@ async def crear_jugador(jugador: Jugador, db: Session = Depends(get_db)):
     
     # Si el jugador no existe, crea el jugador
     crud.crear_jugador(db=db, apodo_jugador=jugador.apodo_jugador, id_partida=jugador.id_partida)
+    crud.aumentar_jugador_partida(db=db,id_partida=jugador.id_partida)
     response_jugador = {"message": "Jugador conectado correctamente"}
     return JSONResponse(content=response_jugador, status_code=status.HTTP_201_CREATED)
 
@@ -156,7 +157,6 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
 async def establecer_indices_frases(id_partida: IdPartida, db: Session=Depends(get_db)):
     print(f"Estableciendo los indices en las frases de la partida: {id_partida.id_partida}\n")
     crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida.id_partida)
-    crud.actualizar_num_jugadores(db=db, id_partida=id_partida.id_partida)
     crud.cambiar_estado_partida(db=db,id_partida=id_partida.id_partida, estado_juego="frases") 
     response_frase = {"message":"Indices añadidos correctamente"}
     json_response = JSONResponse(content=response_frase, status_code=status.HTTP_201_CREATED)
@@ -178,9 +178,8 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
 @router.get("/game/status/{id_partida}", tags = ["Checkear el estado de la partida"], description="Los jugadores checkean el estado de la partida")
 async def check_status_partida(id_partida: str, db: Session=Depends(get_db)):
     if crud.verificar_jugadores_conectados(db=db, id_partida=id_partida):
-        crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida.id_partida)
-        crud.actualizar_num_jugadores(db=db, id_partida=id_partida.id_partida)
-        crud.cambiar_estado_partida(db=db,id_partida=id_partida.id_partida, estado_juego="frases") 
+        crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida)
+        crud.cambiar_estado_partida(db=db,id_partida=id_partida, estado_juego="frases") 
         response_frase = {"message":"Indices añadidos correctamente"}
     estado = crud.consultar_estado_partida(db=db,id_partida=id_partida)
     print(estado)
@@ -249,7 +248,7 @@ async def mandar_stats(id_partida: str, db: Session = Depends(get_db)):
     return JSONResponse(content={"estadisticas": jugadores_dict},status_code=status.HTTP_201_CREATED)
 
 # Endpoint para mandar a cada jugador su cantidad de sies
-@router.get("/resultado_jugador/{id_partida}/{apodo_jugador}")
+@router.get("/resultado_jugador/{id_partida}/{apodo_jugador}", tags=["Mandarl resultado Jugador"])
 async def mandar_resultado_jugador(id_partida: str, apodo_jugador: str, db: Session=Depends(get_db)):
     resultado_jugador = crud.get_resultados_jugador(db=db, id_partida=id_partida, apodo_jugador=apodo_jugador)
     num_frases = crud.obtener_num_jugadores(db=db, id_partida=id_partida)
