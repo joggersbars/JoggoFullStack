@@ -8,7 +8,12 @@
   <link rel="icon" type="image/png" href="/src/iconos/favicon.ico">
   <!-- Enlace a archivo de CSS -->
   <link rel="stylesheet" href="/src/estilos/info.css">
-  
+
+  <!-- Enlaza los estilos de Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+<!-- Enlaza el script de Swiper -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
   <!-- Fuentes de Google Fonts (si quieres agregar otras fuentes personalizadas) -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -66,19 +71,19 @@
                     <section class="swiper-slide">
                         <div class="home__content grid">
                             <div class="home__group">
-                                <img src="/src/iconos/LOGO_JOGGO_L.png" alt="" class="home__img">
+                                <img src="/src/images/joggo-img.png" alt="" class="home__img">
                             </div>
 
                             <div class="home__data">
-                                <h3 class="home__subtitle">#1 Top Scariest Ghost</h3>
-                                <h1 class="home__title">UOOOO <br> TRICK OR <br> TREAT!!</h1>
-                                <p class="home__description">Hi, I'm Reiza, people call me "El Labu". I am currently trying to learn 
-                                    something new, building my own bike with parts made only in Malaysia.
+                                <h3 class="home__subtitle">#1 Top INSIGNIAS DE LA MARCA</h3>
+                                <h1 class="home__title">ROLLO <br> RETRO <br> VINTAGE</h1>
+                                <p class="home__description">Joggo representa esa estética ochentera que tanto nos gustaba. Benditos años, como han cambiado las cosas ...
                                 </p>
 
                                 <div class="home__buttons">
-                                    <a href="#" class="button">Book Now</a>
-                                    <a href="#" class="button--link button--flex">Track Record <i class='bx bx-right-arrow-alt button__icon'></i></a>
+                                    <a href="#" class="button--link button--flex"><span class="button__text">Siguiente</span>
+                                            <img src="/iconos/arrow_right_icon.png" alt="logo" class="button__icon">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -88,20 +93,13 @@
                     <section class="swiper-slide">
                         <div class="home__content grid">
                             <div class="home__group">
-                                <img src="/src/iconos/LOGO_JOGGO_L.png" alt="" class="home__img">
-                                <div class="home__indicator"></div>
-
-                                <div class="home__details-img">
-                                    <h4 class="home__details-title">Adino & Grahami</h4>
-                                    <span class="home__details-subtitle">No words can describe them</span>
-                                </div>
+                                <img src="/src/images/dados-img.png" alt="" class="home__img">
                             </div>
 
                             <div class="home__data">
-                                <h3 class="home__subtitle">#2 top Best duo</h3>
-                                <h1 class="home__title">BRING BACK <br> MY COTTON <br> CANDY</h1>
-                                <p class="home__description">Adino steals cotton candy from his brother and eats them all in one bite, 
-                                    a hungry beast. Grahami can no longer contain his anger towards Adino.
+                                <h3 class="home__subtitle">#2 Top INSIGNIAS DE LA MARCA</h3>
+                                <h1 class="home__title">DIVERSIÓN <br> POR ENCIMA <br> DE TODO</h1>
+                                <p class="home__description">Queremos que te quedes y para eso la diversión es importante. Disfruta con amigos de una buena partida, me lo agradecerás ...
                                 </p>
 
                                 <div class="home__buttons">
@@ -116,20 +114,13 @@
                     <section class="swiper-slide">
                         <div class="home__content grid">
                             <div class="home__group">
-                                <img src="/src/iconos/LOGO_JOGGO_L.png" alt="" class="home__img">
-                                <div class="home__indicator"></div>
-
-                                <div class="home__details-img">
-                                    <h4 class="home__details-title">Captain Sem</h4>
-                                    <span class="home__details-subtitle">Veteran Spooky Ghost</span>
-                                </div>
+                                <img src="/src/images/fondo-img.png" alt="" class="home__img1">
                             </div>
 
                             <div class="home__data">
-                                <h3 class="home__subtitle">#3 Top Scariest  Ghost</h3>
-                                <h1 class="home__title">RESPAWN <br> THE SPOOKY <br> SKULL</h1>
-                                <p class="home__description">In search for cute little puppy, Captain Sem has come back from his tragic death. 
-                                    With his hogwarts certified power he promise to be a hero for all of ghostkind.
+                                <h3 class="home__subtitle">#3 Top INSIGNIAS DE LA MARCA</h3>
+                                <h1 class="home__title">QUE NO <br> FALTE <br> HIDRATACIÓN</h1>
+                                <p class="home__description">Y como no, una buena reunión de amigos con cerveza siempre sabe a otra cosa. Bebe con responsabilidad pero disfruta sin límites ...
                                 </p>
 
                                 <div class="home__buttons">
@@ -144,7 +135,7 @@
             </div>
         </section>
         
-        <!--==================== CATEGORY ====================-->
+        <!--==================== JOGGO ====================-->
         <section class="section category">
             <h2 class="section__title">Favorite Scare <br> Category</h2>
 
@@ -169,7 +160,7 @@
             </div>
         </section>
 
-        <!--==================== ABOUT ====================-->
+        <!--==================== JUEGOS ====================-->
         <section class="section about" id="about">
             <div class="about__container container grid">
                 <div class="about__data">
@@ -475,13 +466,13 @@
     
     <!--=============== SCROLL REVEAL ===============-->
     <script src="/pruebas/config.js"></script>
-    <script src="assets/js/scrollreveal.min.js"></script>
-    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="/pruebas/scrollreveal.min.js"></script>
+    <script src="/pruebas/scrollreveal.min.js"></script>
 
     <!--=============== SWIPER JS ===============-->
-    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="/pruebas/swiper-bundle.min.js"></script>
     
     <!--=============== MAIN JS ===============-->
-    <script src="assets/js/main.js"></script>
+    <script src="/pruebas/info.js"></script>
 </body>
 </html>

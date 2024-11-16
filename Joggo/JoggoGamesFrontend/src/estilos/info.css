@@ -276,14 +276,22 @@ button{
 
 .home__group{
   display: grid;
+  /*align-items: center;*/
   position: relative;
   padding-top: 2rem;
 }
 
 .home__img{
-  margin-top: 4vh;
-  height: 18vh;
+  height: 30vh;
+  margin-top: 16vh;
   justify-self: center;
+}
+
+home__img1{
+  margin-top: 8vh;
+  height: 50vh;
+  justify-self: center;
+  margin-left: 5vw;
 }
 
 .home__indicator{
@@ -779,8 +787,16 @@ button{
   }
 
   .home__img{
-    height: 200px;
+    margin-top: 16vh;
+    height: 30vh;
   }
+
+  .home__img1{
+    margin-top: 8vh;
+    height: 50vh;
+    margin-left: 5vw;
+  }
+  
   .home__buttons{
     flex-direction: column;
     width: max-content;
@@ -842,8 +858,16 @@ button{
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
   }
+
   .home__img{
-    height: 300px;
+    margin-top: 16vh;
+    height: 30vh;
+  }
+
+  .home__img1{
+    margin-top: 8vh;
+    height: 50vh;
+    margin-left: 5vw;
   }
   .swiper-pagination{
     margin-top: var(--mb-2);
@@ -924,9 +948,18 @@ button{
     padding-top: 0;
   }
   .home__img{
-    height: 400px;
+    margin-top: 16vh;
+    height: 30vh;
     transform: translateY(-3rem);
   }
+
+  .home__img1{
+    margin-top: 8vh;
+    height: 50vh;
+    transform: translateY(-3rem);
+    margin-left: 5vw;
+  }
+
   .home__indicator{
     top: initial;
     right: initial;
@@ -1006,7 +1039,14 @@ button{
 
 @media screen and (min-width: 1200px){
   .home__img{
-    height: 420px;
+    margin-top: 16vh;
+    height: 30vh;
+  }
+
+  .home__img1{
+    margin-top: 8vh;
+    height: 50vh;
+    margin-left: 5vw;
   }
   .swiper-pagination{
     margin-top: var(--mb-2-5);
