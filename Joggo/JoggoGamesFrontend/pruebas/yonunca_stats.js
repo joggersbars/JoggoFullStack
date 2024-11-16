@@ -104,7 +104,7 @@ async function renderChart() {
     const id_partida = getIdPartidaFromURL();
 
     // Redirigir a la nueva URL con los parámetros
-    window.location.href = `/yonunca_stats_likes.html/${id_partida}`;
+    window.location.href = `/yonunca_stats_likes.html?id_partida=${id_partida}`;
 }
 
 // Llama a renderChart una vez al cargar la página
