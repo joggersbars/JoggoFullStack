@@ -11,7 +11,7 @@ function mostrarDatosJugador(result) {
     
     // Formatear el resultado para que se muestre como "5/20" (frases pulsadas / frases totales)
     document.querySelector('.mensaje-final').innerHTML = `
-        <span class="frases-pulsadas"> ${result.result}></span>
+        <span class="frases-pulsadas"> ${result.result}/span>
         <span class="separador">/</span>
         <span class="frases-totales">${result.frases_totales}</span>`;
 }
