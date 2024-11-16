@@ -71,4 +71,4 @@ async function checkAllphrasesDoneStart() {
         window.location.href =  `/yonunca_game.html?id_partida=${id_actual_partida}`;
     }
 }
-checkGameInterval = setInterval(checkAllphrasesDoneStart(), 200000);
+checkGameInterval = setInterval(checkAllphrasesDoneStart(), 1000);
