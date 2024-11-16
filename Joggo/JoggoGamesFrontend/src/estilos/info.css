@@ -147,11 +147,19 @@ button{
 
 /*=============== HEADER ===============*/
 .header{
+  /*margin-top: 0.5vh;*/
+  padding-left: 1vw;
+  padding-right: 1vw;
   width: 100%;
-  background: linear-gradient(90deg, #C96CE6, #014AAD); 
+  background: linear-gradient(90deg, rgba(201, 108, 230, 0.8), rgba(1, 74, 173, 0.8)), /* Degradado horizontal */
+            linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); /* Degradado de opacidad vertical */
+
+  border-radius: 1%;
+  border-color: aliceblue;
+  border-bottom-style: groove;
   position: fixed;
-  top: 0;
-  left: 0;
+  /*top: 0;*/
+  /*left: 0;*/
   z-index: var(--z-fixed);
 }
 
@@ -173,7 +181,8 @@ button{
 }
 
 .nav__logo-img{
-  width: 9rem;
+  width: 11rem;
+  opacity: 0.85;
 }
 
 .nav__link,
@@ -272,7 +281,8 @@ button{
 }
 
 .home__img{
-  height: 250px;
+  margin-top: 4vh;
+  height: 18vh;
   justify-self: center;
 }
 
