@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(() => {
         mostrarFraseDesdeLocalStorage();
         resetBotones(); // Llamar a resetBotones aquí también, por si acaso.
-    }, 10000);
+    }, 1000);
     
     checkGameInterval = setInterval(checkGameFinish, 1000);
 });
