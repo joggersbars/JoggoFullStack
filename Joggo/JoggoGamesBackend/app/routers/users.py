@@ -228,6 +228,7 @@ async def recibir_respuesta(id_partida: str, apodo_jugador: str, respuesta: str 
 # Endpoint para aumentar el like de una frase
 @router.post("/enviar_like/{id_partida}/{frase}", tags=["Aumentar Like Frase"])
 async def aumentar_like(id_partida: str, frase: str, db: Session=Depends(get_db)):
+    print(f"Entro y doy like a la frase: {frase}")
     crud.aumenta_likes_frase_de_jugador(db=db, frase_jugador=frase,id_partida=id_partida)
     response = {"like":"ok"}
     return JSONResponse(content=response,status_code=status.HTTP_201_CREATED)
