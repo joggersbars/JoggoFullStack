@@ -147,7 +147,7 @@ async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_d
             raise HTTPException(status_code=400, detail="Falta la frase")
         print(frase_entrada)
         crud.añadir_frase_a_jugador(db=db,apodo_jugador=frase_entrada.apodo_jugador, frase_jugador=frase_entrada.frase_jugador, id_partida=frase_entrada.id_partida)
-        crud.aumentar_jugador_conectado(db=db, id_partida=frase_entrada.id_partida, apodo_jugador=frase_entrada.apodo_jugador)
+        crud.aumentar_jugador_conectado(db=db, id_partida=frase_entrada.id_partida)
         if crud.verificar_jugadores_conectados(db=db, id_partida=frase_entrada.id_partida):
             crud.actualizar_id_frases_para_partida(db=db,id_partida=frase_entrada.id_partida)
             crud.cambiar_estado_partida(db=db,id_partida=frase_entrada.id_partida, estado_juego="frases") 
