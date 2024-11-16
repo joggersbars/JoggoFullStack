@@ -61,3 +61,14 @@ animation_timer.addEventListener('complete', async function() {
     // 3. Redirigir a la pantalla /yonunca_game.html pasando `id_partida`
     window.location.href = `/yonunca_game.html?id_partida=${id_actual_partida}`;
 });
+
+// Verifica si el temporizador ha terminado
+async function checkAllphrasesDoneStart() {
+    const response = await fetch(`${API_URL}/game/status/${id_actual_partida}`);
+    const data = await response.json();
+    
+    if (data.estado === "frases") {
+        window.location.href =  `/yonunca_game.html?id_partida=${id_actual_partida}`;
+    }
+}
+checkGameInterval = setInterval(checkAllphrasesDoneStart(), 20000);

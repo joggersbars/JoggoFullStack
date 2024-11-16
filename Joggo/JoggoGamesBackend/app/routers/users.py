@@ -83,6 +83,7 @@ async def login_user(usuario: UserData, response: Response, db: Session = Depend
         if not usuario.username or not usuario.password:
             raise HTTPException(status_code=400, detail="Faltan datos obligatorios")
         valid_user = crud.login_user(db=db,username=usuario.username,password=usuario.password)
+        # Generate token
         if valid_user.get("message") == "Bienvenido":
             _logger.info(f"Logging Usuario {usuario.username}: tipo: {usuario.password}")
 
@@ -130,15 +131,6 @@ async def crear_jugador(jugador: Jugador, db: Session = Depends(get_db)):
     response_jugador = {"message": "Jugador conectado correctamente"}
     return JSONResponse(content=response_jugador, status_code=status.HTTP_201_CREATED)
 
-    
-# Endpoint para checkear si todos los jugadores se han conectado 
-@router.get("/all_jugadores_conectados/{id_partida}", tags=["Checkeo Jugadores Conectados"], description="Checkeo de si todos los jugadores se han conectado")
-async def all_jugadores_conectados(id_partida: str, db: Session=Depends(get_db)):
-    respuesta_booleana = crud.verificar_jugadores_conectados(db=db, id_partida=id_partida)
-    print(respuesta_booleana)
-    response_dict = {"check_connection":respuesta_booleana[0]}
-    return JSONResponse(content = response_dict, status_code = status.HTTP_201_CREATED)
-
 # Endpoint para añadir frase al jugador correspondiente Joao me tiene que enviar Frase entrada(schemas.py)
 @router.post('/anadir_frase', tags=['Add-ons'], description="Añadiendo frase de jugador")
 async def anadiendo_frase(frase_entrada: FraseEntrada, db: Session=Depends(get_db)):
@@ -185,6 +177,11 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
 # Endpoint para checkear el estado de la partida
 @router.get("/game/status/{id_partida}", tags = ["Checkear el estado de la partida"], description="Los jugadores checkean el estado de la partida")
 async def check_status_partida(id_partida: str, db: Session=Depends(get_db)):
+    if crud.verificar_jugadores_conectados(db=db, id_partida=id_partida):
+        crud.actualizar_id_frases_para_partida(db=db,id_partida=id_partida.id_partida)
+        crud.actualizar_num_jugadores(db=db, id_partida=id_partida.id_partida)
+        crud.cambiar_estado_partida(db=db,id_partida=id_partida.id_partida, estado_juego="frases") 
+        response_frase = {"message":"Indices añadidos correctamente"}
     estado = crud.consultar_estado_partida(db=db,id_partida=id_partida)
     print(estado)
     response_dict = {"id_partida": id_partida, "estado": estado[0]}
