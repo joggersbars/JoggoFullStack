@@ -169,8 +169,6 @@ async def empezar_partida(message: MensajeInicioPartida, db: Session=Depends(get
         iterator.establecer_cantidad_frases(cantidad_frases=int(crud.obtener_cantidad_frases_codigo(db=db, id_partida=message.id_partida)))
         iterator.mostrar_cantidad_frases()
         crud.cambiar_estado_partida(db=db,id_partida=message.id_partida,estado_juego="comenzado")
-        _, num_jugadores = crud.actualizar_num_jugadores(db=db, id_partida=message.id_partida)
-        print(f"El número de jugadores es:{num_jugadores}")
     else:
         raise HTTPException(status_code=400, detail="El mensaje es incorrecto")
 
